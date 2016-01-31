@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-30 17:00-0800\n"
+"POT-Creation-Date: 2016-01-30 21:56-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,19 +17,62 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:26
+#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:30
+msgid "Welcome"
+msgstr ""
+
+#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:45
+msgid "Hello world!"
+msgstr ""
+
+#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:53
+msgid "New file"
+msgstr ""
+
+#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:56
+msgid "\"New file\" button clicked"
+msgstr ""
+
+#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:65
+msgid "Open latest (hold to open a different file)"
+msgstr ""
+
+#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:68
+msgid "\"Open latest\" button clicked"
+msgstr ""
+
+#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:72
+msgid "\"Open\" unimplemented"
+msgstr ""
+
+#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:81
+msgid "Save file (hold to save as new file)"
+msgstr ""
+
+#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:84
+msgid "Save button clicked"
+msgstr ""
+
+#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:88
+msgid "\"Save as\" unimplemented"
+msgstr ""
+
+#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:97
+msgid "Notecards"
+msgstr ""
+
+#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:102
+msgid "Script"
+msgstr ""
+
+#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:117
+msgid "Type here"
+msgstr ""
+
+#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:124
+msgid "Reports"
+msgstr ""
+
 #: /home/james/Programming/build-ScriptDragon-Ubuntu_SDK_Desktop_Kit-Debug/ScriptDragon/ScriptDragon.desktop.h:1
 msgid "ScriptDragon"
-msgstr ""
-
-#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:39
-msgid "Hello.."
-msgstr ""
-
-#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:46
-msgid "Tap me!"
-msgstr ""
-
-#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:49
-msgid "..world!"
 msgstr ""

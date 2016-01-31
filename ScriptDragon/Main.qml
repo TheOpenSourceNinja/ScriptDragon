@@ -22,33 +22,106 @@ MainView {
 	width: units.gu(100)
 	height: units.gu(75)
 	
-	Page {
-		title: i18n.tr("ScriptDragon")
+	Tabs {
+		id: tabs
 		
-		Column {
-			spacing: units.gu(1)
-			anchors {
-				margins: units.gu(2)
-				fill: parent
-			}
+		Tab {
+			id: welcomeTab
+			title: i18n.tr( "Welcome" )
 			
-			Label {
-				id: label
-				objectName: "label"
+			Page {
 				
-				text: i18n.tr("Hello..")
-			}
-			
-			Button {
-				objectName: "button"
-				width: parent.width
-				
-				text: i18n.tr("Tap me!")
-				
-				onClicked: {
-					label.text = i18n.tr("..world!")
+				Column {
+					spacing: units.gu(1)
+					anchors {
+						margins: units.gu(2)
+						fill: parent
+					}
+					
+					Label {
+						id: label
+						objectName: "label"
+						
+						text: i18n.tr("Hello world!")
+					}
+					
+					Button {
+						objectName: "newButton"
+						width: parent.width
+						id: newButton
+						iconName: "document-new"
+						text: i18n.tr( "New file" )
+						
+						onClicked: {
+							label.text = i18n.tr( "\"New file\" button clicked" )
+						}
+					}
+					
+					Button {
+						objectName: "openButton"
+						width: parent.width
+						id: openButton
+						iconName: "document-open"
+						text: i18n.tr( "Open latest (hold to open a different file)" )
+						
+						onClicked: {
+							label.text = i18n.tr( "\"Open latest\" button clicked" )
+						}
+						
+						onPressAndHold: {
+							label.text = i18n.tr( "\"Open\" unimplemented" )
+						}
+					}
+					
+					Button {
+						objectName: "saveButton"
+						width: parent.width
+						id: saveButton
+						iconName: "document-save"
+						text: i18n.tr("Save file (hold to save as new file)")
+						
+						onClicked: {
+							label.text = i18n.tr( "Save button clicked" )
+						}
+						
+						onPressAndHold: {
+							label.text = i18n.tr( "\"Save as\" unimplemented")
+						}
+					}
 				}
 			}
+		}
+		
+		Tab {
+			id: notecardsTab
+			title: i18n.tr( "Notecards" )
+		}
+		
+		Tab {
+			id: scriptTab
+			title: i18n.tr( "Script" )
+			
+			Page {
+				TextArea {
+					width: parent.width
+					height: parent.height
+					//contentWidth: width
+					autoSize: false
+					maximumLineCount: 0
+					
+					color: "black" //This is the color of the text, not of the text area itself
+					font.family: "Courier" //TODO: Find a way to use alternate font families if Courier is unavailable
+					font.pointSize: 15
+					textFormat: TextEdit.RichText
+					
+					placeholderText: i18n.tr( "Type here" )
+				}
+			}
+		}
+		
+		Tab {
+			id: reportsTab
+			title: i18n.tr( "Reports" )
 		}
 	}
 }

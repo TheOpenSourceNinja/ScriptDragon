@@ -1,17 +1,15 @@
 {
     "name": "scriptdragon.dearingj",
-    "description": "description of ScriptDragon",
+    "description": "Screenwriting app",
     "architecture": "@CLICK_ARCH@",
     "title": "ScriptDragon",
     "hooks": {
         "ScriptDragon": {
             "apparmor": "ScriptDragon/ScriptDragon.apparmor",
-            "desktop":  "ScriptDragon/ScriptDragon.desktop"
+            "desktop": "ScriptDragon/ScriptDragon.desktop"
         }
     },
     "version": "0.1",
     "maintainer": "James Dearing <dearingj@lifetime.oregonstate.edu>",
-    "framework" : "ubuntu-sdk-15.04.4"
+    "framework": "ubuntu-sdk-15.04.4"
 }
-
-
