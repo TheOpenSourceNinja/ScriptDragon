@@ -1,0 +1,8 @@
+[Desktop Entry]
+_Name=ScriptDragon
+Exec=ScriptDragon
+Icon=ScriptDragon/ScriptDragon.png
+Terminal=false
+Type=Application
+X-Ubuntu-Touch=true
+
