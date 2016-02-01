@@ -1,6 +1,9 @@
 <RCC>
     <qresource prefix="/">
         <file>Main.qml</file>
+        <file>WelcomePage.qml</file>
+        <file>ScriptPage.qml</file>
+        <file>NotecardsPage.qml</file>
+        <file>ReportsPage.qml</file>
     </qresource>
 </RCC>
-
