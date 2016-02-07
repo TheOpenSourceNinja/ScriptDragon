@@ -5,5 +5,8 @@
         <file>ScriptPage.qml</file>
         <file>NotecardsPage.qml</file>
         <file>ReportsPage.qml</file>
+        <file>CharactersPage.qml</file>
+        <file>LocationsPage.qml</file>
+        <file>RandomGeneratorsPage.qml</file>
     </qresource>
 </RCC>

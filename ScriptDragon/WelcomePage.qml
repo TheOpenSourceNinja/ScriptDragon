@@ -61,6 +61,13 @@ Page {
 				label.text = i18n.tr( "\"Save as\" unimplemented")
 			}
 		}
+		
+		Label {
+			id: tourLabel
+			objectName: "tourLabel"
+			
+			text: i18n.tr("This is where I will introduce the app's basic features. Experienced users will know to use the tabs menu or the buttons to go straight to whatever.")
+		}
 	}
 }
 

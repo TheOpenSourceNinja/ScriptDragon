@@ -40,3 +40,8 @@ INSTALLS+=desktop_file
 target.path = $${UBUNTU_CLICK_BINARY_PATH}
 INSTALLS+=target
 
+DISTFILES += \
+    CharactersPage.qml \
+    LocationsPage.qml \
+    RandomGeneratorsPage.qml
+

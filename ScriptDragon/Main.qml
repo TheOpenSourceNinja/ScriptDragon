@@ -18,9 +18,19 @@ MainView {
 	*/
 	automaticOrientation: true
 	
+	/*
+	Ubuntu discourages the use of pixels. Instead, they recommend "graphical units",
+	the advantage being that graphical units can be different pixel sizes based on
+	a screen's pixel density.
 	
-	width: units.gu(75)
-	height: units.gu(100)
+	Feel free to try different numbers here. I put in 54 and 96 because that
+	reflects the 9:16 aspect ratio of my phone's screen (720x1280 pixels).
+	
+	The window is user-resizable on normal computers. On my phone it seems to just
+	fill the screen.
+	*/
+	width: units.gu(54)
+	height: units.gu(96)
 	
 	Tabs {
 		id: tabs
@@ -37,6 +47,27 @@ MainView {
 			title: i18n.tr( "Notecards" )
 			
 			NotecardsPage {}
+		}
+		
+		Tab {
+			id: charactersTab
+			title: i18n.tr( "Characters" )
+			
+			CharactersPage {}
+		}
+		
+		Tab {
+			id: locationsTab
+			title: i18n.tr( "Locations" )
+			
+			LocationsPage {}
+		}
+		
+		Tab {
+			id: randomGeneratorsTab
+			title: i18n.tr( "Random generators" )
+			
+			RandomGeneratorsPage {}
 		}
 		
 		Tab {

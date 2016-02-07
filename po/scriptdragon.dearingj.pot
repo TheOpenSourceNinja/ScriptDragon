@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-31 18:22-0800\n"
+"POT-Creation-Date: 2016-02-06 23:11-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,19 +17,31 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:30
+#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:40
 msgid "Welcome"
 msgstr ""
 
-#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:37
+#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:47
 msgid "Notecards"
 msgstr ""
 
-#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:44
+#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:54
+msgid "Characters"
+msgstr ""
+
+#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:61
+msgid "Locations"
+msgstr ""
+
+#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:68
+msgid "Random generators"
+msgstr ""
+
+#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:75
 msgid "Script"
 msgstr ""
 
-#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:51
+#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:82
 msgid "Reports"
 msgstr ""
 

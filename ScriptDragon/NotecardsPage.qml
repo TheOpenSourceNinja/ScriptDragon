@@ -6,7 +6,7 @@ Page {
 	Rectangle {
 		width: parent.width / 2
 		height: parent.height / 2
-		color: "green"
+		color: "lightgray"
 		border.color: "black"
 		Column {
 			width: parent.width// *.9
