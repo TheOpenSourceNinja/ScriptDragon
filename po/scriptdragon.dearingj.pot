@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-09 21:44-0800\n"
+"POT-Creation-Date: 2016-02-10 13:27-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,98 +17,98 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:41
-#: /home/james/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:5
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:41
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:5
 msgid "Welcome"
 msgstr ""
 
-#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:48
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:48
 msgid "Notecards"
 msgstr ""
 
-#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:55
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:55
 msgid "Characters"
 msgstr ""
 
-#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:62
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:62
 msgid "Locations"
 msgstr ""
 
-#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:69
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:69
 msgid "Random generators"
 msgstr ""
 
-#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:76
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:76
 msgid "Script"
 msgstr ""
 
-#: /home/james/Programming/ScriptDragon/ScriptDragon/Main.qml:83
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:83
 msgid "Reports"
 msgstr ""
 
-#: /home/james/Programming/ScriptDragon/ScriptDragon/Notecard.qml:16
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Notecard.qml:24
 msgid "Notecard"
 msgstr ""
 
-#: /home/james/Programming/ScriptDragon/ScriptDragon/Notecard.qml:32
-#: /home/james/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:17
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Notecard.qml:40
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:17
 msgid "Type here"
 msgstr ""
 
-#: /home/james/Programming/ScriptDragon/ScriptDragon/Notecard.qml:36
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Notecard.qml:44
 msgid "Associativity: "
 msgstr ""
 
-#: /home/james/Programming/ScriptDragon/ScriptDragon/NotecardsPage.qml:11
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/NotecardsPage.qml:11
 msgid "new"
 msgstr ""
 
-#: /home/james/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:12
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:12
 msgid "Click the links at the top to access the various generators."
 msgstr ""
 
-#: /home/james/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:18
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:18
 msgid "Hello world!"
 msgstr ""
 
-#: /home/james/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:26
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:26
 msgid "New file"
 msgstr ""
 
-#: /home/james/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:29
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:29
 msgid "\"New file\" button clicked"
 msgstr ""
 
-#: /home/james/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:38
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:38
 msgid "Open latest (hold to open a different file)"
 msgstr ""
 
-#: /home/james/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:41
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:41
 msgid "\"Open latest\" button clicked"
 msgstr ""
 
-#: /home/james/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:45
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:45
 msgid "\"Open\" unimplemented"
 msgstr ""
 
-#: /home/james/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:54
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:54
 msgid "Save file (hold to save as new file)"
 msgstr ""
 
-#: /home/james/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:57
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:57
 msgid "Save button clicked"
 msgstr ""
 
-#: /home/james/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:61
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:61
 msgid "\"Save as\" unimplemented"
 msgstr ""
 
-#: /home/james/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:69
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:69
 msgid ""
 "This is where I will introduce the app's basic features. Experienced users "
 "will know to use the tabs menu or the buttons to go straight to whatever."
 msgstr ""
 
-#: /home/james/Programming/build-ScriptDragon-Ubuntu_SDK_Desktop_Kit-Release/ScriptDragon/ScriptDragon.desktop.h:1
+#: /media/SecondDrive/Programming/build-ScriptDragon-Ubuntu_SDK_Desktop_Kit-Debug/ScriptDragon/ScriptDragon.desktop.h:1
 msgid "ScriptDragon"
 msgstr ""
