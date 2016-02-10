@@ -24,7 +24,8 @@ MainView {
 	a screen's pixel density.
 	
 	Feel free to try different numbers here. I put in 54 and 96 because that
-	reflects the 9:16 aspect ratio of my phone's screen (720x1280 pixels).
+	reflects the 9:16 aspect ratio of my phone's screen (9:16 x 6 = 54:96). The x6
+	multiplier makes it big enough to use on my laptop's screens.
 	
 	The window is user-resizable on normal computers. On my phone it seems to just
 	fill the screen.

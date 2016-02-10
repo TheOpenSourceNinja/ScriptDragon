@@ -8,5 +8,6 @@
         <file>CharactersPage.qml</file>
         <file>LocationsPage.qml</file>
         <file>RandomGeneratorsPage.qml</file>
+        <file>Notecard.qml</file>
     </qresource>
 </RCC>

@@ -62,7 +62,7 @@ Page {
 			}
 		}
 		
-		Label {
+		Label { //todo: would this be better as a non-editable text area? Might have automatic text wrapping.
 			id: tourLabel
 			objectName: "tourLabel"
 			

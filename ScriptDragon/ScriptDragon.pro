@@ -5,7 +5,8 @@ load(ubuntu-click)
 
 QT += qml quick
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    notecarddata.cpp
 
 RESOURCES += ScriptDragon.qrc
 
@@ -43,5 +44,9 @@ INSTALLS+=target
 DISTFILES += \
     CharactersPage.qml \
     LocationsPage.qml \
-    RandomGeneratorsPage.qml
+    RandomGeneratorsPage.qml \
+    Notecard.qml
+
+HEADERS += \
+    notecarddata.h
 
