@@ -12,8 +12,14 @@ Page {
 			width: parent.width
 			
 			onClicked: {
-				var component = Qt.createComponent("Notecard.qml")
-				component.createObject( parent )
+				var component = Qt.createComponent("Notecard.qml");
+				var status = component.status;
+				
+				if( status == Component.Ready ) {
+					component.createObject( parent )
+				} else if( status == Component.Error ){
+					console.error( "Error creating new notecard: " + component.errorString() );
+				}
 			}
 		}
 		

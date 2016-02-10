@@ -6,8 +6,15 @@ import ninja.theopensource.scriptdragon 1.0 //for any data that can't be attache
 Rectangle {
 	width: parent.width / 2
 	height: parent.height / 2
-	color: "lightgray"
+	color: data.color
+	//color: "lightgray"
 	border.color: "black"
+	
+	//note: memory corruption error disappears if the following NotecardData is commented out
+	/*NotecardData {
+		id: data
+	}*/
+	
 	Column {
 		width: parent.width// *.9
 		height: parent.height// *.9
