@@ -1,5 +1,6 @@
 import QtQuick 2.4
 import Ubuntu.Components 1.3
+//import U1db 1.0 as U1db
 
 /*!
 	\brief MainView has tabs, tabs link to other files.
@@ -32,6 +33,11 @@ MainView {
 	*/
 	width: units.gu(54)
 	height: units.gu(96)
+	
+	/*U1db.Database {
+		id: database;
+		path: "test_database.u1db"
+	}*/
 	
 	Tabs {
 		id: tabs
