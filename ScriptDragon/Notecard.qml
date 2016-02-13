@@ -11,9 +11,10 @@ Rectangle {
 	border.color: "black"
 	
 	//note: memory corruption error disappears if the following NotecardData is commented out
-	/*NotecardData {
+    //note 2: memory corruption error happens on Ubuntu 16.04 VM, not 15.10 real hardware
+    NotecardData {
 		id: data
-	}*/
+    }
 	
 	Column {
 		width: parent.width// *.9
