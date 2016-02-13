@@ -10,7 +10,7 @@ Page {
 		maximumLineCount: 0
 		
 		color: "black" //This is the color of the text, not of the text area itself
-		font.family: "Courier" //TODO: Find a way to use alternate font families if Courier is unavailable
+        font.family: "Courier" //TODO: Find a way to use alternate font families if Courier is unavailable. Possibly use Qt.fontFamilies() https://developer.ubuntu.com/api/apps/qml/sdk-15.04.1/QtQml.Qt/
 		font.pointSize: 15
 		textFormat: TextEdit.RichText
 		

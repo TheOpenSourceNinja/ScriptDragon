@@ -1,8 +1,51 @@
 import QtQuick 2.0
 import Ubuntu.Components 1.3
+import QtQuick.Dialogs 1.2
 
 Page {
 	title: i18n.tr( "Welcome" )
+
+    //Used by the file open & save dialogs
+    property var fileNameFilters: [
+        "ScriptDragon files (*.scriptdragon)",
+        "All files (*)"
+    ]
+
+    FileDialog {
+        id: openDialog
+        title: i18n.tr( "Choose a file to open" )
+        folder: shortcuts.documents //Reference: https://doc.qt.io/qt-5/qml-qtquick-dialogs-filedialog.html#shortcuts-prop
+        selectExisting: true
+        selectMultiple: false
+
+        nameFilters: fileNameFilters
+
+        onAccepted: {
+            label.text = fileUrl //If selectMultiple were true, we would use the plural fileUrls
+        }
+
+        onRejected: {
+            label.text = i18n.tr( "Open dialog cancelled" )
+        }
+    }
+
+    FileDialog {
+        id: saveDialog
+        title: i18n.tr( "Choose a file to save to" )
+        folder: shortcuts.documents
+        selectExisting: false
+        selectMultiple: false
+
+        nameFilters: fileNameFilters
+
+        onAccepted: {
+            label.text = fileUrl
+        }
+
+        onRejected: {
+            label.text = i18n.tr( "Save dialog cancelled" )
+        }
+    }
 	
 	Column {
 		spacing: units.gu(1)
@@ -14,7 +57,7 @@ Page {
 		Label {
 			id: label
 			objectName: "label"
-			
+
 			text: i18n.tr("Hello world!")
 		}
 		
@@ -42,7 +85,8 @@ Page {
 			}
 			
 			onPressAndHold: {
-				label.text = i18n.tr( "\"Open\" unimplemented" )
+                label.text = i18n.tr( "\"Open\" was chosen" )
+                openDialog.visible = true //Setting visible to true is equivalent to calling openDialog.open()
 			}
 		}
 		
@@ -58,7 +102,8 @@ Page {
 			}
 			
 			onPressAndHold: {
-				label.text = i18n.tr( "\"Save as\" unimplemented")
+                label.text = i18n.tr( "\"Save as\" was chosen")
+                saveDialog.visible = true
 			}
 		}
 		

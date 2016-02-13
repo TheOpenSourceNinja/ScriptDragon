@@ -5,60 +5,36 @@ Page {
 	Column {
 		width: parent.width
 		height: parent.height
-		
+
 		Button {
 			iconName: "note-new"
 			text: i18n.tr( "new" )
 			width: parent.width
-			
+			id: newCardButton
+
+			property var component: Qt.createComponent("Notecard.qml"); //Note to self: Experiment with creating the component only once
+
 			onClicked: {
-				var component = Qt.createComponent("Notecard.qml");
 				var status = component.status;
-				
-				if( status == Component.Ready ) {
-					component.createObject( parent )
-				} else if( status == Component.Error ){
-					console.error( "Error creating new notecard: " + component.errorString() );
+				if( status === Component.Ready ) {
+					var obj = component.createObject( notecardGrid )
+
+					if( obj == null ) {
+						console.error( i18n.tr( "Error creating new notecard." ) )
+					}
+				} else if( status === Component.Error ){
+					console.error( i18n.tr( "Error creating new notecard: " ) + component.errorString() );
 				}
 			}
 		}
-		
-		//Notecard {}
-		
-		//Notecard test
-		/*Rectangle {
-			width: parent.width / 2
-			height: parent.height / 2
-			color: "lightgray"
-			border.color: "black"
-			Column {
-				width: parent.width// *.9
-				height: parent.height// *.9
-				
-				TextField {
-					placeholderText: i18n.tr( "Notecard" )
-					color: "black"
-					width: parent.width
-					horizontalAlignment: TextInput.AlignHCenter
-					opacity: 0.9
-				}
-				
-				TextArea {
-					width: parent.width
-					autoSize: false
-					maximumLineCount: 0
-					opacity: 0.9
-					
-					color: "black" //This is the color of the text, not of the text area itself
-					textFormat: TextEdit.RichText
-					
-					placeholderText: i18n.tr( "Type here" )
-				}
-				
-				Label {
-					text: i18n.tr( "Associativity: " )
-				}
-			}
-		}*/
+
+		Grid {
+			width: parent.width
+			height: parent.height - newCardButton.height
+			id: notecardGrid
+			columns: 2
+			columnSpacing: units.gu( 1 )
+			rowSpacing: units.gu( 1 )
+		}
 	}
 }
