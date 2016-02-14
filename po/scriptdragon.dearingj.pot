@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-12 23:01-0800\n"
+"POT-Creation-Date: 2016-02-13 18:23-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -78,19 +78,35 @@ msgstr ""
 msgid "Another button"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/NotecardsPage.qml:11
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/NotecardsPage.qml:12
 msgid "new"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/NotecardsPage.qml:23
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/NotecardsPage.qml:24
 msgid "Error creating new notecard."
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/NotecardsPage.qml:26
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/NotecardsPage.qml:27
 msgid "Error creating new notecard: "
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:12
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:10
+msgid "&characters"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:16
+msgid "&locations"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:22
+msgid "&events"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:28
+msgid "&names"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:38
 msgid "Click the links at the top to access the various generators."
 msgstr ""
 
@@ -146,7 +162,7 @@ msgstr ""
 msgid "\"Save as\" was chosen"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:114
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:120
 msgid ""
 "This is where I will introduce the app's basic features. Experienced users "
 "will know to use the tabs menu or the buttons to go straight to whatever."
