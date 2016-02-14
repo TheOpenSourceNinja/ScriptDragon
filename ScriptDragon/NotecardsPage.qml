@@ -2,6 +2,7 @@ import QtQuick 2.0
 import Ubuntu.Components 1.3
 
 Page {
+	id: thePage
 	Column {
 		width: parent.width
 		height: parent.height
@@ -28,13 +29,22 @@ Page {
 			}
 		}
 
-		Grid {
+
+		ScrollView {
 			width: parent.width
-			height: parent.height - newCardButton.height
-			id: notecardGrid
-			columns: 2
-			columnSpacing: units.gu( 1 )
-			rowSpacing: units.gu( 1 )
+			height: parent.height
+
+			Grid {
+				//width: thePage.width
+				//height: (1 * thePage.height) - newCardButton.height
+				id: notecardGrid
+				columns: 2
+				columnSpacing: units.gu( 1 )
+				rowSpacing: units.gu( 1 )
+			}
+
+			viewport.width: parent.width
+			viewport.height: parent.height
 		}
 	}
 }

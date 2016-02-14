@@ -5,8 +5,8 @@ import QtQuick.Dialogs 1.2
 import ninja.theopensource.scriptdragon 1.0 //for any data that can't be attached directly to a QML Notecard object, this gives us access to the C++-defined NotecardData type
 
 Rectangle {
-	width: parent.width / 2
-	height: parent.height / 2
+	width: units.gu( 5 * 6 ) //The 5 is from real notecards, which can be 5x7 inches. The *6 multiplier is to make it usable on my computer screen and was found through experimentation.
+	height: width * 1.4 //*1.4 reflects the aspect ratio of 5x7 notecards.
 	color: "lightgray"
 	border.color: "black"
 	id: theCard
