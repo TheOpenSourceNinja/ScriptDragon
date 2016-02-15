@@ -38,7 +38,7 @@ Page {
 				//width: thePage.width
 				//height: (1 * thePage.height) - newCardButton.height
 				id: notecardGrid
-				columns: 2 //todo: Instead of using a fixed number, make this dependent on the sizes of the window and the notecards
+				columns: 2 //todo: Instead of using a fixed number, make this dependent on the sizes of the window and the notecards OR make it user configurable
 				columnSpacing: units.gu( 1 )
 				rowSpacing: units.gu( 1 )
 			}

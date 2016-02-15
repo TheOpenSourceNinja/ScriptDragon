@@ -22,6 +22,7 @@ Page {
 
 		onAccepted: {
 			label.text = fileUrl //If selectMultiple were true, we would use the plural fileUrls
+			scriptTab.text = fileUrl
 		}
 
 		onRejected: {
@@ -33,13 +34,15 @@ Page {
 		id: saveDialog
 		title: i18n.tr( "Choose a file to save to" )
 		folder: shortcuts.documents
-		selectExisting: false
-		selectMultiple: false
+
+		selectExisting: false //From the docs: "Whether only existing files or directories can be selected... Setting this property to false implies that the dialog is for naming a file to which to save something... therefore selectMultiple must be false."
+		selectMultiple: false //If this were true then the user couldn't input a file name
 
 		nameFilters: fileNameFilters
 
 		onAccepted: {
 			label.text = fileUrl
+			scriptTab.text = fileUrl
 		}
 
 		onRejected: {
