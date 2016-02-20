@@ -42,7 +42,14 @@ Page {
 
 		onAccepted: {
 			label.text = fileUrl
-			scriptTab.text = fileUrl
+			
+			//scriptTab.text = notecardsTab.notecards[0].color
+			console.log( "The notecard colors are: " )
+			for( var i = 0; i < notecardsTab.notecards.length; ++i ) {
+				console.log( notecardsTab.notecards[ i ].color )
+			}
+			console.log( "The script text is: " )
+			console.log( scriptTab.text )
 		}
 
 		onRejected: {

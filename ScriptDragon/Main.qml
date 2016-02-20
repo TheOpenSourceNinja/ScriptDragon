@@ -52,8 +52,12 @@ MainView {
 		Tab {
 			id: notecardsTab
 			title: i18n.tr( "Notecards" )
-
-			NotecardsPage {}
+			
+			property alias notecards: notecardsPage.notecards
+			
+			NotecardsPage {
+				id: notecardsPage
+			}
 		}
 
 		Tab {
