@@ -3,54 +3,11 @@ import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
 
 Page {
-	/*head {
-		sections {
-			//model: [ "characters", "locations", "events", "names" ]
-			actions: [
-				Action {
-					text: i18n.tr( "&characters" )
-					onTriggered: {
-						console.log( "characters section triggered" );
-						instructionLabel.visible = false
-						charactersSection.visible = true
-					}
-				},
-				Action {
-					text: i18n.tr( "&locations" )
-					onTriggered: {
-						console.log( "locations section triggered" );
-					}
-				},
-				Action {
-					text: i18n.tr( "&events" )
-					onTriggered: {
-						console.log( "events section triggered" );
-					}
-				},
-				Action {
-					text: i18n.tr( "&names" )
-					onTriggered: {
-						console.log( "names section triggered" );
-					}
-				}
-			]
-		}
-	}
 	
-	Label {
-		id: instructionLabel
-		text: i18n.tr( "Click the links at the top to access the various generators." )
-	}
-	
-	Label {
-		id: charactersSection
-		visible: false
-		text: "This is the characters section"
-	}*/
-	
+	//This function is outside of the new character Dialog because it also needs to be accessed by the new character Button
 	function newCharacter() {
 		
-		//Regarding genders: I wanted to reflect modern inclusiveness by including an option other than binary male/female, but also wanted to keep things simple since this is intended to be used very early in the writing process. Having only three options, I feel, is the right thing to do, and "other/nonspecific gender" has a reasonably clear meaning. That said, I'm still considering changing it to something like "gender-fluid" or "non-binary gender".
+		//Regarding genders: I wanted to reflect modern inclusiveness by including an option other than binary male/female, but also wanted to keep things simple since this is intended to be used very early in the writing process. Having only three options, I feel, is the right thing to do, and "other/nonspecific" gender has a reasonably clear meaning. That said, I'm still considering changing it to something like "gender-fluid" or "non-binary gender".
 		var genders = [ i18n.tr( "male" ), i18n.tr( "female" ), i18n.tr( "other/nonspecific" ) ]
 		
 		var archetypes = [ i18n.tr( "Shapeshifter" ), i18n.tr( "Threshold Guardian" ), i18n.tr( "Trickster" ), i18n.tr( "Shadow" ), i18n.tr( "Herald" ), i18n.tr( "Ally" ), i18n.tr( "Mentor" ), i18n.tr( "Hero" ) ] //Taken from Christopher Vogler's "The Writer's Journey", 3rd edition.
@@ -75,7 +32,8 @@ Page {
 			title: i18n.tr( "New character" )
 			
 			function newNotecard() {
-				
+				var notecardText = text + "\n" + description.text;
+				notecardsPage.addNotecard( notecardText, i18n.tr( "New Character" ) );
 			}
 			
 			TextArea {
@@ -93,7 +51,10 @@ Page {
 			
 			Button {
 				text: i18n.tr( "Save as notecard" )
-				onClicked: newNotecard()
+				onClicked: {
+					newNotecard()
+					dialog.visible = false
+				}
 			}
 			
 			Button {

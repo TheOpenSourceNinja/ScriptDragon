@@ -1,8 +1,16 @@
 [Desktop Entry]
-_Name=ScriptDragon
+#https://specifications.freedesktop.org/desktop-entry-spec/latest/ar01s05.html
+Version=1.0
+Name=ScriptDragon
+Name[en]=ScriptDragon
+GenericName[en]=Screenwriting app
+Comment[en]=An app for writing screenplays
+TryExec=ScriptDragon
 Exec=ScriptDragon
 Icon=ScriptDragon/ScriptDragon.png
 Terminal=false
 Type=Application
 X-Ubuntu-Touch=true
-
+Categories=Office;WordProcessor
+Keywords[en]=script;screenplay;write;writing
+#MimeType=???

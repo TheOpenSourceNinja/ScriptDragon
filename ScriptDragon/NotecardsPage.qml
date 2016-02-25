@@ -5,6 +5,29 @@ Page {
 	id: thePage
 	property alias notecards: notecardGrid.children;
 	
+	property var component: Qt.createComponent( "TextNotecard.qml" );
+	
+	function addNotecard( /*string*/newCardText, /*string*/newCardTitle ) {
+		var status = component.status;
+		if( status === Component.Ready ) {
+			var obj = component.createObject( notecardGrid )
+			
+			if( obj == null ) {
+				console.error( i18n.tr( "Error creating new notecard." ) )
+			} else {
+				if( newCardText != null ) {
+					obj.text = newCardText
+				}
+				
+				if( newCardTitle != null ) {
+					obj.title = newCardTitle
+				}
+			}
+		} else if( status === Component.Error ){
+			console.error( i18n.tr( "Error creating new notecard: " ) + component.errorString() );
+		}
+	}
+	
 	Column {
 		width: parent.width
 		height: parent.height
@@ -15,19 +38,8 @@ Page {
 			width: parent.width
 			id: newCardButton
 			
-			property var component: Qt.createComponent("Notecard.qml");
-			
 			onClicked: {
-				var status = component.status;
-				if( status === Component.Ready ) {
-					var obj = component.createObject( notecardGrid )
-					
-					if( obj == null ) {
-						console.error( i18n.tr( "Error creating new notecard." ) )
-					}
-				} else if( status === Component.Error ){
-					console.error( i18n.tr( "Error creating new notecard: " ) + component.errorString() );
-				}
+				addNotecard()
 			}
 		}
 		
@@ -37,16 +49,30 @@ Page {
 			height: parent.height - newCardButton.height
 			
 			Grid {
-				//width: thePage.width
-				//height: (1 * thePage.height) - newCardButton.height
 				id: notecardGrid
-				columns: 2 //todo: Instead of using a fixed number, make this dependent on the sizes of the window and the notecards OR make it user configurable
-				columnSpacing: units.gu( 1 )
-				rowSpacing: units.gu( 1 )
+				spacing: units.gu( 1 )
+				
+				function changeColumns() {
+					var numChildren = children.length;
+					
+					if( numChildren > 0 ) {
+						console.log( "Width:", parent.parent.width )
+						console.log( "Child's width:", children[0].width )
+						console.log( parent.parent.width / children[0].width );
+						columns = Math.max( 1, Math.floor( parent.parent.width / children[0].width ) );
+					} else {
+						columns = 1;
+					}
+				}
+				
+				onChildrenChanged: changeColumns()
+				//onWidthChanged changeColumns() //Apparently Grids don't send the onWidthChanged signal or something.
 			}
 			
 			viewport.width: parent.width
 			viewport.height: parent.height
 		}
+		
+		onWidthChanged: notecardGrid.changeColumns()
 	}
 }

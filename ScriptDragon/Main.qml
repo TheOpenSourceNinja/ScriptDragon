@@ -38,6 +38,26 @@ MainView {
 		id: database;
 		path: "test_database.u1db"
 	}*/
+	
+	Keys.onPressed: { //todo: If we decide to implement keyboard shortcuts, this is a good place to start
+		//https://doc.qt.io/qt-5/qml-qtquick-keys.html
+		//https://doc.qt.io/qt-5/qkeysequence.html#StandardKey-enum
+		switch( event.key ) {
+			case Qt.Key_S: {
+				if( event.modifiers & Qt.ControlModifier ) {
+					console.log( "Ctrl+S was pressed" );
+				}
+			}
+			break;
+			default: break;
+		}
+		
+		if( event.matches( StandardKey.Save ) ) {
+			console.log( "Standard save key sequence hit" );
+		} else if( event.matches( StandardKey.SaveAs ) ) {
+			console.log( "Standard Save As key sequence hit" );
+		}
+	}
 
 	Tabs {
 		id: tabs

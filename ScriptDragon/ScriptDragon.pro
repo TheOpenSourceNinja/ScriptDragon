@@ -14,7 +14,7 @@ QML_FILES += $$files(*.qml,true) \
              $$files(*.js,true)
 
 CONF_FILES +=  ScriptDragon.apparmor \
-               ScriptDragon.png
+               ScriptDragon.png #Add ScriptDragon.svg here?
 
 AP_TEST_FILES += tests/autopilot/run \
                  $$files(tests/*.py,true)
@@ -45,7 +45,7 @@ DISTFILES += \
     CharactersPage.qml \
     LocationsPage.qml \
     RandomGeneratorsPage.qml \
-    Notecard.qml
+    TextNotecard.qml
 
 HEADERS += \
     notecarddata.h
