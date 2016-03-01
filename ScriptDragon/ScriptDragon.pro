@@ -45,7 +45,8 @@ DISTFILES += \
     CharactersPage.qml \
     LocationsPage.qml \
     RandomGeneratorsPage.qml \
-    TextNotecard.qml
+    TextNotecard.qml \
+    Character.qml
 
 HEADERS += \
     notecarddata.h
