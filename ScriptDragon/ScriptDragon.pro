@@ -3,10 +3,11 @@ TARGET = ScriptDragon
 
 load(ubuntu-click)
 
-QT += qml quick
+QT += qml quick printsupport
 
 SOURCES += main.cpp \
-    notecarddata.cpp
+    notecarddata.cpp \
+    printmanager.cpp
 
 RESOURCES += ScriptDragon.qrc
 
@@ -49,5 +50,6 @@ DISTFILES += \
     Character.qml
 
 HEADERS += \
-    notecarddata.h
+    notecarddata.h \
+    printmanager.h
 

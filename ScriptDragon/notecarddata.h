@@ -8,7 +8,7 @@ class NotecardData : public QObject {
 		Q_OBJECT
 		Q_PROPERTY(QColor color READ getColor WRITE setColor NOTIFY colorChanged)
 	public:
-		explicit NotecardData(QObject *parent = 0);
+		explicit NotecardData( QObject *parent = 0 );
 		
 		void setColor( QColor newColor );
 		

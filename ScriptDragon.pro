@@ -23,7 +23,8 @@ UBUNTU_TRANSLATION_DOMAIN="scriptdragon.dearingj"
 UBUNTU_TRANSLATION_SOURCES+= \
     $$files(*.qml,true) \
     $$files(*.js,true) \
-    $$files(*.desktop,true)
+    $$files(*.desktop,true) \
+    $$files(*.cpp,true)
 
 # specifies all translations files and makes sure they are
 # compiled and installed into the right place in the click package
