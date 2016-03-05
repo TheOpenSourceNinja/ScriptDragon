@@ -9,27 +9,58 @@ Page {
 		height: parent.height
 		
 		Row {
+			id: buttonRow
+			
+			
+			//TODO: Convert all these buttons to a drop-down, pop-up, or similar.
+			Label {
+				text: i18n.tr( "Export: " )
+			}
+
 			Button {
-				text: i18n.tr( "Export Image" )
-				id: exportImageButton
+				text: i18n.tr( "Image" )
+				id: imageButton
 				onClicked: {
-					scriptTA.textDocument.grabToImage( function( result ) {
+					scriptTA.forceActiveFocus() //ensures the background is properly whitened
+					scriptTA.grabToImage( function( result ) { //FIXME: This just takes a screenshot, does not scroll
 						result.saveToFile( "script.png" )
 					})
 				}
 			}
+			
+			Button {
+				text: i18n.tr( "PDF" )
+				id: pdfButton
+				onClicked: {
+					PrintManager.textDocumentToPDF( scriptTA.textDocument )
+				}
+			}
+
 			Button {
 				text: i18n.tr( "Print" )
 				id: printButton
 				onClicked: {
-					PrintManager.printTextDocument( scriptTA.textDocument )
+					PrintManager.textDocumentToPrintout( scriptTA.textDocument )
 				}
+			}
+			
+			Button {
+				text: i18n.tr( "Plain text" )
+				id: textButton
+			}
+			
+			Button {
+				text: i18n.tr( "ODF" )
+			}
+			
+			Button {
+				text: i18n.tr( "HTML" )
 			}
 		}
 		
 		TextArea {
 			width: parent.width
-			height: parent.height - exportImageButton.height
+			height: parent.height - buttonRow.height
 			//contentWidth: width
 			autoSize: false
 			maximumLineCount: 0

@@ -3,21 +3,26 @@
 
 #include <QObject>
 #include <QtPrintSupport/QPrinter>
+//#include <QPdfWriter>
 #include <QQmlEngine>
 #include <QQuickTextDocument>
 
 class PrintManager : public QObject {
 		Q_OBJECT
 	public:
-		PrintManager( QObject *parent = 0 ) : QObject( parent ) {}
+		PrintManager( QObject *parent = 0 ) : QObject( parent ) {} //, PDFWriter( "test.pdf" ) {}
 		
-		Q_INVOKABLE void printTextDocument( QQuickTextDocument* document );
+		Q_INVOKABLE void textDocumentToPrintout( QQuickTextDocument* document );
+		Q_INVOKABLE void textDocumentToPDF( QQuickTextDocument* document );
 	signals:
 		
 	public slots:
 		
 	private:
+		//QPdfWriter PDFWriter;
 		QPrinter printer;
+		
+		void common( const QString& docName );
 		
 		bool showPrintDialog( const QString& windowTitle );
 };

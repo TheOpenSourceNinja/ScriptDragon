@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-04 13:43-0800\n"
+"POT-Creation-Date: 2016-03-04 15:52-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -236,15 +236,35 @@ msgstr ""
 msgid "New name"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:13
-msgid "Export Image"
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:17
+msgid "Export: "
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:22
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:21
+msgid "Image"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:32
+msgid "PDF"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:40
 msgid "Print"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:51
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:48
+msgid "Plain text"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:53
+msgid "ODF"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:57
+msgid "HTML"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:82
 msgid "Type here"
 msgstr ""
 
