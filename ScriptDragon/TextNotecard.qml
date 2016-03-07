@@ -16,6 +16,8 @@ Rectangle {
 	property alias text: textArea.text
 	property alias title: titleArea.text
 	
+	property var associatedCharacter
+	
 	ColorDialog {
 		id: colorDialog
 		title: i18n.tr( "Choose a color for this notecard" )
@@ -96,10 +98,19 @@ Rectangle {
 			placeholderText: i18n.tr( "Type a note here" )
 		}
 		
-		Label {
+		//-------------------------END SECTION: SPECIFIC TO THIS NOTECARD TYPE-----------------------------
+		//-------------------------BEGIN SECTION: COMMON TO ALL NOTECARDS-----------------------------
+		Row {
 			id: associativity
-			text: i18n.tr( "Associativity: \n" )
+			width: parent.width
+			Label {
+				text: i18n.tr( "Associativity: " )
+			}
+			Button {
+				id: linkButton
+				text: i18n.tr( "Link with character" )
+			}
 		}
 	}
 }
-//-------------------------END SECTION: SPECIFIC TO THIS NOTECARD TYPE-----------------------------
+//-------------------------END SECTION: COMMON TO ALL NOTECARDS-----------------------------
