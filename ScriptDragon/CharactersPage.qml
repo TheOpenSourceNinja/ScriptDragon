@@ -10,38 +10,50 @@ Page {
 		Column {
 			id: header
 			width: parent.width
-			Button {
-				text: i18n.tr( "New character" )
-				
-				property var component: Qt.createComponent( "Character.qml" );
-				
-				function addCharacter( /*string*/newCharacterName ) {
-					var status = component.status;
-					if( status === Component.Ready ) {
-						var obj = component.createObject( characterView )
-						
-						if( obj == null ) {
-							console.error( i18n.tr( "Error creating new character." ) )
-						} else {
-							if( newCharacterName != null ) {
-								obj.initialName = newCharacterName
-							}
+			Row {
+				Button {
+					text: i18n.tr( "New character" )
+					
+					property var component: Qt.createComponent( "Character.qml" );
+					
+					function addCharacter( /*string*/newCharacterName ) {
+						var status = component.status;
+						if( status === Component.Ready ) {
+							var obj = component.createObject( characterView )
 							
-							obj.id = characterListModel.count
+							if( obj == null ) {
+								console.error( i18n.tr( "Error creating new character." ) )
+							} else {
+								if( newCharacterName != null ) {
+									obj.initialName = newCharacterName
+								}
+								
+								obj.id = characterListModel.count
+							}
+						} else if( status === Component.Error ){
+							console.error( i18n.tr( "Error creating new character: " ) + component.errorString() );
 						}
-					} else if( status === Component.Error ){
-						console.error( i18n.tr( "Error creating new character: " ) + component.errorString() );
+					}
+					
+					onClicked: {
+						addCharacter( "Unnamed Character" )
+						//characterListModel.append( { text:characterView.children[ characterView.children.length - 1 ].name } )
+						characterListModel.append( { text:"Character #" + characterListModel.count } )
+						
+						selector.selectedIndex = characterListModel.count - 1
+						
+						characterView.setVisibleChild( selector.selectedIndex )
 					}
 				}
 				
-				onClicked: {
-					addCharacter( "Unnamed Character" )
-					//characterListModel.append( { text:characterView.children[ characterView.children.length - 1 ].name } )
-					characterListModel.append( { text:"Character #" + characterListModel.count } )
+				Button {
+					text: i18n.tr( "Delete character" )
 					
-					selector.selectedIndex = characterListModel.count - 1
-					
-					characterView.setVisibleChild( selector.selectedIndex )
+					onClicked: {
+						characterListModel.remove( selector.selectedIndex )
+						characterView.removeChild( selector.selectedIndex )
+						selector.selectedIndex -= 1
+					}
 				}
 			}
 			
@@ -92,6 +104,10 @@ Page {
 				}
 				
 				children[ childNumber ].visible = true
+			}
+			
+			function removeChild( childNumber ) {
+				children[ childNumber ].destroy();
 			}
 		}
 	}

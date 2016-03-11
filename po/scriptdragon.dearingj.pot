@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-05 23:33-0800\n"
+"POT-Creation-Date: 2016-03-07 18:27-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,19 +21,23 @@ msgstr ""
 msgid "Name: "
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/CharactersPage.qml:14
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/CharactersPage.qml:15
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:52
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:71
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:198
 msgid "New character"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/CharactersPage.qml:24
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/CharactersPage.qml:25
 msgid "Error creating new character."
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/CharactersPage.qml:33
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/CharactersPage.qml:34
 msgid "Error creating new character: "
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/CharactersPage.qml:50
+msgid "Delete character"
 msgstr ""
 
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:67
