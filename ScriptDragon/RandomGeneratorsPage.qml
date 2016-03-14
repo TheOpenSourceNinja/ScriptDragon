@@ -67,7 +67,7 @@ Page {
 			Button {
 				text: i18n.tr( "Save as notecard" )
 				onClicked: {
-					var notecardText = text + "\n" + description.text;
+					var notecardText = dialog.text + "\n" + description.text;
 					notecardsPage.addNotecard( notecardText, i18n.tr( "New character" ) );
 					dialog.visible = false
 				}
