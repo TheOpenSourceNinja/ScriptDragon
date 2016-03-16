@@ -3,6 +3,7 @@ import Ubuntu.Components 1.3
 import QtQuick.Dialogs 1.2
 import Ubuntu.Components.Popups 1.3
 import Ubuntu.Components.ListItems 1.3 as ListItem
+import ninja.theopensource.scriptdragon 1.0
 
 //-------------------------BEGIN SECTION: COMMON TO ALL NOTECARDS-----------------------------
 //This is stuff that should be common to all notecards of all types. If changes are made here, replicate them elsewhere!!
@@ -77,7 +78,8 @@ Rectangle {
 					width: parent.width - colorButton.width
 					
 					onPressAndHold: {
-						theCard.destroy(); //Note: Qt5 docs don't mention destroy(); they do mention deleteLater() but that didn't work for me
+						NotecardManager.removeNotecard( theCard );
+						theCard.parent.setChildren();
 					}
 				}
 			}

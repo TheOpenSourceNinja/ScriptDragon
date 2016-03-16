@@ -39,5 +39,3 @@ unittest.commands = /usr/bin/qmltestrunner -input $$PWD/ScriptDragon/tests/unit
 unittest.depends  = sub-ScriptDragon
 
 QMAKE_EXTRA_TARGETS += aptest unittest
-
-

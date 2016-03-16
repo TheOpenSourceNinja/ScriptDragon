@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import Ubuntu.Components 1.3
+import ninja.theopensource.scriptdragon 1.0
 
 Page {
 	id: thePage
@@ -8,7 +9,10 @@ Page {
 	property var component: Qt.createComponent( "TextNotecard.qml" );
 	
 	function addNotecard( /*string*/newCardText, /*string*/newCardTitle ) {
-		var status = component.status;
+		NotecardManager.addNotecard( newCardText, newCardTitle );
+		
+		notecardGrid.setChildren();
+		/*var status = component.status;
 		if( status === Component.Ready ) {
 			var obj = component.createObject( notecardGrid )
 			
@@ -25,7 +29,7 @@ Page {
 			}
 		} else if( status === Component.Error ){
 			console.error( i18n.tr( "Error creating new notecard: " ) + component.errorString() );
-		}
+		}*/
 	}
 	
 	Column {
@@ -51,14 +55,21 @@ Page {
 			Grid {
 				id: notecardGrid
 				spacing: units.gu( 1 )
+				//children: NotecardManager.allNotecards
+				//data: NotecardManager.allNotecards
+				
+				function setChildren() {
+					children = NotecardManager.getAllNotecards();
+					console.log( children.length );
+				}
 				
 				function changeColumns() {
 					var numChildren = children.length;
 					
 					if( numChildren > 0 ) {
-						console.log( "Width:", parent.parent.width )
-						console.log( "Child's width:", children[0].width )
-						console.log( parent.parent.width / children[0].width );
+						//console.log( "Width:", parent.parent.width )
+						//console.log( "Child's width:", children[0].width )
+						//console.log( parent.parent.width / children[0].width );
 						columns = Math.max( 1, Math.floor( parent.parent.width / children[0].width ) );
 					} else {
 						columns = 1;
