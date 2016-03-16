@@ -83,8 +83,12 @@ MainView {
 		Tab {
 			id: charactersTab
 			title: i18n.tr( "Characters" )
-
-			CharactersPage {}
+			
+			property alias characters: charactersPage.characters
+			
+			CharactersPage {
+				id: charactersPage
+			}
 		}
 
 		Tab {

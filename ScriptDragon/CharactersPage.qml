@@ -4,6 +4,9 @@ import Ubuntu.Components 1.3
 import Ubuntu.Components.ListItems 1.3 as ListItem
 
 Page {
+	
+	property alias characters: characterView.children
+	
 	Column {
 		anchors.fill: parent
 		

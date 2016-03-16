@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import Ubuntu.Components 1.3
 import QtQuick.Dialogs 1.2
+import Ubuntu.Components.Popups 1.3
+import Ubuntu.Components.ListItems 1.3 as ListItem
 
 //-------------------------BEGIN SECTION: COMMON TO ALL NOTECARDS-----------------------------
 //This is stuff that should be common to all notecards of all types. If changes are made here, replicate them elsewhere!!
@@ -16,7 +18,8 @@ Rectangle {
 	property alias text: textArea.text
 	property alias title: titleArea.text
 	
-	property var associatedCharacter
+	property var associatedCharacterId
+	property var associatedCharacterName: ""
 	
 	ColorDialog {
 		id: colorDialog
@@ -26,8 +29,7 @@ Rectangle {
 		currentColor: theCard.color
 		
 		onAccepted: {
-			console.log( "You chose the color " + currentColor ) //The QT documentation says we should use "color", not "currentColor", but I've found that "color" only works every other time whereas "currentColor" works every time.
-			theCard.color = currentColor
+			theCard.color = currentColor //The QT documentation says we should use "color", not "currentColor", but I've found that "color" only works every other time whereas "currentColor" works every time.
 		}
 	}
 	
@@ -106,9 +108,60 @@ Rectangle {
 			Label {
 				text: i18n.tr( "Associativity: " )
 			}
+			Label {
+				text: associatedCharacterName
+			}
+
 			Button {
 				id: linkButton
 				text: i18n.tr( "Link with character" )
+				
+				onClicked: {
+					console.log(charactersTab.characterListModel);
+					PopupUtils.open( characterDialogComponent )
+				}
+				
+				Component {
+					id: characterDialogComponent
+					Dialog {
+						id: characterDialog
+						title: i18n.tr( "Choose character" )
+						
+						ListItem.ItemSelector {
+							id: selector
+							model: charactersTab.characterListModel
+							expanded: false
+							
+							/*onDelegateClicked: {
+								console.log( index )
+								characterView.setVisibleChild( index )
+							}
+							
+							onSelectedIndexChanged: {
+								console.log( selectedIndex )
+								characterView.setVisibleChild( selectedIndex )
+							}*/
+							
+						}
+						
+						Row {
+							Button {
+								text: i18n.tr( "OK" )
+								onClicked: {
+									associatedCharacterId = selector.selectedIndex
+									associatedCharacterName = charactersTab.characters[ selector.selectedIndex ].name
+									console.log(associatedCharacterName)
+									onClicked: PopupUtils.close( characterDialog )
+								}
+							}
+							
+							Button {
+								text: i18n.tr( "Cancel" )
+								onClicked: PopupUtils.close( characterDialog )
+							}
+						}
+					}
+				}
 			}
 		}
 	}
