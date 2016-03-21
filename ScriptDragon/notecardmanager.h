@@ -13,17 +13,18 @@ class NotecardManager : public QObject
 		Q_OBJECT
 		//Q_PROPERTY( QQmlListProperty<QObject> allNotecards READ getAllNotecards NOTIFY notecardsChanged );
 	public:
-		explicit NotecardManager(QObject *parent = NULL);
+		explicit NotecardManager( QQmlEngine* newEngine = NULL, QObject *parent = NULL);
 		~NotecardManager();
 		
-		Q_INVOKABLE void addNotecard( QString newCardText = "", QString newCardTitle = "" );
+		Q_INVOKABLE void addNotecard( QString newCardText = "", QString newCardTitle = "");
 		
 		Q_INVOKABLE QList< QObject* > getAllNotecards();
-		//Q_INVOKABLE QQmlListProperty<QObject> getAllNotecards();
+		Q_INVOKABLE QObject* getCharactersPage();
+		Q_INVOKABLE QList< QObject* > getNotecardsForCharacter( int characterID = 0 );
 		
 		Q_INVOKABLE void removeNotecard( QObject* toRemove );
 		
-		void setEngine( QQmlEngine* newEngine );
+		Q_INVOKABLE void setCharactersPage( QObject* newCharactersPage );
 		
 	signals:
 		void notecardsChanged();
@@ -32,16 +33,16 @@ class NotecardManager : public QObject
 		
 	private:
 		QList< QObject* > notecards;
-		QList< QObject* > allNotecards;
+		//QList< QObject* > allNotecards;
 		QQmlEngine* engine;
+		QObject* charactersPage; //TODO: Try making this a property
 };
 
 //Define the singleton type provider function
 static QObject* notecardManager_provider( QQmlEngine* newEngine, QJSEngine* scriptEngine ) {
 	Q_UNUSED( scriptEngine )
 	
-	NotecardManager* nm = new NotecardManager();
-	nm->setEngine( newEngine );
+	NotecardManager* nm = new NotecardManager( newEngine );
 	return nm;
 }
 

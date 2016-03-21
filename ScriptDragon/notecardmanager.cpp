@@ -3,8 +3,8 @@
 #include <QQmlEngine>
 #include <QtQml>
 
-NotecardManager::NotecardManager(QObject *parent) : QObject(parent) {
-	//engine = new QQmlEngine( parent );
+NotecardManager::NotecardManager( QQmlEngine* newEngine, QObject *parent ) : QObject(parent) {
+	engine = newEngine;
 }
 
 NotecardManager::~NotecardManager() {
@@ -15,16 +15,49 @@ Q_INVOKABLE void NotecardManager::addNotecard( QString newCardText, QString newC
 	std::cout << "addNotecard() called with newCardText=\"" << newCardText.toStdString().c_str() << "\" newCardTitle=\"" << newCardTitle.toStdString().c_str() << "\"" << std::endl;
 	
 	QQmlComponent component( engine, QUrl( QStringLiteral( "qrc:///TextNotecard.qml" ) ) );
-	QObject* object = component.create();
-	engine->setObjectOwnership( object, QQmlEngine::CppOwnership );
-	notecards.append( object );
-	std::cout << "notecards.size(): " << notecards.size() << std::endl;
-	std::cout << "notecards: " << &notecards << std::endl;
-	std::cout << "this: " << this << std::endl;
+	
+	while( component.status() == QQmlComponent::Loading ) {};
+	
+	if( component.status() == QQmlComponent::Error ) {
+		std::cerr << "Error creating component" << std::endl;
+	} else {
+		QObject* object = component.create();
+		engine->setObjectOwnership( object, QQmlEngine::CppOwnership );
+		//object->setProperty( "charactersTab", charactersTab );
+		object->dumpObjectInfo();
+		notecards.append( object );
+		std::cerr.flush();
+		std::cout << "notecards.size(): " << notecards.size() << std::endl;
+		std::cout << "notecards: " << &notecards << std::endl;
+		std::cout << "this: " << this << std::endl;
+	}
 }
 
 Q_INVOKABLE QList< QObject* > NotecardManager::getAllNotecards() {
+	for( decltype( notecards )::size_type i = 0; i < notecards.size(); ++i ) {
+		std::cout << notecards[ i ]->property("text").toString().toStdString().c_str() << std::endl;
+	}
+	
 	return notecards;
+}
+
+Q_INVOKABLE QObject* NotecardManager::getCharactersPage() {
+	return charactersPage;
+}
+
+Q_INVOKABLE QList< QObject* > NotecardManager::getNotecardsForCharacter( int characterID ) {
+	QList< QObject* > results;
+	
+	for( decltype( notecards )::size_type i = 0; i < notecards.size(); ++i ) {
+		std::cout << notecards[ i ]->property( "associatedCharacterId" ).toInt() << std::endl;
+		std::cout << notecards[ i ]->property( "associatedCharacterName" ).toString().toStdString().c_str() << std::endl;
+		
+		if( characterID == notecards[ i ]->property( "associatedCharacterId" ).toInt() ) {
+			results.append( notecards[ i ] );
+		}
+	}
+	
+	return results;
 }
 
 /*Q_INVOKABLE QQmlListProperty<QObject> NotecardManager::getAllNotecards() {
@@ -43,13 +76,22 @@ Q_INVOKABLE void NotecardManager::removeNotecard( QObject* toRemove ) {
 	std::cout << "notecards: " << &notecards << std::endl;
 	std::cout << "this: " << this << std::endl;
 	
-	for( unsigned int i = 0; i < notecards.size(); ++i ) {
+	for( decltype( notecards )::size_type i = 0; i < notecards.size(); ++i ) {
 		std::cout << notecards[ i ] << std::endl;
 	}
 	
 	notecards.removeOne( toRemove );
 }
 
-void NotecardManager::setEngine( QQmlEngine* newEngine ) {
-	engine = newEngine;
+Q_INVOKABLE void NotecardManager::setCharactersPage( QObject* newCharactersPage ) {
+	std::cout << "characters page: " << newCharactersPage << std::endl;
+	if( charactersPage != NULL ) {
+		engine->setObjectOwnership( charactersPage, QQmlEngine::JavaScriptOwnership );
+	}
+	
+	charactersPage = newCharactersPage;
+	
+	if( charactersPage != NULL ) {
+		engine->setObjectOwnership( charactersPage, QQmlEngine::CppOwnership );
+	}
 }

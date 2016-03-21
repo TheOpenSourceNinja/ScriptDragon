@@ -1,6 +1,6 @@
 import QtQuick 2.4
 import Ubuntu.Components 1.3
-//import U1db 1.0 as U1db
+import ninja.theopensource.scriptdragon 1.0
 
 /*!
 	\brief MainView has tabs, tabs link to other files.
@@ -38,6 +38,14 @@ MainView {
 		id: database;
 		path: "test_database.u1db"
 	}*/
+	
+	
+	property alias characters: charactersPage.characters
+	property alias characterListModel: charactersPage.characterListModel
+	
+	Component.onCompleted: {
+		NotecardManager.setCharactersPage( charactersPage );
+	}
 	
 	Keys.onPressed: { //todo: If we decide to implement keyboard shortcuts, this is a good place to start
 		//https://doc.qt.io/qt-5/qml-qtquick-keys.html
@@ -83,8 +91,6 @@ MainView {
 		Tab {
 			id: charactersTab
 			title: i18n.tr( "Characters" )
-			
-			property alias characters: charactersPage.characters
 			
 			CharactersPage {
 				id: charactersPage

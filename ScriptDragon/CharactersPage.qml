@@ -6,6 +6,7 @@ import Ubuntu.Components.ListItems 1.3 as ListItem
 Page {
 	
 	property alias characters: characterView.children
+	property alias characterListModel: characterListModel
 	
 	Column {
 		anchors.fill: parent

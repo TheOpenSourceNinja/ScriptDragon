@@ -119,7 +119,9 @@ Rectangle {
 				text: i18n.tr( "Link with character" )
 				
 				onClicked: {
-					console.log(charactersTab.characterListModel);
+					//console.log(charactersTab);
+					//console.log(NotecardManager.getCharactersPage().characterListModel)
+					
 					PopupUtils.open( characterDialogComponent )
 				}
 				
@@ -131,7 +133,7 @@ Rectangle {
 						
 						ListItem.ItemSelector {
 							id: selector
-							model: charactersTab.characterListModel
+							model: NotecardManager.getCharactersPage().characterListModel
 							expanded: false
 							
 							/*onDelegateClicked: {
@@ -151,8 +153,7 @@ Rectangle {
 								text: i18n.tr( "OK" )
 								onClicked: {
 									associatedCharacterId = selector.selectedIndex
-									associatedCharacterName = charactersTab.characters[ selector.selectedIndex ].name
-									console.log(associatedCharacterName)
+									associatedCharacterName = NotecardManager.getCharactersPage().characters[ selector.selectedIndex ].name
 									onClicked: PopupUtils.close( characterDialog )
 								}
 							}

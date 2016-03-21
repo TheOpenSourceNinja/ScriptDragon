@@ -9,7 +9,7 @@ Page {
 	property var component: Qt.createComponent( "TextNotecard.qml" );
 	
 	function addNotecard( /*string*/newCardText, /*string*/newCardTitle ) {
-		NotecardManager.addNotecard( newCardText, newCardTitle );
+		NotecardManager.addNotecard( newCardText, newCardTitle, thePage );
 		
 		notecardGrid.setChildren();
 		/*var status = component.status;
@@ -60,7 +60,6 @@ Page {
 				
 				function setChildren() {
 					children = NotecardManager.getAllNotecards();
-					console.log( children.length );
 				}
 				
 				function changeColumns() {
