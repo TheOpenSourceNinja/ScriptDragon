@@ -1,6 +1,7 @@
 #ifndef NOTECARDMANAGER_H
 #define NOTECARDMANAGER_H
 
+#include <climits>
 #include <memory>
 #include <QList>
 #include <QObject>
@@ -16,15 +17,25 @@ class NotecardManager : public QObject
 		explicit NotecardManager( QQmlEngine* newEngine = NULL, QObject *parent = NULL);
 		~NotecardManager();
 		
-		Q_INVOKABLE void addNotecard( QString newCardText = "", QString newCardTitle = "");
+		enum associationType {
+			CHARACTER,
+			LOCATION,
+			EVENT,
+			MISC
+		};
+		Q_ENUMS( associationType );
+		
+		Q_INVOKABLE void addNotecard( QString newCardTitle = "", QString newCardText = "", associationType assocType = MISC, int associatedID = INT_MAX );
 		
 		Q_INVOKABLE QList< QObject* > getAllNotecards();
 		Q_INVOKABLE QObject* getCharactersPage();
+		Q_INVOKABLE QObject* getNotecardsPage();
 		Q_INVOKABLE QList< QObject* > getNotecardsForCharacter( int characterID = 0 );
 		
 		Q_INVOKABLE void removeNotecard( QObject* toRemove );
 		
 		Q_INVOKABLE void setCharactersPage( QObject* newCharactersPage );
+		Q_INVOKABLE void setNotecardsPage( QObject* newNotecardsPage );
 		
 	signals:
 		void notecardsChanged();
@@ -36,6 +47,7 @@ class NotecardManager : public QObject
 		//QList< QObject* > allNotecards;
 		QQmlEngine* engine;
 		QObject* charactersPage; //TODO: Try making this a property
+		QObject* notecardsPage;
 };
 
 //Define the singleton type provider function

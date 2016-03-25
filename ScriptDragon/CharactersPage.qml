@@ -2,6 +2,7 @@ import QtQuick 2.0
 //import QtQuick.Controls 1.4
 import Ubuntu.Components 1.3
 import Ubuntu.Components.ListItems 1.3 as ListItem
+import ninja.theopensource.scriptdragon 1.0
 
 Page {
 	
@@ -33,6 +34,8 @@ Page {
 								}
 								
 								obj.id = characterListModel.count
+								
+								NotecardManager.addNotecard( i18n.tr( "New Character's physical characteristics" ), i18n.tr( "Age: \nHeight: \nWeight: "), NotecardManager.CHARACTER, obj.id ); //todo: add all relevant notecards
 							}
 						} else if( status === Component.Error ){
 							console.error( i18n.tr( "Error creating new character: " ) + component.errorString() );

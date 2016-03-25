@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import Ubuntu.Components 1.3
+import ninja.theopensource.scriptdragon 1.0
 
 ScrollView {
 	property alias name : nameField.text
@@ -25,6 +26,10 @@ ScrollView {
 		}*/
 		
 		Row {
+			id: nameRow
+			height: nameField.height
+			width: parent.width
+			
 			Label {
 				text: i18n.tr( "Name: " )
 			}
@@ -54,12 +59,62 @@ ScrollView {
 				}*/
 			}
 			Button {
-				text: i18n.tr( "Apply" )
+				text: i18n.tr( "Apply Name" )
 				onClicked: {
 					characterListModel.setProperty( id, "text", nameField.text )
 				}
 			}
 		}
+		
+		Flow {
+			id: notecardGrid
+			children: NotecardManager.getNotecardsForCharacter( id );
+			
+			function setChildren() {
+				console.log("test")
+				children = NotecardManager.getNotecardsForCharacter( id );
+			}
+			
+			Connections {
+				target: NotecardManager
+				onNotecardsChanged: notecardGrid.setChildren()
+			}
+		}
+		
+		/*Grid {
+			width: parent.width
+			height: parent.height - nameRow.height
+			id: notecardGrid
+			spacing: units.gu( 1 )
+			columns: 1
+			//children: NotecardManager.allNotecards
+			//data: NotecardManager.allNotecards
+			
+			function setChildren() {
+				children = NotecardManager.getNotecardsForCharacter( id );
+			}
+			
+			Connections {
+				target: NotecardManager
+				onNotecardsChanged: notecardGrid.setChildren()
+			}
+			
+			function changeColumns() {
+				var numChildren = children.length;
+				
+				if( numChildren > 0 ) {
+					//console.log( "Width:", parent.parent.width )
+					//console.log( "Child's width:", children[0].width )
+					//console.log( parent.parent.width / children[0].width );
+					columns = Math.max( 1, Math.floor( parent.parent.width / children[0].width ) );
+				} else {
+					columns = 1;
+				}
+			}
+			
+			onChildrenChanged: changeColumns()
+			//onWidthChanged changeColumns() //Apparently Grids don't send the onWidthChanged signal or something.
+		}*/
 		
 		//TODO: Show notecards associated with this character
 		

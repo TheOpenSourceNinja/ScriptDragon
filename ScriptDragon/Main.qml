@@ -45,6 +45,7 @@ MainView {
 	
 	Component.onCompleted: {
 		NotecardManager.setCharactersPage( charactersPage );
+		NotecardManager.setNotecardsPage( notecardsPage );
 	}
 	
 	Keys.onPressed: { //todo: If we decide to implement keyboard shortcuts, this is a good place to start

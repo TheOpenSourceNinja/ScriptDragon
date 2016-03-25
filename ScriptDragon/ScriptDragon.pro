@@ -55,4 +55,5 @@ HEADERS += \
     printmanager.h \
     notecardmanager.h
 
-QMAKE_CXXFLAGS += -std=c++11
+#QMAKE_CXXFLAGS += -std=c++11
+CONFIG += c++11

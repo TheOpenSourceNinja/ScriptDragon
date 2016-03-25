@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import Ubuntu.Components 1.3
-import QtQuick.Dialogs 1.2
+import QtQuick.Dialogs 1.2 //To avoid confustion: This import is for ColorDialog, not Dialog. That comes from Ubuntu.Components.Popups
 import Ubuntu.Components.Popups 1.3
 import Ubuntu.Components.ListItems 1.3 as ListItem
 import ninja.theopensource.scriptdragon 1.0
@@ -19,8 +19,24 @@ Rectangle {
 	property alias text: textArea.text
 	property alias title: titleArea.text
 	
-	property var associatedCharacterId
-	property var associatedCharacterName: ""
+	property var associatedID
+	property var associatedText: {
+		switch( associationType ) {
+			case NotecardManager.CHARACTER: {
+				if( associatedID < NotecardManager.getCharactersPage().characters.length ) {
+					return NotecardManager.getCharactersPage().characters[ associatedID ].name;
+				} else {
+					return "No character";
+				}
+				break;
+			}
+			default: {
+				return "None";
+			}
+		}
+	}
+
+	property int associationType
 	
 	ColorDialog {
 		id: colorDialog
@@ -79,7 +95,7 @@ Rectangle {
 					
 					onPressAndHold: {
 						NotecardManager.removeNotecard( theCard );
-						theCard.parent.setChildren();
+						//theCard.parent.setChildren();
 					}
 				}
 			}
@@ -111,7 +127,7 @@ Rectangle {
 				text: i18n.tr( "Associativity: " )
 			}
 			Label {
-				text: associatedCharacterName
+				text: associatedText
 			}
 
 			Button {
@@ -123,6 +139,10 @@ Rectangle {
 				onClicked: {
 					//console.log(charactersTab);
 					//console.log(NotecardManager.getCharactersPage().characterListModel)
+					
+					if( associatedID < NotecardManager.getCharactersPage().characters.length ) {
+						//characterDialog.selector.selectedIndex = associatedID;
+					}
 					
 					PopupUtils.open( characterDialogComponent )
 				}
@@ -137,26 +157,17 @@ Rectangle {
 							id: selector
 							model: NotecardManager.getCharactersPage().characterListModel
 							expanded: false
-							
-							/*onDelegateClicked: {
-								console.log( index )
-								characterView.setVisibleChild( index )
-							}
-							
-							onSelectedIndexChanged: {
-								console.log( selectedIndex )
-								characterView.setVisibleChild( selectedIndex )
-							}*/
-							
 						}
 						
 						Row {
 							Button {
 								text: i18n.tr( "OK" )
 								onClicked: {
-									associatedCharacterId = selector.selectedIndex
-									associatedCharacterName = NotecardManager.getCharactersPage().characters[ selector.selectedIndex ].name
-									onClicked: PopupUtils.close( characterDialog )
+									associationType = NotecardManager.CHARACTER
+									associatedID = selector.selectedIndex
+									associatedText = NotecardManager.getCharactersPage().characters[ associatedID ].name
+									NotecardManager.notecardsChanged()
+									PopupUtils.close( characterDialog )
 								}
 							}
 							

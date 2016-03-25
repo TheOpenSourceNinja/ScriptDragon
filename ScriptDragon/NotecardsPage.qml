@@ -4,32 +4,21 @@ import ninja.theopensource.scriptdragon 1.0
 
 Page {
 	id: thePage
-	property alias notecards: notecardGrid.children;
+	property alias notecards: notecardFlow.children;
 	
 	property var component: Qt.createComponent( "TextNotecard.qml" );
 	
-	function addNotecard( /*string*/newCardText, /*string*/newCardTitle ) {
+	function updateGrid() {
+		notecardFlow.setChildren();
+	}
+	
+	/*function addNotecard( newCardText, newCardTitle ) {
 		NotecardManager.addNotecard( newCardText, newCardTitle, thePage );
-		
-		notecardGrid.setChildren();
-		/*var status = component.status;
-		if( status === Component.Ready ) {
-			var obj = component.createObject( notecardGrid )
-			
-			if( obj == null ) {
-				console.error( i18n.tr( "Error creating new notecard." ) )
-			} else {
-				if( newCardText != null ) {
-					obj.text = newCardText
-				}
-				
-				if( newCardTitle != null ) {
-					obj.title = newCardTitle
-				}
-			}
-		} else if( status === Component.Error ){
-			console.error( i18n.tr( "Error creating new notecard: " ) + component.errorString() );
-		}*/
+	}*/
+	
+	Connections {
+		target: NotecardManager
+		onNotecardsChanged: updateGrid()
 	}
 	
 	Column {
@@ -43,7 +32,7 @@ Page {
 			id: newCardButton
 			
 			onClicked: {
-				addNotecard()
+				NotecardManager.addNotecard();
 			}
 		}
 		
@@ -52,9 +41,11 @@ Page {
 			width: parent.width
 			height: parent.height - newCardButton.height
 			
-			Grid {
-				id: notecardGrid
+			Flow {
+				id: notecardFlow
 				spacing: units.gu( 1 )
+				width: thePage.width
+				children: NotecardManager.getAllNotecards();
 				//children: NotecardManager.allNotecards
 				//data: NotecardManager.allNotecards
 				
@@ -62,27 +53,21 @@ Page {
 					children = NotecardManager.getAllNotecards();
 				}
 				
-				function changeColumns() {
-					var numChildren = children.length;
-					
-					if( numChildren > 0 ) {
-						//console.log( "Width:", parent.parent.width )
-						//console.log( "Child's width:", children[0].width )
-						//console.log( parent.parent.width / children[0].width );
-						columns = Math.max( 1, Math.floor( parent.parent.width / children[0].width ) );
-					} else {
-						columns = 1;
+				add: Transition {
+					NumberAnimation {
+						properties: "x,y"
 					}
 				}
 				
-				onChildrenChanged: changeColumns()
-				//onWidthChanged changeColumns() //Apparently Grids don't send the onWidthChanged signal or something.
+				move: Transition {
+					NumberAnimation {
+						properties: "x,y"
+					}
+				}
 			}
 			
 			viewport.width: parent.width
 			viewport.height: parent.height
 		}
-		
-		onWidthChanged: notecardGrid.changeColumns()
 	}
 }
