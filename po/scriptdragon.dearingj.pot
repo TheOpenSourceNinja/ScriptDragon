@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-20 21:29-0700\n"
+"POT-Creation-Date: 2016-03-24 16:58-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,10 @@ msgstr ""
 
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Character.qml:29
 msgid "Name: "
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Character.qml:57
+msgid "Apply"
 msgstr ""
 
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/CharactersPage.qml:19
@@ -36,7 +40,7 @@ msgstr ""
 msgid "Error creating new character: "
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/CharactersPage.qml:54
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/CharactersPage.qml:53
 msgid "Delete character"
 msgstr ""
 
@@ -371,7 +375,7 @@ msgstr ""
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:118
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:154
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:190
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:162
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:164
 msgid "Cancel"
 msgstr ""
 
@@ -469,11 +473,11 @@ msgstr ""
 msgid "Link with character"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:132
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:134
 msgid "Choose character"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:153
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:155
 msgid "OK"
 msgstr ""
 

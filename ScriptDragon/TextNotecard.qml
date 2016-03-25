@@ -118,6 +118,8 @@ Rectangle {
 				id: linkButton
 				text: i18n.tr( "Link with character" )
 				
+				enabled: NotecardManager.getCharactersPage().characterListModel.count > 0
+				
 				onClicked: {
 					//console.log(charactersTab);
 					//console.log(NotecardManager.getCharactersPage().characterListModel)

@@ -41,7 +41,7 @@ ScrollView {
 					//characterListModel.insert( id, { "text":text } )
 				}*/
 				
-				onTextChanged: {
+				/*onTextChanged: {
 					console.log( "onTextChanged() called" )
 					
 					if( characterListModel.count > 0 ) {
@@ -51,6 +51,12 @@ ScrollView {
 						//characterListModel.remove( id )
 						//characterListModel.insert( id, { "text":text } )
 					}
+				}*/
+			}
+			Button {
+				text: i18n.tr( "Apply" )
+				onClicked: {
+					characterListModel.setProperty( id, "text", nameField.text )
 				}
 			}
 		}

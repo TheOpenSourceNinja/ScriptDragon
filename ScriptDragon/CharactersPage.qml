@@ -40,13 +40,12 @@ Page {
 					}
 					
 					onClicked: {
-						addCharacter( "Unnamed Character" )
-						//characterListModel.append( { text:characterView.children[ characterView.children.length - 1 ].name } )
-						characterListModel.append( { text:"Character #" + characterListModel.count } )
+						var name = "Unnamed Character";
+						addCharacter( name )
+						
+						characterListModel.append( { text:name } )
 						
 						selector.selectedIndex = characterListModel.count - 1
-						
-						characterView.setVisibleChild( selector.selectedIndex )
 					}
 				}
 				
@@ -68,17 +67,31 @@ Page {
 				expanded: false
 				
 				onDelegateClicked: {
-					console.log( index )
+					//console.log( index )
 					characterView.setVisibleChild( index )
 				}
 				
 				onSelectedIndexChanged: {
-					console.log( selectedIndex )
+					//console.log( selectedIndex )
 					characterView.setVisibleChild( selectedIndex )
 				}
 				
 				ListModel {
 					id: characterListModel
+					onDataChanged: {
+						//console.log("onDataChanged() called");
+						
+						//These next four lines are a workaround: the selector's text only gets updated if we change models
+						var selected = selector.selectedIndex
+						selector.model = fakeModel
+						selector.model = this
+						selector.selectedIndex = selected
+					}
+				}
+				
+				ListModel {
+					id: fakeModel
+					//This is a workaround: the selector's text only gets updated if we change models
 				}
 			}
 			
