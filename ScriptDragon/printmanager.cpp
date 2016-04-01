@@ -21,17 +21,26 @@ Q_INVOKABLE void PrintManager::textDocumentToPrintout( QQuickTextDocument* docum
 	}
 }
 
-Q_INVOKABLE void PrintManager::textDocumentToPDF( QQuickTextDocument* document ) {
+Q_INVOKABLE void PrintManager::textDocumentToPDF( QQuickTextDocument* document, const QUrl& fileURL ) {
+	if( !fileURL.isValid() ) {
+		std::cerr << "Invalid file URL: \"" << fileURL.toString().toStdString().c_str() << "\"" << std::endl;
+		return;
+	}
+	
 	//-----begin page size workaround part 1-----
 	printer.setOutputFileName( "" ); //Disable printing to file so we can get the default printer's default page size.
 	QPagedPaintDevice::PageSize pageSize = printer.pageSize();
 	//-----end page size workaround part 1-----
-	printer.setOutputFileName( "testfilename.pdf" ); //Enable printing to file. This should be the first line of the function.
+	printer.setOutputFileName( fileURL.toLocalFile() ); //Enable printing to file.
 	//-----begin page size workaround part 2-----
 	printer.setPageSize( pageSize );
 	//-----end page size workaround part 2-----
 	
-	common( "Script" );
+	printer.setOutputFormat( QPrinter::PdfFormat ); //This isn't currently necessary, since currently all file names passed to this function will have the pdf extension, but it doesn't hurt and could in the future prevent non-PDF output
+	
+	common( fileURL.fileName() );
+	
+	std::cout << "textDocumentToPDF():\tfileURL: \"" << fileURL.toString().toStdString().c_str() << "\"\toutputFileName: \"" << printer.outputFileName().toStdString().c_str() << "\"" << std::endl;
 	
 	document->textDocument()->print( &printer );
 }

@@ -13,7 +13,7 @@ class PrintManager : public QObject {
 		PrintManager( QObject *parent = 0 ) : QObject( parent ) {} //, PDFWriter( "test.pdf" ) {}
 		
 		Q_INVOKABLE void textDocumentToPrintout( QQuickTextDocument* document );
-		Q_INVOKABLE void textDocumentToPDF( QQuickTextDocument* document );
+		Q_INVOKABLE void textDocumentToPDF( QQuickTextDocument* document, const QUrl& fileURL );
 	signals:
 		
 	public slots:

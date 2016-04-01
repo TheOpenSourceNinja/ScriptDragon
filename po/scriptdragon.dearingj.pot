@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-24 22:55-0700\n"
+"POT-Creation-Date: 2016-03-31 20:47-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -425,34 +425,42 @@ msgid "Note which character this name belongs to"
 msgstr ""
 
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:17
-msgid "Export: "
+msgid "Choose a file to export to"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:21
-msgid "Image"
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:24
+msgid "Guess format from file name"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:32
-msgid "PDF"
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:25
+msgid "HyperText Markup Language"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:40
-msgid "Print"
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:26
+msgid "Open Document Format"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:48
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:27
+msgid "Portable Document Format"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:28
+msgid "Portable Network Graphics"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:29
 msgid "Plain text"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:53
-msgid "ODF"
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:86
+msgid "Export"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:57
-msgid "HTML"
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:94
+msgid "Print"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:82
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:168
 msgid "Type here"
 msgstr ""
 
