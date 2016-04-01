@@ -26,6 +26,7 @@ class NotecardManager : public QObject
 		Q_ENUMS( associationType );
 		
 		Q_INVOKABLE void addNotecard( QString newCardTitle = "", QString newCardText = "", associationType assocType = MISC, int associatedID = INT_MAX );
+		Q_INVOKABLE void associateNotecardWith( QObject* notecard = NULL, associationType assocType = MISC, int associatedID = INT_MAX );
 		
 		Q_INVOKABLE QList< QObject* > getAllNotecards();
 		Q_INVOKABLE QObject* getCharactersPage();
@@ -44,7 +45,7 @@ class NotecardManager : public QObject
 		
 	private:
 		QList< QObject* > notecards;
-		//QList< QObject* > allNotecards;
+		std::vector< std::vector< QList< QObject* > > > notecardsWithAssociations;
 		QQmlEngine* engine;
 		QObject* charactersPage; //TODO: Try making this a property
 		QObject* notecardsPage;

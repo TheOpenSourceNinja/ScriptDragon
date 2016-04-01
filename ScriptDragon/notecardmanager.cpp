@@ -32,6 +32,41 @@ Q_INVOKABLE void NotecardManager::addNotecard( QString newCardTitle, QString new
 		object->setProperty( "associationType", assocType);
 		object->setProperty( "associatedID", associatedID );
 		
+		if( associatedID < INT_MAX ) {
+			associateNotecardWith( object, assocType, associatedID );
+		}
+		
+		emit notecardsChanged();
+	}
+}
+
+Q_INVOKABLE void NotecardManager::associateNotecardWith( QObject* notecard, associationType assocType, int associatedID ) {
+	QQmlComponent component( engine, QUrl( QStringLiteral( "qrc:///TextNotecard.qml" ) ) );
+	
+	while( component.status() == QQmlComponent::Loading ) {};
+	
+	if( component.status() == QQmlComponent::Error ) {
+		std::cerr << "Error creating component" << std::endl;
+	} else {
+		QObject* object2 = component.create();
+		engine->setObjectOwnership( object2, QQmlEngine::CppOwnership );
+		//object->setProperty( "charactersTab", charactersTab );
+		//notecards.append( object2 );
+		
+		if( assocType >= notecardsWithAssociations.size() ) {
+			notecardsWithAssociations.resize( assocType + 1 );
+		}
+		
+		if( associatedID >= notecardsWithAssociations[ assocType ].size() ) {
+			notecardsWithAssociations[ assocType ].resize( associatedID + 1 );
+		}
+		
+		notecardsWithAssociations[ assocType ][ associatedID ].append( object2 );
+		object2->setProperty( "text", notecard->property( "text" ) );
+		//object2->setProperty( "title", newCardTitle );
+		object2->setProperty( "associationType", assocType);
+		object2->setProperty( "associatedID", associatedID );
+		
 		emit notecardsChanged();
 	}
 }
@@ -65,7 +100,7 @@ Q_INVOKABLE QObject* NotecardManager::getNotecardsPage() {
 Q_INVOKABLE QList< QObject* > NotecardManager::getNotecardsForCharacter( int characterID ) {
 	QList< QObject* > results;
 	
-	for( decltype( notecards )::size_type i = 0; i < notecards.size(); ++i ) {
+	/*for( decltype( notecards )::size_type i = 0; i < notecards.size(); ++i ) {
 		std::cout << notecards[ i ]->property( "associatedID" ).toInt() << std::endl;
 		std::cout << notecards[ i ]->property( "associatedText" ).toString().toStdString().c_str() << std::endl;
 		
@@ -74,6 +109,12 @@ Q_INVOKABLE QList< QObject* > NotecardManager::getNotecardsForCharacter( int cha
 			std::cout << "append notecard" << std::endl;
 		} else {
 			std::cout << "not appending notecard" << std::endl;
+		}
+	}*/
+	
+	if( notecardsWithAssociations.size() > CHARACTER ) {
+		if( notecardsWithAssociations[ CHARACTER ].size() > characterID ) {
+			results = notecardsWithAssociations[ CHARACTER ][ characterID ];
 		}
 	}
 	
@@ -92,6 +133,15 @@ Q_INVOKABLE QList< QObject* > NotecardManager::getNotecardsForCharacter( int cha
 
 Q_INVOKABLE void NotecardManager::removeNotecard( QObject* toRemove ) {
 	notecards.removeOne( toRemove );
+	
+	for( unsigned int i = 0; i < notecardsWithAssociations.size(); ++i ) {
+		for( unsigned int j = 0; j < notecardsWithAssociations[ i ].size(); ++j ) {
+			if( notecardsWithAssociations[ i ][ j ].removeOne( toRemove ) ) {
+				break;
+			}
+		}
+	}
+	
 	emit notecardsChanged();
 }
 
