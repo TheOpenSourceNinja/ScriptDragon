@@ -7,8 +7,8 @@ QT += qml quick printsupport
 
 SOURCES += main.cpp \
     notecarddata.cpp \
-    printmanager.cpp \
-    notecardmanager.cpp
+    notecardmanager.cpp \
+    exportmanager.cpp
 
 RESOURCES += ScriptDragon.qrc
 
@@ -52,8 +52,8 @@ DISTFILES += \
 
 HEADERS += \
     notecarddata.h \
-    printmanager.h \
-    notecardmanager.h
+    notecardmanager.h \
+    exportmanager.h
 
 #QMAKE_CXXFLAGS += -std=c++11
 CONFIG += c++11

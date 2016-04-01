@@ -5,9 +5,12 @@ import QtQuick.Dialogs 1.2
 
 Page {
 	property alias text: scriptTA.text
+	
 	Column {
 		width: parent.width
 		height: parent.height
+		
+		id: mainColumn
 		
 		Row {
 			id: buttonRow
@@ -21,14 +24,14 @@ Page {
 				selectMultiple: false //If this were true then the user couldn't input a file name
 				
 				nameFilters: [
-					i18n.tr( "Infer format from file extension" ) + " (*.htm *.html *.odt *.pdf *.png *.txt *)",
-					i18n.tr( "HyperText Markup Language" ) + " (*.htm *.html)",
+					i18n.tr( "Infer format from file extension" ) + " (*.html *.htm *.odt *.pdf *.png *.txt *)",
+					i18n.tr( "HyperText Markup Language" ) + " (*.html *.htm)",
 					i18n.tr( "Open Document Format" ) + " (*.odt)",
 					i18n.tr( "Portable Document Format" ) + " (*.pdf)",
 					i18n.tr( "Portable Network Graphics" ) + " (*.png)",
 					i18n.tr( "Plain text" ) + " (*.txt *)"
 				]
-		
+				
 				onAccepted: {
 					var urlToUse = fileUrl
 					{
@@ -40,6 +43,10 @@ Page {
 								
 								if( nameParts.length > 1 ) {
 									format = nameParts.pop().toLowerCase();
+									
+									if( format == "htm" ) {
+										format = "html"
+									}
 								} else {
 									format = "txt"
 								}
@@ -51,8 +58,26 @@ Page {
 							case 3:
 							case 4: {
 								format = selectedNameFilterExtensions[ 0 ].split( "." ).pop().toLowerCase();
-								urlToUse = fileUrl.toString() + "." + format
-								console.log(fileUrl)
+								var nameParts = fileUrl.toString().split( "." )
+								
+								var extensionFound = false
+								var possibleExtension = nameParts.pop().toLowerCase()
+								for( var i = 0; i < selectedNameFilterExtensions.length; ++i ) {
+									if( possibleExtension == selectedNameFilterExtensions[ i ].split( "." ).pop().toLowerCase() ) {
+										extensionFound = true
+										break
+									}
+								}
+								
+								if( extensionFound ) {
+									urlToUse = fileUrl.toString()
+								} else {
+									urlToUse = fileUrl.toString() + "." + format
+								}
+								
+								urlToUse = url(urlToUse);
+								
+								console.log(urlToUse)
 								break;
 							}
 							default: {
@@ -64,19 +89,24 @@ Page {
 					
 					console.log( format );
 					
-					if( format == "htm" || format == "html" ) {
-						console.error( "That export format is not implemented yet" )
+					if( format == "html" ) {
+						ExportManager.textDocumentToHTMLFile( scriptTA.textDocument, urlToUse );
 					}  else if( format == "odt" ) {
-						console.error( "That export format is not implemented yet" )
+						ExportManager.textDocumentToOpenDocumentFile( scriptTA.textDocument, urlToUse );
 					} else if( format == "pdf" ) {
-						PrintManager.textDocumentToPDF( scriptTA.textDocument, urlToUse );
+						ExportManager.textDocumentToPDF( scriptTA.textDocument, urlToUse );
 					} else if( format == "png" ) {
 						scriptTA.forceActiveFocus() //ensures the background is properly whitened
 						scriptTA.grabToImage( function( result ) { //FIXME: This just takes a screenshot, does not scroll
-							result.saveToFile( urlToUse )
+							var s = urlToUse.toString().substring(7); //Remove the file:// from the beginning
+							if( result.saveToFile( s ) ) {
+								console.log( "Saved image to file " + s );
+							} else {
+								console.log( "Could not save image to file " + s );
+							}
 						})
 					} else { //Plain text
-						console.error( "That export format is not implemented yet" )
+						ExportManager.textDocumentToPlainTextFile( scriptTA.textDocument, urlToUse );
 					}
 					
 				}
@@ -98,54 +128,9 @@ Page {
 				text: i18n.tr( "Print" )
 				id: printButton
 				onClicked: {
-					PrintManager.textDocumentToPrintout( scriptTA.textDocument )
+					ExportManager.textDocumentToPrintout( scriptTA.textDocument )
 				}
 			}
-			
-			/*//TODO: Convert all these buttons to a drop-down, pop-up, or similar.
-			Label {
-				text: i18n.tr( "Export: " )
-			}
-
-			Button {
-				text: i18n.tr( "Image" )
-				id: imageButton
-				onClicked: {
-					scriptTA.forceActiveFocus() //ensures the background is properly whitened
-					scriptTA.grabToImage( function( result ) { //FIXME: This just takes a screenshot, does not scroll
-						result.saveToFile( "script.png" )
-					})
-				}
-			}
-			
-			Button {
-				text: i18n.tr( "PDF" )
-				id: pdfButton
-				onClicked: {
-					PrintManager.textDocumentToPDF( scriptTA.textDocument )
-				}
-			}
-
-			Button {
-				text: i18n.tr( "Print" )
-				id: printButton
-				onClicked: {
-					PrintManager.textDocumentToPrintout( scriptTA.textDocument )
-				}
-			}
-			
-			Button {
-				text: i18n.tr( "Plain text" )
-				id: textButton
-			}
-			
-			Button {
-				text: i18n.tr( "ODF" )
-			}
-			
-			Button {
-				text: i18n.tr( "HTML" )
-			}*/
 		}
 		
 		TextArea {
