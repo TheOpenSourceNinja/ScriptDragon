@@ -8,6 +8,7 @@ Page {
 	width: parent.width
 	
 	Column {
+		
 		Row {
 			id: selectors
 			
@@ -15,8 +16,8 @@ Page {
 				id: shared
 				
 				//["characters", "locations", "scenes", "pages"]
-				ListElement {
-					name: "characters"
+				/*ListElement {
+					name: i18n.tr( "characters" )
 				}
 				ListElement {
 					name: "locations"
@@ -26,12 +27,98 @@ Page {
 				}
 				ListElement {
 					name: "pages"
+				}*/
+				Component.onCompleted: {
+					append( { "name": i18n.tr( "characters" ) } )
+					append( { "name": i18n.tr( "locations" ) } )
+					append( { "name": i18n.tr( "scenes" ) } )
+					append( { "name": i18n.tr( "pages" ) } )
+				}
+			}
+			
+			function generateReport() {
+				console.log( "generateReport() called" );
+				reportTA.text = "";
+				
+				switch( reportTypeSelector.selectedIndex ) {
+					case 0: {
+						//reportTA.text += i18n.tr( "Number of" );
+						break;
+					}
+					default: {
+						console.error( "generateReport(): reportTypeSelector.selectedIndex " + reportTypeSelector.selectedIndex + " not in switch statement" );
+						break;
+					}
+				}
+				
+				//reportTA.text += " ";
+				
+				var numerator = -1;
+				
+				switch( numeratorSelector.selectedIndex ) {
+					case 0: {
+						numerator = characters.length;
+						reportTA.text += numerator + " ";
+						reportTA.text += i18n.tr( "characters" );
+						break;
+					}
+					case 1: {
+						reportTA.text += "NUMLOC" + " ";
+						reportTA.text += i18n.tr( "locations" );
+						break;
+					}
+					case 2: {
+						reportTA.text += "NUMSCN" + " ";
+						reportTA.text += i18n.tr( "scenes" );
+						break;
+					}
+					case 3: {
+						reportTA.text += "NUMPAGE" + " ";
+						reportTA.text += i18n.tr( "pages" );
+						break;
+					}
+					default: {
+						console.error( "generateReport(): numeratorSelector.selectedIndex " + numeratorSelector.selectedIndex + " not in switch statement" );
+						break;
+					}
+				}
+				
+				reportTA.text += " / ";
+				
+				var denominator = -1;
+				
+				switch( denominatorSelector.selectedIndex ) {
+					case 0: {
+						denominator = characters.length;
+						reportTA.text += denominator + " ";
+						reportTA.text += i18n.tr( "character" );
+						break;
+					}
+					case 1: {
+						reportTA.text += "NUMLOC" + " ";
+						reportTA.text += i18n.tr( "location" );
+						break;
+					}
+					case 2: {
+						reportTA.text += "NUMSCN" + " ";
+						reportTA.text += i18n.tr( "scene" );
+						break;
+					}
+					case 3: {
+						reportTA.text += "NUMPAGE" + " ";
+						reportTA.text += i18n.tr( "page" );
+						break;
+					}
+					default: {
+						console.error( "generateReport(): denominatorSelector.selectedIndex " + denominatorSelector.selectedIndex + " not in switch statement" );
+						break;
+					}
 				}
 			}
 			
 			Picker {
 				id: reportTypeSelector
-				model: ["Number of"]
+				model: [ i18n.tr( "Number of" ) ]
 				width: units.gu(15)
 				//anchors.left: parent.left
 				anchors.top: parent.top
@@ -44,6 +131,8 @@ Page {
 					}
 				}
 				selectedIndex: 0
+				
+				onSelectedIndexChanged: parent.generateReport()
 			}
 			
 			Picker {
@@ -61,6 +150,8 @@ Page {
 					}
 				}
 				selectedIndex: 0
+				
+				onSelectedIndexChanged: parent.generateReport()
 			}
 			
 			Label {
@@ -85,6 +176,8 @@ Page {
 					}
 				}
 				selectedIndex: 0
+				
+				onSelectedIndexChanged: parent.generateReport()
 			}
 		}
 		

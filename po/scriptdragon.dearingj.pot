@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-01 13:09-0700\n"
+"POT-Creation-Date: 2016-04-02 16:01-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -422,6 +422,46 @@ msgstr ""
 
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:169
 msgid "Note which character this name belongs to"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:32
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:62
+msgid "characters"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:33
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:67
+msgid "locations"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:34
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:72
+msgid "scenes"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:35
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:77
+msgid "pages"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:94
+msgid "character"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:99
+msgid "location"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:104
+msgid "scene"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:109
+msgid "page"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:121
+msgid "Number of"
 msgstr ""
 
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:20
