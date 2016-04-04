@@ -2,6 +2,8 @@ import QtQuick 2.0
 import Ubuntu.Components 1.3
 import ninja.theopensource.scriptdragon 1.0
 import QtQuick.Dialogs 1.2
+import Ubuntu.Components.Pickers 1.3
+import QtQuick.Controls 1.4 as Controls
 
 Page {
 	property alias text: scriptTA.text
@@ -133,28 +135,62 @@ Page {
 			}
 		}
 		
-		TextArea {
+		Picker {
+			id: typePicker
+			model: ["Scene", "Action", "Character", "Dialog", "Parenthetical", "Transition", "Shot", "Act break" ]; //This must EXACTLY MATCH the paragraphType enum in scriptformatter.h!
+			width: units.gu(15)
+			//anchors.left: parent.left
+			//anchors.top: parent.top
+			delegate: PickerDelegate {
+				Label {
+					text: modelData
+					anchors.fill: parent
+					verticalAlignment: Text.AlignVCenter
+					horizontalAlignment: Text.AlignHCenter
+				}
+			}
+			selectedIndex: 0
+			
+			onSelectedIndexChanged: {
+				console.log( "selected index: " + selectedIndex );
+				//scriptTA.selectAll();
+				console.log( "selected text: " + scriptTA.selectedText );
+				
+				ScriptFormatter.setParagraphType( scriptTA.textDocument, selectedIndex, scriptTA.selectionStart, scriptTA.selectionEnd );
+			}
+		}
+		
+		Controls.TextArea {
 			width: parent.width
-			height: parent.height - buttonRow.height
+			height: parent.height - buttonRow.height - typePicker.height
 			//contentWidth: width
-			autoSize: false
-			maximumLineCount: 0
+			//autoSize: false
+			//maximumLineCount: 0
 			id: scriptTA
-	
-			color: "black" //This is the color of the text, not of the text area itself
+			//mouseSelectionMode: TextEdit.SelectWords
+			//color: "black" //This is the color of the text, not of the text area itself
 			textFormat: TextEdit.RichText
+			//persistentSelection: true //Documentation says this is true by default. Experimentation says otherwise.
 			
 			/*Component.onCompleted: {
 				font.setStyleHint( Qt.Typewriter )
 			}*/
-			font: Qt.font( { //This is a fontSpecifier object; see https://developer.ubuntu.com/api/apps/qml/sdk-15.04.1/QtQml.Qt/
+			
+			Component.onCompleted: {
+				ScriptFormatter.setDefaultFontForDocument( textDocument );
+			}
+			
+			//font: ScriptFormatter.getDefaultFont();
+			/*font: Qt.font( { //This is a fontSpecifier object; see https://developer.ubuntu.com/api/apps/qml/sdk-15.04.1/QtQml.Qt/
 							  "family":"Courier",
-							  //"styleHint":Qt.Typewriter, //TODO: Find a way to use alternate font families if Courier is unavailable. Possibly use Qt.fontFamilies() https://developer.ubuntu.com/api/apps/qml/sdk-15.04.1/QtQml.Qt/
+							  "styleHint":Qt.Typewriter,
 							  "pointSize":12,
 							  "fixedPitch":true //Can't tell if this actually does anything since invalid properties are ignored by fontSpecifier objects
-						  } )
+							  //"bold":true,
+							  //"italic":true
+						  } )*/
 	
-			placeholderText: i18n.tr( "Type here" )
+			//placeholderText: i18n.tr( "Type here" )
 		}
 	}
 }

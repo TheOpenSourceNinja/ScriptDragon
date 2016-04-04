@@ -8,7 +8,8 @@ QT += qml quick printsupport
 SOURCES += main.cpp \
     notecarddata.cpp \
     notecardmanager.cpp \
-    exportmanager.cpp
+    exportmanager.cpp \
+    scriptformatter.cpp
 
 RESOURCES += ScriptDragon.qrc
 
@@ -48,12 +49,14 @@ DISTFILES += \
     LocationsPage.qml \
     RandomGeneratorsPage.qml \
     TextNotecard.qml \
-    Character.qml
+    Character.qml \
+    ../po/scriptdragon.dearingj.pot
 
 HEADERS += \
     notecarddata.h \
     notecardmanager.h \
-    exportmanager.h
+    exportmanager.h \
+    scriptformatter.h
 
 #QMAKE_CXXFLAGS += -std=c++11
 CONFIG += c++11
