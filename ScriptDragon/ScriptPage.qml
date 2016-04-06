@@ -168,9 +168,8 @@ Page {
 			//maximumLineCount: 0
 			id: scriptTA
 			//mouseSelectionMode: TextEdit.SelectWords
-			//color: "black" //This is the color of the text, not of the text area itself
 			textFormat: TextEdit.RichText
-			//persistentSelection: true //Documentation says this is true by default. Experimentation says otherwise.
+			wrapMode: TextEdit.Wrap
 			
 			/*Component.onCompleted: {
 				font.setStyleHint( Qt.Typewriter )
@@ -179,6 +178,14 @@ Page {
 			Component.onCompleted: {
 				ScriptFormatter.setDefaultFontForDocument( textDocument );
 			}
+			
+			onLineCountChanged: {
+				ScriptFormatter.textChanged( textDocument, cursorPosition );
+			}
+			
+			/*onTextChanged: {
+				ScriptFormatter.enforceFormatting( textDocument );
+			}*/
 			
 			//font: ScriptFormatter.getDefaultFont();
 			/*font: Qt.font( { //This is a fontSpecifier object; see https://developer.ubuntu.com/api/apps/qml/sdk-15.04.1/QtQml.Qt/

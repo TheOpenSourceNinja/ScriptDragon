@@ -23,6 +23,8 @@ ScriptFormatter::ScriptFormatter( QQmlEngine* newEngine, QObject *parent ) : QOb
 	baseFormat.setBottomMargin( 0 );
 	baseFormat.setLeftMargin( 0 );
 	baseFormat.setRightMargin( 0 );
+	baseFormat.setNonBreakableLines( false );
+	baseFormat.setPageBreakPolicy( QTextFormat::PageBreak_Auto );
 	
 	//Scenes are left-aligned, bold, and all caps
 	sceneFont = QFont( baseFont );
@@ -30,6 +32,7 @@ ScriptFormatter::ScriptFormatter( QQmlEngine* newEngine, QObject *parent ) : QOb
 	sceneFont.setCapitalization( QFont::AllUppercase );
 	sceneBlockFormat = QTextBlockFormat( baseFormat );
 	sceneBlockFormat.setAlignment( Qt::AlignLeft );
+	sceneBlockFormat.setPageBreakPolicy( QTextFormat::PageBreak_AlwaysBefore );
 	
 	//Actions are left-aligned
 	actionFont = QFont( baseFont );
@@ -41,11 +44,13 @@ ScriptFormatter::ScriptFormatter( QQmlEngine* newEngine, QObject *parent ) : QOb
 	characterFont.setCapitalization( QFont::AllUppercase );
 	characterBlockFormat = QTextBlockFormat( baseFormat );
 	characterBlockFormat.setAlignment( Qt::AlignHCenter );
+	characterBlockFormat.setPageBreakPolicy( QTextFormat::PageBreak_AlwaysBefore );
 	
 	//Dialog is centered
 	dialogFont = QFont( baseFont );
 	dialogBlockFormat = QTextBlockFormat( baseFormat );
 	dialogBlockFormat.setAlignment( Qt::AlignHCenter );
+	dialogBlockFormat.setPageBreakPolicy( QTextFormat::PageBreak_AlwaysAfter );
 	
 	//Parentheticals are centered and italicized
 	parentheticalFont = QFont( baseFont );
@@ -74,17 +79,38 @@ ScriptFormatter::ScriptFormatter( QQmlEngine* newEngine, QObject *parent ) : QOb
 	
 }
 
-void ScriptFormatter::setDefaultFontForDocument(QQuickTextDocument* document) {
-	document->textDocument()->setDefaultFont(actionFont);
+void ScriptFormatter::enforceFormatting(QQuickTextDocument* document) {
+	/*for( auto block = document->textDocument()->firstBlock(); block != document->textDocument()->lastBlock(); block = block.next() ) {
+		QTextCursor( block );
+		cursor.select( QTextCursor::BlockUnderCursor );
+	}*/
 }
 
-void ScriptFormatter::setParagraphType( QQuickTextDocument* document, ScriptFormatter::paragraphType newType, int selectionStart, int selectionEnd ) {
-	std::cout << "setParagraphType() called. newType: " << newType << std::endl;
-	std::cout << document->textDocument()->toHtml().toStdString().c_str() << std::endl;
-	std::cout << selectionStart << "\t" << selectionEnd << std::endl;
-	std::cout << document->textDocument()->findBlock(selectionStart).text().toStdString().c_str() << std::endl;
+void ScriptFormatter::setDefaultFontForDocument( QQuickTextDocument* document ) {
+	document->textDocument()->setDefaultFont( sceneFont );
 	
-	QTextCursor cursor( document->textDocument()->findBlock( selectionStart ) );
+	QTextCursor cursor( document->textDocument()->firstBlock() );
+	cursor.select( QTextCursor::LineUnderCursor );
+	cursor.block().setUserState( SCENE );
+	cursor.setBlockFormat( sceneBlockFormat );
+	QTextCharFormat charFormat( cursor.charFormat() );
+	charFormat.setFont( sceneFont );
+	cursor.setCharFormat( charFormat );
+}
+
+void ScriptFormatter::setParagraphType( QQuickTextDocument* document, ScriptFormatter::paragraphType newType, int cursorPosition ) {
+	std::cout << "setParagraphType() called. newType: " << newType << std::endl;
+	//std::cout << document->textDocument()->toHtml().toStdString().c_str() << std::endl;
+	//std::cout << cursorPosition << std::endl;
+	std::cout << "Block text: " << document->textDocument()->findBlock(cursorPosition).text().toStdString().c_str() << std::endl;
+	
+	QTextCursor cursor( document->textDocument()->findBlock( cursorPosition ) );
+	cursor.select( QTextCursor::LineUnderCursor );
+	
+	std::cout << "Selected text: " << cursor.selectedText().toStdString().c_str() << std::endl;
+	
+	//cursor.setPosition( cursorPosition, QTextCursor::MoveAnchor);
+	cursor.beginEditBlock();
 	QTextCharFormat charFormat( cursor.charFormat() );
 	QTextBlockFormat blockFormat;
 	
@@ -119,6 +145,11 @@ void ScriptFormatter::setParagraphType( QQuickTextDocument* document, ScriptForm
 			blockFormat = transitionBlockFormat;
 			break;
 		}
+		case SHOT: {
+			charFormat.setFont( shotFont );
+			blockFormat = shotBlockFormat;
+			break;
+		}
 		case ACT_BREAK: {
 			charFormat.setFont( actBreakFont );
 			blockFormat = actBreakBlockFormat;
@@ -126,11 +157,35 @@ void ScriptFormatter::setParagraphType( QQuickTextDocument* document, ScriptForm
 		}
 	}
 	
-	cursor.select( QTextCursor::BlockUnderCursor );
-	//cursor.block().setUserData( typeTracker( newType ) );
+	//cursor.select( QTextCursor::BlockUnderCursor );
+	cursor.block().setUserState( newType );
 	cursor.setCharFormat( charFormat );
+	cursor.setBlockCharFormat( charFormat );
 	cursor.setBlockFormat( blockFormat );
-	
+	cursor.endEditBlock();
+	document->textDocument()->setModified( false );
 	std::cout << document->textDocument()->toHtml().toStdString().c_str() << std::endl;
+}
+
+void ScriptFormatter::textChanged(QQuickTextDocument* document, unsigned int cursorPosition) {
+	if( document->textDocument()->isModified() ) {
+		std::cout << "document was modified by the user" << std::endl;
+		document->textDocument()->setModified( false );
+		
+		QTextCursor cursor( document->textDocument()->findBlock( cursorPosition ) );
+		cursor.select( QTextCursor::LineUnderCursor );
+		
+		if( cursor.selectedText().isEmpty() ) {
+			std::cout << "selection is empty." << std::endl;
+			auto previousBlock = cursor.block().previous();
+			if( previousBlock.length() > 0 ) { //Hopefully an empty text block will have length 0
+				setParagraphType( document, nextType[ (paragraphType) previousBlock.userState() ], cursorPosition );
+			}
+		} else {
+			std::cout << cursor.selectedText().toStdString().c_str() << std::endl;
+		}
+	} else {
+		std::cout << "document was not modified by the user" << std::endl;
+	}
 }
 

@@ -1,6 +1,7 @@
 #ifndef SCRIPTFORMATTER_H
 #define SCRIPTFORMATTER_H
 
+#include <cstdint>
 #include <QObject>
 #include <QQmlEngine>
 #include <QQuickTextDocument>
@@ -14,7 +15,7 @@ class ScriptFormatter : public QObject
 	public:
 		explicit ScriptFormatter( QQmlEngine* newEngine = NULL, QObject *parent = 0 );
 		
-		enum paragraphType {
+		enum paragraphType: uint_least8_t {
 			SCENE,
 			ACTION,
 			CHARACTER,
@@ -26,7 +27,7 @@ class ScriptFormatter : public QObject
 		};
 		Q_ENUMS( paragraphType );
 		
-		/*std::unordered_map<paragraphType, paragraphType> nextType = {
+		std::map<paragraphType, paragraphType> nextType = {
 			{ SCENE, ACTION },
 			{ ACTION, ACTION },
 			{ CHARACTER, DIALOG },
@@ -35,11 +36,15 @@ class ScriptFormatter : public QObject
 			{ TRANSITION, SCENE },
 			{ SHOT, ACTION },
 			{ ACT_BREAK, SCENE }
-		};*/
+		};
+		
+		Q_INVOKABLE void enforceFormatting( QQuickTextDocument* document );
 		
 		Q_INVOKABLE void setDefaultFontForDocument( QQuickTextDocument* document );
 		
-		Q_INVOKABLE void setParagraphType( QQuickTextDocument* document, paragraphType newType, int selectionStart, int selectionEnd );
+		Q_INVOKABLE void setParagraphType( QQuickTextDocument* document, paragraphType newType, int cursorPosition );
+		
+		Q_INVOKABLE void textChanged( QQuickTextDocument* document, unsigned int cursorPosition );
 		
 		QFont sceneFont;
 		QTextBlockFormat sceneBlockFormat;
@@ -57,12 +62,6 @@ class ScriptFormatter : public QObject
 		QTextBlockFormat shotBlockFormat;
 		QFont actBreakFont;
 		QTextBlockFormat actBreakBlockFormat;
-		
-		class typeTracker : public QTextBlockUserData {
-			public:
-				typeTracker( paragraphType newType = ACTION ) { type = newType; };
-				paragraphType type;
-		};
 		
 	signals:
 		
