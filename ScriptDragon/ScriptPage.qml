@@ -1,9 +1,10 @@
 import QtQuick 2.0
-import Ubuntu.Components 1.3
 import ninja.theopensource.scriptdragon 1.0
 import QtQuick.Dialogs 1.2
 import Ubuntu.Components.Pickers 1.3
 import QtQuick.Controls 1.4 as Controls
+import Ubuntu.Components 1.3
+import Ubuntu.Components.Popups 1.3
 
 Page {
 	property alias text: scriptTA.text
@@ -89,8 +90,6 @@ Page {
 						}
 					}
 					
-					console.log( format );
-					
 					if( format == "html" ) {
 						ExportManager.textDocumentToHTMLFile( scriptTA.textDocument, urlToUse );
 					}  else if( format == "odt" ) {
@@ -118,51 +117,85 @@ Page {
 				}
 			}
 			
-			Button {
-				text: i18n.tr( "Export" )
-				id: exportButton
-				onClicked: {
-					exportDialog.visible = true;
-				}
-			}
-			
-			Button {
-				text: i18n.tr( "Print" )
-				id: printButton
-				onClicked: {
-					ExportManager.textDocumentToPrintout( scriptTA.textDocument )
-				}
+			ActionBar {
+				actions: [
+					Action {
+						iconName: "save-as"
+						text: i18n.tr( "Export" )
+						description: i18n.tr( "Export the script as a PDF, ODT, HTML, ...")
+						keywords: i18n.tr( "export;PDF;ODT;HTML;TXT;plain text" );
+						onTriggered: {
+							exportDialog.visible = true;
+						}
+					},
+					Action {
+						iconName: "document-print"
+						text: i18n.tr( "Print" )
+						description: i18n.tr( "Print the script" );
+						keywords: i18n.tr( "print;default printer" )
+						onTriggered: {
+							ExportManager.textDocumentToPrintout( scriptTA.textDocument )
+						}
+					}
+				]
 			}
 		}
 		
-		Picker {
-			id: typePicker
-			model: ["Scene", "Action", "Character", "Dialog", "Parenthetical", "Transition", "Shot", "Act break" ]; //This must EXACTLY MATCH the paragraphType enum in scriptformatter.h!
-			width: units.gu(15)
-			//anchors.left: parent.left
-			//anchors.top: parent.top
-			delegate: PickerDelegate {
-				Label {
-					text: modelData
-					anchors.fill: parent
-					verticalAlignment: Text.AlignVCenter
-					horizontalAlignment: Text.AlignHCenter
+		Button {
+			id: typeButton
+			text: i18n.tr( "Change paragraph type" )
+			
+			Component {
+				id: formatDialogComponent
+				Dialog {
+					id: formatDialog
+					
+					property var index
+					
+					Picker {
+						id: typePicker
+						objectName: "typePicker"
+						model: ["Scene", "Action", "Character", "Dialog", "Parenthetical", "Transition", "Shot", "Act break" ]; //This must EXACTLY MATCH the paragraphType enum in scriptformatter.h!
+						width: units.gu(15)
+						//anchors.left: parent.left
+						//anchors.top: parent.top
+						delegate: PickerDelegate {
+							Label {
+								text: modelData
+								anchors.fill: parent
+								verticalAlignment: Text.AlignVCenter
+								horizontalAlignment: Text.AlignHCenter
+							}
+						}
+						
+						selectedIndex: formatDialog.index
+					}
+					
+					Button {
+						text: i18n.tr( "OK" );
+						onClicked: {
+							ScriptFormatter.setParagraphType( scriptTA.textDocument, typePicker.selectedIndex, scriptTA.cursorPosition );
+							PopupUtils.close( formatDialog );
+						}
+					}
+					
+					Button {
+						text: i18n.tr( "Cancel" );
+						onClicked: {
+							PopupUtils.close( formatDialog );
+						}
+					}
 				}
 			}
-			selectedIndex: 0
 			
-			onSelectedIndexChanged: {
-				console.log( "selected index: " + selectedIndex );
-				//scriptTA.selectAll();
-				console.log( "selected text: " + scriptTA.selectedText );
-				
-				ScriptFormatter.setParagraphType( scriptTA.textDocument, selectedIndex, scriptTA.selectionStart, scriptTA.selectionEnd );
+			onClicked: {
+				PopupUtils.open( formatDialogComponent, this, { "index": ScriptFormatter.getFormat( scriptTA.textDocument, scriptTA.cursorPosition ) } )
 			}
 		}
 		
 		Controls.TextArea {
 			width: parent.width
-			height: parent.height - buttonRow.height - typePicker.height
+			height: parent.height - buttonRow.height - typeButton.height
 			//contentWidth: width
 			//autoSize: false
 			//maximumLineCount: 0
@@ -182,22 +215,6 @@ Page {
 			onLineCountChanged: {
 				ScriptFormatter.textChanged( textDocument, cursorPosition );
 			}
-			
-			/*onTextChanged: {
-				ScriptFormatter.enforceFormatting( textDocument );
-			}*/
-			
-			//font: ScriptFormatter.getDefaultFont();
-			/*font: Qt.font( { //This is a fontSpecifier object; see https://developer.ubuntu.com/api/apps/qml/sdk-15.04.1/QtQml.Qt/
-							  "family":"Courier",
-							  "styleHint":Qt.Typewriter,
-							  "pointSize":12,
-							  "fixedPitch":true //Can't tell if this actually does anything since invalid properties are ignored by fontSpecifier objects
-							  //"bold":true,
-							  //"italic":true
-						  } )*/
-	
-			//placeholderText: i18n.tr( "Type here" )
 		}
 	}
 }

@@ -9,7 +9,9 @@ SOURCES += main.cpp \
     notecarddata.cpp \
     notecardmanager.cpp \
     exportmanager.cpp \
-    scriptformatter.cpp
+    scriptformatter.cpp \
+    filesaverandloader.cpp \
+    reportgenerator.cpp
 
 RESOURCES += ScriptDragon.qrc
 
@@ -56,7 +58,9 @@ HEADERS += \
     notecarddata.h \
     notecardmanager.h \
     exportmanager.h \
-    scriptformatter.h
+    scriptformatter.h \
+    filesaverandloader.h \
+    reportgenerator.h
 
 #QMAKE_CXXFLAGS += -std=c++11
 CONFIG += c++11

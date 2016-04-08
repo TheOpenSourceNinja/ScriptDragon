@@ -12,10 +12,6 @@ Page {
 		notecardFlow.setChildren();
 	}
 	
-	/*function addNotecard( newCardText, newCardTitle ) {
-		NotecardManager.addNotecard( newCardText, newCardTitle, thePage );
-	}*/
-	
 	Connections {
 		target: NotecardManager
 		onNotecardsChanged: updateGrid()

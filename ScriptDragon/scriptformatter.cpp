@@ -17,14 +17,13 @@ ScriptFormatter::ScriptFormatter( QQmlEngine* newEngine, QObject *parent ) : QOb
 	baseFormat.setIndent( 0 );
 	baseFormat.setLineHeight( 1, QTextBlockFormat::SingleHeight ); //The first argument should be ignored according to the documentation, since we're setting the LineHeightType (2nd argument) to single height
 	baseFormat.setNonBreakableLines( false );
-	baseFormat.setPageBreakPolicy( QTextFormat::PageBreak_Auto );
+	//baseFormat.setPageBreakPolicy( QTextFormat::PageBreak_Auto );
 	baseFormat.setTextIndent( 0 );
 	baseFormat.setTopMargin( 0 );
 	baseFormat.setBottomMargin( 0 );
 	baseFormat.setLeftMargin( 0 );
 	baseFormat.setRightMargin( 0 );
 	baseFormat.setNonBreakableLines( false );
-	baseFormat.setPageBreakPolicy( QTextFormat::PageBreak_Auto );
 	
 	//Scenes are left-aligned, bold, and all caps
 	sceneFont = QFont( baseFont );
@@ -32,7 +31,7 @@ ScriptFormatter::ScriptFormatter( QQmlEngine* newEngine, QObject *parent ) : QOb
 	sceneFont.setCapitalization( QFont::AllUppercase );
 	sceneBlockFormat = QTextBlockFormat( baseFormat );
 	sceneBlockFormat.setAlignment( Qt::AlignLeft );
-	sceneBlockFormat.setPageBreakPolicy( QTextFormat::PageBreak_AlwaysBefore );
+	//sceneBlockFormat.setPageBreakPolicy( QTextFormat::PageBreak_AlwaysBefore );
 	
 	//Actions are left-aligned
 	actionFont = QFont( baseFont );
@@ -44,13 +43,13 @@ ScriptFormatter::ScriptFormatter( QQmlEngine* newEngine, QObject *parent ) : QOb
 	characterFont.setCapitalization( QFont::AllUppercase );
 	characterBlockFormat = QTextBlockFormat( baseFormat );
 	characterBlockFormat.setAlignment( Qt::AlignHCenter );
-	characterBlockFormat.setPageBreakPolicy( QTextFormat::PageBreak_AlwaysBefore );
+	//characterBlockFormat.setPageBreakPolicy( QTextFormat::PageBreak_AlwaysBefore );
 	
 	//Dialog is centered
 	dialogFont = QFont( baseFont );
 	dialogBlockFormat = QTextBlockFormat( baseFormat );
 	dialogBlockFormat.setAlignment( Qt::AlignHCenter );
-	dialogBlockFormat.setPageBreakPolicy( QTextFormat::PageBreak_AlwaysAfter );
+	//dialogBlockFormat.setPageBreakPolicy( QTextFormat::PageBreak_AlwaysAfter );
 	
 	//Parentheticals are centered and italicized
 	parentheticalFont = QFont( baseFont );
@@ -79,23 +78,22 @@ ScriptFormatter::ScriptFormatter( QQmlEngine* newEngine, QObject *parent ) : QOb
 	
 }
 
-void ScriptFormatter::enforceFormatting(QQuickTextDocument* document) {
-	/*for( auto block = document->textDocument()->firstBlock(); block != document->textDocument()->lastBlock(); block = block.next() ) {
-		QTextCursor( block );
-		cursor.select( QTextCursor::BlockUnderCursor );
-	}*/
+int ScriptFormatter::getFormat( QQuickTextDocument* document, int cursorPosition ) {
+	return document->textDocument()->findBlock( cursorPosition ).userState();
 }
 
 void ScriptFormatter::setDefaultFontForDocument( QQuickTextDocument* document ) {
 	document->textDocument()->setDefaultFont( sceneFont );
 	
-	QTextCursor cursor( document->textDocument()->firstBlock() );
+	/*QTextCursor cursor( document->textDocument()->firstBlock() );
 	cursor.select( QTextCursor::LineUnderCursor );
 	cursor.block().setUserState( SCENE );
 	cursor.setBlockFormat( sceneBlockFormat );
 	QTextCharFormat charFormat( cursor.charFormat() );
 	charFormat.setFont( sceneFont );
 	cursor.setCharFormat( charFormat );
+	cursor.setBlockCharFormat( charFormat );*/
+	setParagraphType( document, SCENE, 0 );
 }
 
 void ScriptFormatter::setParagraphType( QQuickTextDocument* document, ScriptFormatter::paragraphType newType, int cursorPosition ) {
@@ -105,7 +103,7 @@ void ScriptFormatter::setParagraphType( QQuickTextDocument* document, ScriptForm
 	std::cout << "Block text: " << document->textDocument()->findBlock(cursorPosition).text().toStdString().c_str() << std::endl;
 	
 	QTextCursor cursor( document->textDocument()->findBlock( cursorPosition ) );
-	cursor.select( QTextCursor::LineUnderCursor );
+	cursor.select( QTextCursor::BlockUnderCursor );
 	
 	std::cout << "Selected text: " << cursor.selectedText().toStdString().c_str() << std::endl;
 	
@@ -163,17 +161,17 @@ void ScriptFormatter::setParagraphType( QQuickTextDocument* document, ScriptForm
 	cursor.setBlockCharFormat( charFormat );
 	cursor.setBlockFormat( blockFormat );
 	cursor.endEditBlock();
-	document->textDocument()->setModified( false );
+	//document->textDocument()->setModified( false );
 	std::cout << document->textDocument()->toHtml().toStdString().c_str() << std::endl;
 }
 
 void ScriptFormatter::textChanged(QQuickTextDocument* document, unsigned int cursorPosition) {
 	if( document->textDocument()->isModified() ) {
 		std::cout << "document was modified by the user" << std::endl;
-		document->textDocument()->setModified( false );
+		//document->textDocument()->setModified( false );
 		
 		QTextCursor cursor( document->textDocument()->findBlock( cursorPosition ) );
-		cursor.select( QTextCursor::LineUnderCursor );
+		cursor.select( QTextCursor::BlockUnderCursor );
 		
 		if( cursor.selectedText().isEmpty() ) {
 			std::cout << "selection is empty." << std::endl;

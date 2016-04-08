@@ -19,7 +19,7 @@ Rectangle {
 	property alias text: textArea.text
 	property alias title: titleArea.text
 	
-	property var associatedID
+	property int associatedID
 	property var associatedText: {
 		switch( associationType ) {
 			case NotecardManager.CHARACTER: {

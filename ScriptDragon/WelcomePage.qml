@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Ubuntu.Components 1.3
 import QtQuick.Dialogs 1.2
+import ninja.theopensource.scriptdragon 1.0
 
 Page {
 	title: i18n.tr( "Welcome" )
@@ -42,14 +43,7 @@ Page {
 
 		onAccepted: {
 			label.text = fileUrl
-			
-			//scriptTab.text = notecardsTab.notecards[0].color
-			console.log( "The notecard colors are: " )
-			for( var i = 0; i < notecardsTab.notecards.length; ++i ) {
-				console.log( notecardsTab.notecards[ i ].color )
-			}
-			console.log( "The script text is: " )
-			console.log( scriptTab.text )
+			FileSaverAndLoader.save( fileUrl );
 		}
 
 		onRejected: {

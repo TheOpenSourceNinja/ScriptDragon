@@ -34,10 +34,9 @@ MainView {
 	width: units.gu(54)
 	height: units.gu(96)
 
-	/*U1db.Database {
-		id: database;
-		path: "test_database.u1db"
-	}*/
+	/*"The LayoutMirroring attached property is used to horizontally mirror Item anchors, positioner types (such as Row and Grid) and views (such as GridView and horizontal ListView). Mirroring is a visual change: left anchors become right anchors, and positioner types like Grid and Row reverse the horizontal layout of child items." -https://doc.qt.io/qt-5/qml-qtquick-layoutmirroring.html */
+	//LayoutMirroring.enabled: true
+	LayoutMirroring.childrenInherit: true
 	
 	
 	property alias characters: charactersPage.characters
@@ -46,6 +45,9 @@ MainView {
 	Component.onCompleted: {
 		NotecardManager.setCharactersPage( charactersPage );
 		NotecardManager.setNotecardsPage( notecardsPage );
+		FileSaverAndLoader.setNotecardManager( NotecardManager );
+		FileSaverAndLoader.setScriptPage( scriptPage );
+		ReportGenerator.setScriptPage( scriptPage );
 	}
 	
 	Keys.onPressed: { //todo: If we decide to implement keyboard shortcuts, this is a good place to start
