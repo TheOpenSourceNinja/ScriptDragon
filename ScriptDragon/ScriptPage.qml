@@ -200,6 +200,7 @@ Page {
 			//autoSize: false
 			//maximumLineCount: 0
 			id: scriptTA
+			objectName: "scriptTA"
 			//mouseSelectionMode: TextEdit.SelectWords
 			textFormat: TextEdit.RichText
 			wrapMode: TextEdit.Wrap
@@ -210,6 +211,7 @@ Page {
 			
 			Component.onCompleted: {
 				ScriptFormatter.setDefaultFontForDocument( textDocument );
+				ReportGenerator.setScript( textDocument );
 			}
 			
 			onLineCountChanged: {

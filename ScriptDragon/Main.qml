@@ -47,7 +47,6 @@ MainView {
 		NotecardManager.setNotecardsPage( notecardsPage );
 		FileSaverAndLoader.setNotecardManager( NotecardManager );
 		FileSaverAndLoader.setScriptPage( scriptPage );
-		ReportGenerator.setScriptPage( scriptPage );
 	}
 	
 	Keys.onPressed: { //todo: If we decide to implement keyboard shortcuts, this is a good place to start
@@ -72,7 +71,7 @@ MainView {
 
 	Tabs {
 		id: tabs
-
+		
 		Tab {
 			id: welcomeTab
 			title: i18n.tr( "Welcome" )

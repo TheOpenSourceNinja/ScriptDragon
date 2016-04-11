@@ -15,24 +15,15 @@ Page {
 			ListModel {
 				id: shared
 				
-				//["characters", "locations", "scenes", "pages"]
-				/*ListElement {
-					name: i18n.tr( "characters" )
-				}
-				ListElement {
-					name: "locations"
-				}
-				ListElement {
-					name: "scenes"
-				}
-				ListElement {
-					name: "pages"
-				}*/
 				Component.onCompleted: {
-					append( { "name": i18n.tr( "characters" ) } )
-					append( { "name": i18n.tr( "locations" ) } )
 					append( { "name": i18n.tr( "scenes" ) } )
-					append( { "name": i18n.tr( "pages" ) } )
+					append( { "name": i18n.tr( "actions" ) } )
+					append( { "name": i18n.tr( "characters" ) } )
+					append( { "name": i18n.tr( "dialogs" ) } )
+					append( { "name": i18n.tr( "parentheticals" ) } )
+					append( { "name": i18n.tr( "transitions" ) } )
+					append( { "name": i18n.tr( "shots" ) } )
+					append( { "name": i18n.tr( "act breaks" ) } )
 				}
 			}
 			
@@ -78,7 +69,7 @@ Page {
 				}
 				selectedIndex: 0
 				
-				onSelectedIndexChanged: ReportGenerator.generateReport( numeratorSelector.selectedIndex, denominatorSelector.selectedIndex );
+				onSelectedIndexChanged: reportTA.text = ReportGenerator.generateReport( numeratorSelector.selectedIndex, denominatorSelector.selectedIndex );
 			}
 		}
 		

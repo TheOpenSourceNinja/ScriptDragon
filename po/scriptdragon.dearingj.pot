@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-06 19:02-0700\n"
+"POT-Creation-Date: 2016-04-09 18:59-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,32 +55,32 @@ msgstr ""
 msgid "Delete character"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:78
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:77
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:7
 msgid "Welcome"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:85
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:84
 msgid "Notecards"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:96
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:95
 msgid "Characters"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:105
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:104
 msgid "Locations"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:112
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:111
 msgid "Random generators"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:119
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:118
 msgid "Script"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:130
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:129
 msgid "Reports"
 msgstr ""
 
@@ -425,20 +425,36 @@ msgstr ""
 msgid "Note which character this name belongs to"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:32
-msgid "characters"
-msgstr ""
-
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:33
-msgid "locations"
-msgstr ""
-
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:34
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:19
 msgid "scenes"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:35
-msgid "pages"
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:20
+msgid "actions"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:21
+msgid "characters"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:22
+msgid "dialogs"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:23
+msgid "parentheticals"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:24
+msgid "transitions"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:25
+msgid "shots"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:26
+msgid "act breaks"
 msgstr ""
 
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:23
