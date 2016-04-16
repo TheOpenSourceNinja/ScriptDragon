@@ -1,16 +1,17 @@
 #include "exportmanager.h"
 #include <QPagedPaintDevice>
+#include <QtGlobal>
 #include <QtPrintSupport/QPrintDialog>
 #include <iostream>
 
 bool ExportManager::fileExportCommon( QQuickTextDocument* document, const QUrl& fileURL ) {
-	if( !fileURL.isValid() ) {
+	if( Q_UNLIKELY( !fileURL.isValid() ) ) {
 		std::cerr << "Invalid file URL: \"" << fileURL.toString().toStdString().c_str() << "\"" << std::endl;
 		return false;
 	}
 	
 	writer.setFileName( fileURL.toLocalFile() );
-	if( writer.write( document->textDocument() ) ) {
+	if( Q_LIKELY( writer.write( document->textDocument() ) ) ) {
 		std::cout << "file written successfully" << std::endl;
 		return true;
 	} else {
@@ -50,13 +51,13 @@ Q_INVOKABLE void ExportManager::textDocumentToPrintout( QQuickTextDocument* docu
 	//bool shouldPrint = showPrintDialog( "Print script" ); //FIXME: Uncomment this line to cause an error.
 	bool shouldPrint = true;
 	
-	if( shouldPrint ) {
+	if( Q_LIKELY( shouldPrint ) ) {
 		document->textDocument()->print( &printer );
 	}
 }
 
 Q_INVOKABLE void ExportManager::textDocumentToPDF( QQuickTextDocument* document, const QUrl& fileURL ) {
-	if( !fileURL.isValid() ) {
+	if( Q_UNLIKELY( !fileURL.isValid() ) ) {
 		std::cerr << "Invalid file URL: \"" << fileURL.toString().toStdString().c_str() << "\"" << std::endl;
 		return;
 	}
@@ -84,7 +85,7 @@ bool ExportManager::showPrintDialog( const QString& windowTitle ) {
 	
 	dialog.setWindowTitle( windowTitle );
 	
-	if( dialog.exec() == QDialog::Accepted ) {
+	if( Q_LIKELY( dialog.exec() == QDialog::Accepted ) ) {
 		return true;
 	} else {
 		return false;

@@ -10,6 +10,8 @@ class FileSaverAndLoader : public QObject
 	public:
 		explicit FileSaverAndLoader(QObject *parent = 0);
 		
+		Q_INVOKABLE void load( QUrl fileURL );
+		
 		Q_INVOKABLE void save( QUrl fileURL );
 		
 		Q_INVOKABLE void setNotecardManager( NotecardManager* newNM );
@@ -23,6 +25,8 @@ class FileSaverAndLoader : public QObject
 	private:
 		NotecardManager* notecardManager;
 		QObject* scriptPage;
+		
+		//extern Q_CORE_EXPORT int qt_ntfs_permission_lookup; //Increment to turn on NTFS permission checking, decrement to turn it off
 };
 
 //Define the singleton type provider function

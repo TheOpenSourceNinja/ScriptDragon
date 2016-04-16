@@ -18,7 +18,7 @@ Q_INVOKABLE void NotecardManager::addNotecard( QString newCardTitle, QString new
 	
 	QQmlComponent component( engine, QUrl( QStringLiteral( "qrc:///TextNotecard.qml" ) ) );
 	
-	while( component.status() == QQmlComponent::Loading ) {};
+	while( Q_UNLIKELY( component.status() == QQmlComponent::Loading ) ) {};
 	
 	if( component.status() == QQmlComponent::Error ) {
 		std::cerr << "Error creating component" << std::endl;
@@ -43,7 +43,7 @@ Q_INVOKABLE void NotecardManager::addNotecard( QString newCardTitle, QString new
 Q_INVOKABLE void NotecardManager::associateNotecardWith( QObject* notecard, associationType assocType, int associatedID ) {
 	QQmlComponent component( engine, QUrl( QStringLiteral( "qrc:///TextNotecard.qml" ) ) );
 	
-	while( component.status() == QQmlComponent::Loading ) {};
+	while( Q_UNLIKELY( component.status() == QQmlComponent::Loading ) ) {};
 	
 	if( component.status() == QQmlComponent::Error ) {
 		std::cerr << "Error creating component" << std::endl;
@@ -112,7 +112,7 @@ Q_INVOKABLE QList< QObject* > NotecardManager::getNotecardsForCharacter( int cha
 		}
 	}*/
 	
-	if( notecardsWithAssociations.size() > CHARACTER ) {
+	if( Q_LIKELY( notecardsWithAssociations.size() > CHARACTER ) ) {
 		if( notecardsWithAssociations[ CHARACTER ].size() > characterID ) {
 			results = notecardsWithAssociations[ CHARACTER ][ characterID ];
 		}

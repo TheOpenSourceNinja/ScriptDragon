@@ -43,7 +43,7 @@ Page {
 				}
 				selectedIndex: 0
 				
-				onSelectedIndexChanged: ReportGenerator.generateReport( numeratorSelector.selectedIndex, denominatorSelector.selectedIndex );
+				onSelectedIndexChanged: reportTA.text = ReportGenerator.generateReport( numeratorSelector.selectedIndex, denominatorSelector.selectedIndex );
 			}
 			
 			Label {
@@ -83,6 +83,7 @@ Page {
 		
 		TextArea {
 			id: reportTA
+			textFormat: TextEdit.RichText
 		}
 	}
 }

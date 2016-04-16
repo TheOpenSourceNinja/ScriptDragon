@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QQuickTextDocument>
+#include <QString>
 #include <QTextDocument>
 #include "scriptformatter.h"
 
@@ -12,7 +13,7 @@ class ReportGenerator : public QObject
 	public:
 		explicit ReportGenerator( QQmlEngine* newEngine = NULL, QObject *parent = 0 );
 		
-		Q_INVOKABLE QTextDocument* generateReport( int numerator, int denominator ); //Both parameters should be of type ScriptFormatter::paragraphType. Had to make them integers for use with QML.
+		Q_INVOKABLE QString generateReport( int numerator, int denominator ); //Both parameters should be of type ScriptFormatter::paragraphType. Had to make them integers for use with QML.
 		
 		Q_INVOKABLE void setScript( QQuickTextDocument* newScript );
 		

@@ -136,6 +136,27 @@ void ScriptFormatter::setParagraphType( QQuickTextDocument* document, ScriptForm
 		case PARENTHETICAL: {
 			charFormat.setFont( parentheticalFont );
 			blockFormat = parentheticalBlockFormat;
+			
+			if( !cursor.selectedText().startsWith( '(' ) ) {
+				auto position = cursor.position();
+				
+				cursor.movePosition( QTextCursor::StartOfBlock );
+				cursor.insertText( "(" );
+				
+				cursor.setPosition( position );
+				cursor.select( QTextCursor::BlockUnderCursor );
+			}
+			
+			if( !cursor.selectedText().endsWith( ')' ) ) {
+				auto position = cursor.position();
+				
+				cursor.movePosition( QTextCursor::EndOfBlock );
+				cursor.insertText( ")" );
+				
+				cursor.setPosition( position );
+				cursor.select( QTextCursor::BlockUnderCursor );
+			}
+			
 			break;
 		}
 		case TRANSITION: {
@@ -176,8 +197,8 @@ void ScriptFormatter::textChanged(QQuickTextDocument* document, unsigned int cur
 		if( cursor.selectedText().isEmpty() ) {
 			std::cout << "selection is empty." << std::endl;
 			auto previousBlock = cursor.block().previous();
-			if( previousBlock.length() > 0 ) { //Hopefully an empty text block will have length 0
-				setParagraphType( document, nextType[ (paragraphType) previousBlock.userState() ], cursorPosition );
+			if( Q_LIKELY( previousBlock.length() > 0 ) ) { //Hopefully an empty text block will have length 0
+				setParagraphType( document, nextType[ ( paragraphType ) previousBlock.userState() ], cursorPosition );
 			}
 		} else {
 			std::cout << cursor.selectedText().toStdString().c_str() << std::endl;

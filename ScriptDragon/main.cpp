@@ -13,12 +13,14 @@ int main(int argc, char *argv[])
 {
 	QGuiApplication app(argc, argv);
 	
-	qmlRegisterType<NotecardData>( "ninja.theopensource.scriptdragon", 1, 0, "NotecardData" );
-	qmlRegisterSingletonType<ExportManager>( "ninja.theopensource.scriptdragon", 1, 0, "ExportManager", exportManager_provider );
-	qmlRegisterSingletonType<NotecardManager>( "ninja.theopensource.scriptdragon", 1, 0, "NotecardManager", notecardManager_provider );
-	qmlRegisterSingletonType<ScriptFormatter>( "ninja.theopensource.scriptdragon", 1, 0, "ScriptFormatter", scriptFormatter_provider );
-	qmlRegisterSingletonType<FileSaverAndLoader>( "ninja.theopensource.scriptdragon", 1, 0, "FileSaverAndLoader", fileSaverAndLoader_provider );
-	qmlRegisterSingletonType<ReportGenerator>( "ninja.theopensource.scriptdragon", 1, 0, "ReportGenerator", reportGenerator_provider );
+	uint_fast8_t version[] = { 1, 0 };
+	
+	qmlRegisterType<NotecardData>( "ninja.theopensource.scriptdragon", version[ 0 ], version[ 1 ], "NotecardData" );
+	qmlRegisterSingletonType<ExportManager>( "ninja.theopensource.scriptdragon", version[ 0 ], version[ 1 ], "ExportManager", exportManager_provider );
+	qmlRegisterSingletonType<NotecardManager>( "ninja.theopensource.scriptdragon", version[ 0 ], version[ 1 ], "NotecardManager", notecardManager_provider );
+	qmlRegisterSingletonType<ScriptFormatter>( "ninja.theopensource.scriptdragon", version[ 0 ], version[ 1 ], "ScriptFormatter", scriptFormatter_provider );
+	qmlRegisterSingletonType<FileSaverAndLoader>( "ninja.theopensource.scriptdragon", version[ 0 ], version[ 1 ], "FileSaverAndLoader", fileSaverAndLoader_provider );
+	qmlRegisterSingletonType<ReportGenerator>( "ninja.theopensource.scriptdragon", version[ 0 ], version[ 1 ], "ReportGenerator", reportGenerator_provider );
 	
 	QQuickView view;
 	view.setSource( QUrl( QStringLiteral( "qrc:///Main.qml" ) ) );

@@ -8,7 +8,7 @@ ReportGenerator::ReportGenerator( QQmlEngine* newEngine, QObject *parent ) : QOb
 	
 }
 
-QTextDocument* ReportGenerator::generateReport( int numerator, int denominator ) {
+QString ReportGenerator::generateReport( int numerator, int denominator ) {
 	QTextDocument report;
 	//auto script = scriptPage->property( "text" )->textDocument();
 	
@@ -25,14 +25,14 @@ QTextDocument* ReportGenerator::generateReport( int numerator, int denominator )
 						if( block == doc->firstBlock() || block.userState() == ScriptFormatter::SCENE ) {
 							sceneNumber += 1;
 							cursor.insertBlock();
-							cursor.insertText( std::string( "Scene #" + std::to_string( sceneNumber ) + ":" ).c_str() );
+							cursor.insertText( std::string( "Scene #" + std::to_string( sceneNumber ) + ": " ).c_str() );
 							charactersFound.clear();
 						}
 						
 						if( block.userState() == ScriptFormatter::CHARACTER ) {
 							if( !charactersFound.contains( block.text() ) ) {
 								charactersFound.append( block.text() );
-								cursor.insertText( block.text() );
+								cursor.insertText( block.text() + ", " );
 							}
 						}
 					}
@@ -49,7 +49,7 @@ QTextDocument* ReportGenerator::generateReport( int numerator, int denominator )
 	
 	
 	std::cout << report.toHtml().toStdString() << std::endl;
-	return &report;
+	return report.toHtml();
 }
 
 Q_INVOKABLE void ReportGenerator::setScript( QQuickTextDocument* newScript ) {
