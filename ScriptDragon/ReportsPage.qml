@@ -16,14 +16,14 @@ Page {
 				id: shared
 				
 				Component.onCompleted: {
-					append( { "name": i18n.tr( "scenes" ) } )
-					append( { "name": i18n.tr( "actions" ) } )
-					append( { "name": i18n.tr( "characters" ) } )
-					append( { "name": i18n.tr( "dialogs" ) } )
-					append( { "name": i18n.tr( "parentheticals" ) } )
-					append( { "name": i18n.tr( "transitions" ) } )
-					append( { "name": i18n.tr( "shots" ) } )
-					append( { "name": i18n.tr( "act breaks" ) } )
+					insert( ScriptFormatter.SCENE, { "name": i18n.tr( "scenes" ) } )
+					insert( ScriptFormatter.ACTION, { "name": i18n.tr( "actions" ) } )
+					insert( ScriptFormatter.CHARACTER, { "name": i18n.tr( "characters" ) } )
+					insert( ScriptFormatter.DIALOG, { "name": i18n.tr( "dialogs" ) } )
+					insert( ScriptFormatter.PARENTHETICAL, { "name": i18n.tr( "parentheticals" ) } )
+					insert( ScriptFormatter.TRANSITION, { "name": i18n.tr( "transitions" ) } )
+					insert( ScriptFormatter.SHOT, { "name": i18n.tr( "shots" ) } )
+					insert( ScriptFormatter.ACT_BREAK, { "name": i18n.tr( "act breaks" ) } )
 				}
 			}
 			

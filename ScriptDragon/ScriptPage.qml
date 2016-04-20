@@ -155,7 +155,19 @@ Page {
 					Picker {
 						id: typePicker
 						objectName: "typePicker"
-						model: ["Scene", "Action", "Character", "Dialog", "Parenthetical", "Transition", "Shot", "Act break" ]; //This must EXACTLY MATCH the paragraphType enum in scriptformatter.h!
+						model: ListModel {
+							Component.onCompleted: {
+								insert( ScriptFormatter.SCENE, { "name": i18n.tr( "scene" ) } )
+								insert( ScriptFormatter.ACTION, { "name": i18n.tr( "action" ) } )
+								insert( ScriptFormatter.CHARACTER, { "name": i18n.tr( "character" ) } )
+								insert( ScriptFormatter.DIALOG, { "name": i18n.tr( "dialog" ) } )
+								insert( ScriptFormatter.PARENTHETICAL, { "name": i18n.tr( "parenthetical" ) } )
+								insert( ScriptFormatter.TRANSITION, { "name": i18n.tr( "transition" ) } )
+								insert( ScriptFormatter.SHOT, { "name": i18n.tr( "shot" ) } )
+								insert( ScriptFormatter.ACT_BREAK, { "name": i18n.tr( "act break" ) } )
+							}
+						}
+						
 						width: units.gu(15)
 						//anchors.left: parent.left
 						//anchors.top: parent.top

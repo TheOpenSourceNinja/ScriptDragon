@@ -15,7 +15,8 @@ class ScriptFormatter : public QObject
 	public:
 		explicit ScriptFormatter( QQmlEngine* newEngine = NULL, QObject *parent = 0 );
 		
-		enum paragraphType: uint_least8_t {
+		//NOTE: When changing the paragraphType enum, be sure to make corresponding changes in ScriptPage.qml and ReportsPage.qml
+		enum class paragraphType: uint_least8_t {
 			SCENE,
 			ACTION,
 			CHARACTER,
@@ -28,14 +29,14 @@ class ScriptFormatter : public QObject
 		Q_ENUMS( paragraphType );
 		
 		std::map<paragraphType, paragraphType> nextType = {
-			{ SCENE, ACTION },
-			{ ACTION, ACTION },
-			{ CHARACTER, DIALOG },
-			{ DIALOG, CHARACTER },
-			{ PARENTHETICAL, DIALOG },
-			{ TRANSITION, SCENE },
-			{ SHOT, ACTION },
-			{ ACT_BREAK, SCENE }
+			{ paragraphType::SCENE, paragraphType::ACTION },
+			{ paragraphType::ACTION, paragraphType::ACTION },
+			{ paragraphType::CHARACTER, paragraphType::DIALOG },
+			{ paragraphType::DIALOG, paragraphType::CHARACTER },
+			{ paragraphType::PARENTHETICAL, paragraphType::DIALOG },
+			{ paragraphType::TRANSITION, paragraphType::SCENE },
+			{ paragraphType::SHOT, paragraphType::ACTION },
+			{ paragraphType::ACT_BREAK, paragraphType::SCENE }
 		};
 		
 		Q_INVOKABLE int getFormat( QQuickTextDocument* document, int cursorPosition );

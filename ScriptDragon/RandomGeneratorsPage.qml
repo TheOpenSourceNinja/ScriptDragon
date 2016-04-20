@@ -1,14 +1,22 @@
 import QtQuick 2.0
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
+import ninja.theopensource.scriptdragon 1.0
 
 Page {
+	
+	NameGenerator {
+		id: nameGenerator;
+	}
 	
 	//This function is outside of the new character Dialog because it also needs to be accessed by the new character Button
 	function newCharacter() {
 		
 		//Regarding genders: I wanted to reflect modern inclusiveness by including an option other than binary male/female, but also wanted to keep things simple since this is intended to be used very early in the writing process. Having only three options, I feel, is the right thing to do, and "other/nonspecific" gender has a reasonably clear meaning. That said, I'm still considering changing it to something like "gender-fluid" or "non-binary gender".
-		var genders = [ i18n.tr( "male" ), i18n.tr( "female" ), i18n.tr( "other/nonspecific" ) ]
+		var genders = new Array(3);
+		genders[ NameGenerator.MALE ] = i18n.tr( "male" );
+		genders[ NameGenerator.FEMALE ] = i18n.tr( "female" );
+		genders[ NameGenerator.NONSPECIFIC ] = i18n.tr( "other/nonspecific" );
 		
 		var archetypes = [ i18n.tr( "Anima/Animus" ), i18n.tr( "Eternal Child" ), i18n.tr( "Devil" ), i18n.tr( "God/Goddess" ), i18n.tr( "Great Mother/Father" ), i18n.tr( "Shapeshifter" ), i18n.tr( "Threshold Guardian" ), i18n.tr( "Trickster" ), i18n.tr( "Shadow" ), i18n.tr( "Herald" ), i18n.tr( "Ally" ), i18n.tr( "Mentor" ), i18n.tr( "Hero" ) ] //Mostly taken from Christopher Vogler's "The Writer's Journey", 3rd edition. The rest are from https://en.wikipedia.org/w/index.php?title=Jungian_archetypes&oldid=699271078#Examples
 		
@@ -18,9 +26,12 @@ Page {
 		
 		var text = "";
 		text += i18n.tr( "Age: " ) + ages[ Math.floor( Math.random() * ages.length ) ] + ", "
-		text += i18n.tr( "Gender: " ) + genders[ Math.floor( Math.random() * genders.length ) ] + ", "
+		
+		var genderNumber = Math.floor( Math.random() * genders.length )
+		text += i18n.tr( "Gender: " ) + genders[ genderNumber ] + ", "
 		text += i18n.tr( "Archetype: " ) + archetypes[ Math.floor( Math.random() * archetypes.length ) ] + ", "
-		text += i18n.tr( "Job: " ) + jobs[ Math.floor( Math.random() * jobs.length ) ]
+		text += i18n.tr( "Job: " ) + jobs[ Math.floor( Math.random() * jobs.length ) ] +", "
+		text += i18n.tr( "Name: " ) + newName( genderNumber );
 		return text;
 	}
 	
@@ -39,8 +50,10 @@ Page {
 		return text
 	}
 	
-	function newName() {
-		var text = "Luke Starkiller"
+	function newName( gender ) {
+		var text = nameGenerator.getFirstName( gender );
+		text += " ";
+		text += nameGenerator.getLastName();
 		return text
 	}
 	
@@ -172,7 +185,7 @@ Page {
 			Button {
 				text: i18n.tr( "Generate another" )
 				onClicked: {
-					dialog.text = newName()
+					dialog.text = newName( NameGenerator.NONSPECIFIC )
 					description.text = ""
 				}
 			}

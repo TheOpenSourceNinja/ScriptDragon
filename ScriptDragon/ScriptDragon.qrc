@@ -10,5 +10,7 @@
         <file>RandomGeneratorsPage.qml</file>
         <file>TextNotecard.qml</file>
         <file>Character.qml</file>
+        <file>first_names.csv</file>
+        <file>last_names.csv</file>
     </qresource>
 </RCC>

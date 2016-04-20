@@ -17,7 +17,7 @@ class NotecardManager : public QObject
 		explicit NotecardManager( QQmlEngine* newEngine = NULL, QObject *parent = NULL);
 		~NotecardManager();
 		
-		enum associationType: uint_fast8_t {
+		enum class associationType: uint_fast8_t {
 			NONE = 0,
 			CHARACTER,
 			LOCATION,
@@ -26,7 +26,7 @@ class NotecardManager : public QObject
 		};
 		Q_ENUMS( associationType );
 		
-		Q_INVOKABLE void addNotecard( QString newCardTitle = "", QString newCardText = "", associationType assocType = NONE, int associatedID = INT_MAX );
+		Q_INVOKABLE void addNotecard( QString newCardTitle = "", QString newCardText = "", associationType assocType = associationType::NONE, int associatedID = INT_MAX );
 		Q_INVOKABLE void associateNotecardWith( QObject* notecard, associationType assocType, int associatedID );
 		
 		Q_INVOKABLE QList< QObject* > getAllNotecards();

@@ -93,11 +93,11 @@ void ScriptFormatter::setDefaultFontForDocument( QQuickTextDocument* document ) 
 	charFormat.setFont( sceneFont );
 	cursor.setCharFormat( charFormat );
 	cursor.setBlockCharFormat( charFormat );*/
-	setParagraphType( document, SCENE, 0 );
+	setParagraphType( document, paragraphType::SCENE, 0 );
 }
 
 void ScriptFormatter::setParagraphType( QQuickTextDocument* document, ScriptFormatter::paragraphType newType, int cursorPosition ) {
-	std::cout << "setParagraphType() called. newType: " << newType << std::endl;
+	std::cout << "setParagraphType() called. newType: " << (uint_fast8_t) newType << std::endl;
 	//std::cout << document->textDocument()->toHtml().toStdString().c_str() << std::endl;
 	//std::cout << cursorPosition << std::endl;
 	std::cout << "Block text: " << document->textDocument()->findBlock(cursorPosition).text().toStdString().c_str() << std::endl;
@@ -113,27 +113,27 @@ void ScriptFormatter::setParagraphType( QQuickTextDocument* document, ScriptForm
 	QTextBlockFormat blockFormat;
 	
 	switch( newType ) {
-		case SCENE: {
+		case paragraphType::SCENE: {
 			charFormat.setFont( sceneFont );
 			blockFormat = sceneBlockFormat;
 			break;
 		}
-		case ACTION: {
+		case paragraphType::ACTION: {
 			charFormat.setFont( actionFont );
 			blockFormat = actionBlockFormat;
 			break;
 		}
-		case CHARACTER: {
+		case paragraphType::CHARACTER: {
 			charFormat.setFont( characterFont );
 			blockFormat = characterBlockFormat;
 			break;
 		}
-		case DIALOG: {
+		case paragraphType::DIALOG: {
 			charFormat.setFont( dialogFont );
 			blockFormat = dialogBlockFormat;
 			break;
 		}
-		case PARENTHETICAL: {
+		case paragraphType::PARENTHETICAL: {
 			charFormat.setFont( parentheticalFont );
 			blockFormat = parentheticalBlockFormat;
 			
@@ -159,17 +159,17 @@ void ScriptFormatter::setParagraphType( QQuickTextDocument* document, ScriptForm
 			
 			break;
 		}
-		case TRANSITION: {
+		case paragraphType::TRANSITION: {
 			charFormat.setFont( transitionFont );
 			blockFormat = transitionBlockFormat;
 			break;
 		}
-		case SHOT: {
+		case paragraphType::SHOT: {
 			charFormat.setFont( shotFont );
 			blockFormat = shotBlockFormat;
 			break;
 		}
-		case ACT_BREAK: {
+		case paragraphType::ACT_BREAK: {
 			charFormat.setFont( actBreakFont );
 			blockFormat = actBreakBlockFormat;
 			break;
@@ -177,7 +177,7 @@ void ScriptFormatter::setParagraphType( QQuickTextDocument* document, ScriptForm
 	}
 	
 	//cursor.select( QTextCursor::BlockUnderCursor );
-	cursor.block().setUserState( newType );
+	cursor.block().setUserState( (uint_fast8_t) newType );
 	cursor.setCharFormat( charFormat );
 	cursor.setBlockCharFormat( charFormat );
 	cursor.setBlockFormat( blockFormat );

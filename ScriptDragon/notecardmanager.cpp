@@ -14,7 +14,7 @@ NotecardManager::~NotecardManager() {
 }
 
 Q_INVOKABLE void NotecardManager::addNotecard( QString newCardTitle, QString newCardText, associationType assocType, int associatedID ) {
-	std::cout << "addNotecard() called with newCardTitle=\"" << newCardTitle.toStdString().c_str() << "\" newCardText=\"" << newCardText.toStdString().c_str() << "\" assocType=" << assocType << " assocatedID=" << associatedID << std::endl;
+	std::cout << "addNotecard() called with newCardTitle=\"" << newCardTitle.toStdString().c_str() << "\" newCardText=\"" << newCardText.toStdString().c_str() << "\" assocType=" << (uint_fast8_t) assocType << " assocatedID=" << associatedID << std::endl;
 	
 	QQmlComponent component( engine, QUrl( QStringLiteral( "qrc:///TextNotecard.qml" ) ) );
 	
@@ -29,7 +29,7 @@ Q_INVOKABLE void NotecardManager::addNotecard( QString newCardTitle, QString new
 		notecards.append( object );
 		object->setProperty( "text", newCardText );
 		object->setProperty( "title", newCardTitle );
-		object->setProperty( "associationType", assocType);
+		object->setProperty( "associationType", (uint_fast8_t) assocType);
 		object->setProperty( "associatedID", associatedID );
 		
 		if( associatedID < INT_MAX ) {
@@ -53,18 +53,18 @@ Q_INVOKABLE void NotecardManager::associateNotecardWith( QObject* notecard, asso
 		//object->setProperty( "charactersTab", charactersTab );
 		//notecards.append( object2 );
 		
-		if( assocType >= notecardsWithAssociations.size() ) {
-			notecardsWithAssociations.resize( assocType + 1 );
+		if( (uint_fast8_t) assocType >= notecardsWithAssociations.size() ) {
+			notecardsWithAssociations.resize( (uint_fast8_t) assocType + 1 );
 		}
 		
-		if( associatedID >= notecardsWithAssociations[ assocType ].size() ) {
-			notecardsWithAssociations[ assocType ].resize( associatedID + 1 );
+		if( (uint_fast8_t) associatedID >= notecardsWithAssociations[ (uint_fast8_t) assocType ].size() ) {
+			notecardsWithAssociations[ (uint_fast8_t) assocType ].resize( associatedID + 1 );
 		}
 		
-		notecardsWithAssociations[ assocType ][ associatedID ].append( object2 );
+		notecardsWithAssociations[ (uint_fast8_t) assocType ][ associatedID ].append( object2 );
 		object2->setProperty( "text", notecard->property( "text" ) );
 		//object2->setProperty( "title", newCardTitle );
-		object2->setProperty( "associationType", assocType);
+		object2->setProperty( "associationType", (uint_fast8_t) assocType);
 		object2->setProperty( "associatedID", associatedID );
 		
 		emit notecardsChanged();
@@ -112,9 +112,9 @@ Q_INVOKABLE QList< QObject* > NotecardManager::getNotecardsForCharacter( int cha
 		}
 	}*/
 	
-	if( Q_LIKELY( notecardsWithAssociations.size() > CHARACTER ) ) {
-		if( notecardsWithAssociations[ CHARACTER ].size() > characterID ) {
-			results = notecardsWithAssociations[ CHARACTER ][ characterID ];
+	if( Q_LIKELY( notecardsWithAssociations.size() > (uint_fast8_t) associationType::CHARACTER ) ) {
+		if( notecardsWithAssociations[ (uint_fast8_t) associationType::CHARACTER ].size() > characterID ) {
+			results = notecardsWithAssociations[ (uint_fast8_t) associationType::CHARACTER ][ characterID ];
 		}
 	}
 	
