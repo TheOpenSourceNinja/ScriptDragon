@@ -12,38 +12,110 @@ QString ReportGenerator::generateReport( int numerator, int denominator ) {
 	QTextDocument report;
 	//auto script = scriptPage->property( "text" )->textDocument();
 	
-	switch( denominator ) {
-		case (uint_fast8_t) ScriptFormatter::paragraphType::SCENE: {
-			switch( numerator ) {
-				case (uint_fast8_t) ScriptFormatter::paragraphType::CHARACTER: {
-					QList<QString> charactersFound;
-					
-					QTextCursor cursor( report.firstBlock() );
-					uint_fast16_t sceneNumber = 0;
-					auto doc = script->textDocument();
-					for( QTextBlock block = doc->begin(); block != doc->end(); block = block.next() ) {
-						if( block == doc->firstBlock() || block.userState() == (uint_fast8_t) ScriptFormatter::paragraphType::SCENE ) {
-							sceneNumber += 1;
-							cursor.insertBlock();
-							cursor.insertText( std::string( "Scene #" + std::to_string( sceneNumber ) + ": " ).c_str() );
-							charactersFound.clear();
-						}
-						
-						if( block.userState() == (uint_fast8_t) ScriptFormatter::paragraphType::CHARACTER ) {
-							if( !charactersFound.contains( block.text() ) ) {
-								charactersFound.append( block.text() );
-								cursor.insertText( block.text() + ", " );
-							}
-						}
+	
+	QList<QString> numeratorsFound;
+	
+	QTextCursor cursor( report.firstBlock() );
+	uint_fast16_t sceneNumber = 0;
+	auto doc = script->textDocument();
+	for( QTextBlock block = doc->begin(); block != doc->end(); block = block.next() ) {
+		switch( denominator ) {
+			case ( uint_fast8_t ) ScriptFormatter::paragraphType::SCENE: {
+				if( block == doc->firstBlock() || block.userState() == ( uint_fast8_t ) denominator ) {
+					if( numeratorsFound.empty() ) {
+						cursor.insertText( "None found" ); //TODO: Translate
 					}
-					
-					break;
+					sceneNumber += 1;
+					cursor.insertBlock();
+					cursor.insertText( std::string( "Scene #" + std::to_string( sceneNumber ) + ": " ).c_str() ); //TODO: Translate
+					numeratorsFound.clear();
 				}
+				break;
 			}
-			
-			
-			
-			break;
+			case ( uint_fast8_t ) ScriptFormatter::paragraphType::ACTION: {
+				if( block.userState() == ( uint_fast8_t ) denominator ) {
+					if( numeratorsFound.empty() ) {
+						cursor.insertText( "None found" ); //TODO: Translate
+					}
+					cursor.insertBlock();
+					cursor.insertText( block.text() + ": " );
+					numeratorsFound.clear();
+				}
+				break;
+			}
+			case ( uint_fast8_t ) ScriptFormatter::paragraphType::CHARACTER: {
+				if( block.userState() == ( uint_fast8_t ) denominator ) {
+					if( numeratorsFound.empty() ) {
+						cursor.insertText( "None found" ); //TODO: Translate
+					}
+					cursor.insertBlock();
+					cursor.insertText( block.text() + ": " );
+					numeratorsFound.clear();
+				}
+				break;
+			}
+			case ( uint_fast8_t ) ScriptFormatter::paragraphType::DIALOG: {
+				if( block.userState() == ( uint_fast8_t ) denominator ) {
+					if( numeratorsFound.empty() ) {
+						cursor.insertText( "None found" ); //TODO: Translate
+					}
+					cursor.insertBlock();
+					cursor.insertText( block.text() + ": " );
+					numeratorsFound.clear();
+				}
+				break;
+			}
+			case ( uint_fast8_t ) ScriptFormatter::paragraphType::PARENTHETICAL: {
+				if( block.userState() == ( uint_fast8_t ) denominator ) {
+					if( numeratorsFound.empty() ) {
+						cursor.insertText( "None found" ); //TODO: Translate
+					}
+					cursor.insertBlock();
+					cursor.insertText( block.text() + ": " );
+					numeratorsFound.clear();
+				}
+				break;
+			}
+			case ( uint_fast8_t ) ScriptFormatter::paragraphType::TRANSITION: {
+				if( block.userState() == ( uint_fast8_t ) denominator ) {
+					if( numeratorsFound.empty() ) {
+						cursor.insertText( "None found" ); //TODO: Translate
+					}
+					cursor.insertBlock();
+					cursor.insertText( block.text() + ": " );
+					numeratorsFound.clear();
+				}
+				break;
+			}
+			case ( uint_fast8_t ) ScriptFormatter::paragraphType::SHOT: {
+				if( block.userState() == ( uint_fast8_t ) denominator ) {
+					if( numeratorsFound.empty() ) {
+						cursor.insertText( "None found" ); //TODO: Translate
+					}
+					cursor.insertBlock();
+					cursor.insertText( block.text() + ": " );
+					numeratorsFound.clear();
+				}
+				break;
+			}
+			case ( uint_fast8_t ) ScriptFormatter::paragraphType::ACT_BREAK: {
+				if( block.userState() == ( uint_fast8_t ) denominator ) {
+					if( numeratorsFound.empty() ) {
+						cursor.insertText( "None found" ); //TODO: Translate
+					}
+					cursor.insertBlock();
+					cursor.insertText( block.text() + ": " );
+					numeratorsFound.clear();
+				}
+				break;
+			}
+		}
+		
+		if( block.userState() == numerator ) {
+			if( !numeratorsFound.contains( block.text() ) ) {
+				numeratorsFound.append( block.text() );
+				cursor.insertText( block.text() + ", " );
+			}
 		}
 	}
 	
