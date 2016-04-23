@@ -78,6 +78,15 @@ ScriptFormatter::ScriptFormatter( QQmlEngine* newEngine, QObject *parent ) : QOb
 	
 }
 
+void ScriptFormatter::enforceFormatting(QQuickTextDocument* document) {
+	std::cout << "enforceFormatting() called" << std::endl;
+	if( document != nullptr && document != NULL ) {
+		for( QTextBlock block = document->textDocument()->firstBlock(); block != document->textDocument()->end(); block = block.next() ) {
+			setParagraphType( document, ( ScriptFormatter::paragraphType ) block.userState(), block.position() );
+		}
+	}
+}
+
 int ScriptFormatter::getFormat( QQuickTextDocument* document, int cursorPosition ) {
 	return document->textDocument()->findBlock( cursorPosition ).userState();
 }
@@ -100,10 +109,10 @@ void ScriptFormatter::setParagraphType( QQuickTextDocument* document, ScriptForm
 	std::cout << "setParagraphType() called. newType: " << (uint_fast8_t) newType << std::endl;
 	//std::cout << document->textDocument()->toHtml().toStdString().c_str() << std::endl;
 	//std::cout << cursorPosition << std::endl;
-	std::cout << "Block text: " << document->textDocument()->findBlock(cursorPosition).text().toStdString().c_str() << std::endl;
+	std::cout << "Block text: " << document->textDocument()->findBlock( cursorPosition ).text().toStdString() << std::endl;
 	
 	QTextCursor cursor( document->textDocument()->findBlock( cursorPosition ) );
-	cursor.select( QTextCursor::BlockUnderCursor );
+	cursor.select( QTextCursor::LineUnderCursor );
 	
 	std::cout << "Selected text: " << cursor.selectedText().toStdString().c_str() << std::endl;
 	

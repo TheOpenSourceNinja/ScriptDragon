@@ -39,6 +39,8 @@ class ScriptFormatter : public QObject
 			{ paragraphType::ACT_BREAK, paragraphType::SCENE }
 		};
 		
+		Q_INVOKABLE void enforceFormatting( QQuickTextDocument* document );
+		
 		Q_INVOKABLE int getFormat( QQuickTextDocument* document, int cursorPosition );
 		
 		Q_INVOKABLE void setDefaultFontForDocument( QQuickTextDocument* document );

@@ -55,6 +55,8 @@ void FileSaverAndLoader::load( QUrl fileURL ) {
 			}
 		}
 	}
+	
+	emit fileLoaded();
 }
 
 void FileSaverAndLoader::save( QUrl fileURL ) {

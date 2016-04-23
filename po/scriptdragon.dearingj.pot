@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-23 11:57-0700\n"
+"POT-Creation-Date: 2016-04-23 12:47-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -387,7 +387,7 @@ msgstr ""
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:131
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:167
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:203
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:195
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:202
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:175
 msgid "Cancel"
 msgstr ""
@@ -458,95 +458,95 @@ msgstr ""
 msgid "act breaks"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:23
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:30
 msgid "Choose a file to export to"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:30
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:37
 msgid "Infer format from file extension"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:31
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:38
 msgid "HyperText Markup Language"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:32
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:39
 msgid "Open Document Format"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:33
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:40
 msgid "Portable Document Format"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:34
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:41
 msgid "Portable Network Graphics"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:35
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:42
 msgid "Plain text"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:124
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:131
 msgid "Export"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:125
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:132
 msgid "Export the script as a PDF, ODT, HTML, ..."
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:126
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:133
 msgid "export;PDF;ODT;HTML;TXT;plain text"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:133
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:140
 msgid "Print"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:134
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:141
 msgid "Print the script"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:135
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:142
 msgid "print;default printer"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:146
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:153
 msgid "Change paragraph type"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:160
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:167
 msgid "scene"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:161
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:168
 msgid "action"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:162
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:169
 msgid "character"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:163
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:170
 msgid "dialog"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:164
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:171
 msgid "parenthetical"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:165
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:172
 msgid "transition"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:166
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:173
 msgid "shot"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:167
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:174
 msgid "act break"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:187
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:194
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:164
 msgid "OK"
 msgstr ""

@@ -19,7 +19,7 @@ class FileSaverAndLoader : public QObject
 		Q_INVOKABLE void setScriptPage( QObject* newScriptPage );
 		
 	signals:
-		
+		void fileLoaded();
 	public slots:
 		
 	private:

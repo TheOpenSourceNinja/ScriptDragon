@@ -9,6 +9,13 @@ import Ubuntu.Components.Popups 1.3
 Page {
 	property alias text: scriptTA.text
 	
+	Connections {
+		target: FileSaverAndLoader
+		onFileLoaded: {
+			ScriptFormatter.enforceFormatting( scriptTA.textDocument );
+		}
+	}
+	
 	Column {
 		width: parent.width
 		height: parent.height
