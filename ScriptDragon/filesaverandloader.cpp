@@ -45,6 +45,8 @@ void FileSaverAndLoader::load( QUrl fileURL ) {
 					std::cout << "Script text: \"" << scriptText.toStdString() << "\"" << std::endl;
 					
 					scriptPage->setProperty( "text", scriptText );
+					/*auto testing = scriptPage->findChild<QTextArea *>("scriptTA");
+					std::cout << 5 << std::endl;*/
 				}
 				
 				if( Q_LIKELY( notecardManager != nullptr ) ) {

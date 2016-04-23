@@ -72,13 +72,8 @@ MainView {
 	Tabs {
 		id: tabs
 		
-		Tab {
-			id: welcomeTab
-			title: i18n.tr( "Welcome" )
-
-			WelcomePage {}
-		}
-
+		selectedTabIndex: welcomeTab.index
+		
 		Tab {
 			id: notecardsTab
 			title: i18n.tr( "Notecards" )
@@ -129,6 +124,13 @@ MainView {
 			title: i18n.tr( "Reports" )
 
 			ReportsPage {}
+		}
+		
+		Tab {
+			id: welcomeTab
+			title: i18n.tr( "Welcome" )
+
+			WelcomePage {}
 		}
 	}
 }

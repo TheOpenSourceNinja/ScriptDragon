@@ -17,6 +17,15 @@ class ReportGenerator : public QObject
 		
 		Q_INVOKABLE void setScript( QQuickTextDocument* newScript );
 		
+		
+		void actionsPerScene( QTextDocument* report );
+		void charactersPerScene( QTextDocument* report );
+		void dialogsPerScene( QTextDocument* report );
+		void parentheticalsPerScene( QTextDocument* report );
+		void transitionsPerScene( QTextDocument* report );
+		void shotsPerScene( QTextDocument* report );
+		void actBreaksPerScene( QTextDocument* report );
+		
 	signals:
 		
 	public slots:

@@ -23,7 +23,8 @@ Page {
 
 		onAccepted: {
 			label.text = fileUrl //If selectMultiple were true, we would use the plural fileUrls
-			scriptTab.text = fileUrl
+			//scriptTab.text = fileUrl
+			FileSaverAndLoader.load( fileUrl );
 		}
 
 		onRejected: {

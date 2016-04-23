@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-20 23:59-0700\n"
+"POT-Creation-Date: 2016-04-23 11:57-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,33 +56,33 @@ msgstr ""
 msgid "Delete character"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:77
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:7
-msgid "Welcome"
-msgstr ""
-
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:84
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:79
 msgid "Notecards"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:95
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:90
 msgid "Characters"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:104
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:99
 msgid "Locations"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:111
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:106
 msgid "Random generators"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:118
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:113
 msgid "Script"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:129
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:124
 msgid "Reports"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:131
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:7
+msgid "Welcome"
 msgstr ""
 
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/NotecardsPage.qml:26
@@ -587,55 +587,55 @@ msgstr ""
 msgid "Choose a file to open"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:30
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:31
 msgid "Open dialog cancelled"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:36
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:37
 msgid "Choose a file to save to"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:50
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:51
 msgid "Save dialog cancelled"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:65
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:66
 msgid "Hello world!"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:73
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:74
 msgid "New file"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:76
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:77
 msgid "\"New file\" button clicked"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:85
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:86
 msgid "Open latest (hold to open a different file)"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:88
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:89
 msgid "\"Open latest\" button clicked"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:92
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:93
 msgid "\"Open\" was chosen"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:102
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:103
 msgid "Save file (hold to save as new file)"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:105
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:106
 msgid "Save button clicked"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:109
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:110
 msgid "\"Save as\" was chosen"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:124
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:125
 msgid ""
 "This is where I will introduce the app's basic features. Experienced users "
 "will know to use the tabs menu or the buttons to go straight to whatever."
