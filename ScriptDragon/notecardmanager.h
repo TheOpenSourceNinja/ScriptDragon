@@ -22,6 +22,7 @@ class NotecardManager : public QObject
 			CHARACTER,
 			LOCATION,
 			EVENT,
+			SCRIPT_LINE,
 			MISC
 		};
 		Q_ENUMS( associationType );

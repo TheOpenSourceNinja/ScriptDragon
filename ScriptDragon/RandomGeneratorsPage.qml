@@ -12,6 +12,12 @@ Page {
 	property var characterArchetypes: [ i18n.tr( "Anima/Animus" ), i18n.tr( "Eternal Child" ), i18n.tr( "Devil" ), i18n.tr( "God/Goddess" ), i18n.tr( "Great Mother/Father" ), i18n.tr( "Shapeshifter" ), i18n.tr( "Threshold Guardian" ), i18n.tr( "Shadow" ), i18n.tr( "Herald" ), i18n.tr( "Ally" ), i18n.tr( "Mentor" ), i18n.tr( "Hero" ) ] //Mostly taken from Christopher Vogler's "The Writer's Journey", 3rd edition. The rest are from https://en.wikipedia.org/w/index.php?title=Jungian_archetypes&oldid=699271078#Examples . The archetypes listed here must EXACTLY correspond with the descriptions in the archetypeDescriptions variable lower down.
 	property int characterArchetypeChosen: 0; //This only gets read when the user clicks the 'Archetype Descriptions' button, part of the new character dialog. Why is it outside the dialog? Because it needs to be written by the newCharacter() function (below).
 	
+	property var characterName;
+	property var characterAge;
+	property var characterGender;
+	property var characterArchetype;
+	property var characterJob;
+	
 	//This function is outside of the new character Dialog because it also needs to be accessed by the new character Button
 	function newCharacter() {
 		
@@ -26,15 +32,21 @@ Page {
 		var ages = [ i18n.tr( "baby" ), i18n.tr( "child" ), i18n.tr( "teenager" ), i18n.tr( "young adult" ), i18n.tr( "middle-aged" ), i18n.tr( "old" ) ]
 		
 		var text = "";
-		text += i18n.tr( "Age: " ) + ages[ Math.floor( Math.random() * ages.length ) ] + "<br />"
+		characterAge = ages[ Math.floor( Math.random() * ages.length ) ];
+		text += i18n.tr( "Age: " ) + characterAge + "<br />"
 		
 		var genderNumber = Math.floor( Math.random() * genders.length )
-		text += i18n.tr( "Gender: " ) + genders[ genderNumber ] + "<br />"
+		characterGender = genders[ genderNumber ];
+		text += i18n.tr( "Gender: " ) + characterGender + "<br />"
 		
 		characterArchetypeChosen = Math.floor( Math.random() * characterArchetypes.length );
-		text += i18n.tr( "Archetype: " ) + characterArchetypes[ characterArchetypeChosen ] + "<br />"
-		text += i18n.tr( "Job: " ) + jobs[ Math.floor( Math.random() * jobs.length ) ] +"<br />"
-		text += i18n.tr( "Name: " ) + newName( genderNumber );
+		characterArchetype = characterArchetypes[ characterArchetypeChosen ];
+		text += i18n.tr( "Archetype: " ) + characterArchetype + "<br />"
+		characterJob = jobs[ Math.floor( Math.random() * jobs.length ) ];
+		text += i18n.tr( "Job: " ) + characterJob +"<br />"
+		
+		characterName = newName( genderNumber );
+		text += i18n.tr( "Name: " ) + characterName;
 		return text;
 	}
 	
@@ -149,10 +161,11 @@ Page {
 			}
 			
 			Button {
-				text: i18n.tr( "Save as notecard" )
+				text: i18n.tr( "Save as character" )
 				onClicked: {
-					var notecardText = dialog.text + "\n" + description.text;
-					notecardsPage.addNotecard( notecardText, i18n.tr( "New character" ) );
+					//var notecardText = dialog.text + "\n" + description.text;
+					//notecardsPage.addNotecard( notecardText, i18n.tr( "New character" ) );
+					charactersPage.addCharacter( characterName, characterAge, characterGender, characterArchetype, characterJob, description.text )
 					dialog.visible = false
 				}
 			}

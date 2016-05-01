@@ -9,6 +9,37 @@ Page {
 	property alias characters: characterView.children
 	property alias characterListModel: characterListModel
 	
+	property var component: Qt.createComponent( "Character.qml" );
+	
+	function addCharacter( name, age, gender, archetype, job, personality ) {
+		var status = component.status;
+		if( status === Component.Ready ) {
+			var obj = component.createObject( characterView )
+			
+			if( obj === null ) {
+				console.error( i18n.tr( "Error creating new character." ) )
+			} else {
+				if( name !== null ) {
+					obj.initialName = name
+				}
+				
+				obj.characterID = characterListModel.count
+				
+				NotecardManager.addNotecard( i18n.tr( "Physical Characteristics" ), i18n.tr( "Age: ") + age + "\n" + i18n.tr( "Gender: ") + gender + "\n" + i18n.tr( "Distiguishing Features: \nHair: \nEyes: \nHeight: \nWeight: "), NotecardManager.CHARACTER, obj.characterID );
+				NotecardManager.addNotecard( i18n.tr( "Personality" ), i18n.tr( "Virtues & vices: \nLikes & dislikes: \nArchetype: " ) + archetype + "\n" + i18n.tr( "Job: " ) + job + "\n" + i18n.tr( "Other notes: " ) + personality, NotecardManager.CHARACTER, obj.characterID );
+				NotecardManager.addNotecard( i18n.tr( "Motivation" ), i18n.tr( "Goal: \nPlan to achieve the goal: " ), NotecardManager.CHARACTER, obj.characterID );
+				NotecardManager.addNotecard( i18n.tr( "Background" ), i18n.tr( "Family history: \nPersonal history: " ), NotecardManager.CHARACTER, obj.characterID );
+				NotecardManager.addNotecard( i18n.tr( "Relation to other characters" ), "", NotecardManager.CHARACTER, obj.characterID );
+				
+				characterListModel.append( { text:name } )
+				
+				selector.selectedIndex = characterListModel.count - 1
+			}
+		} else if( status === Component.Error ){
+			console.error( i18n.tr( "Error creating new character: " ) + component.errorString() );
+		}
+	}
+	
 	Column {
 		anchors.fill: parent
 		
@@ -19,40 +50,14 @@ Page {
 				Button {
 					text: i18n.tr( "New character" )
 					
-					property var component: Qt.createComponent( "Character.qml" );
-					
-					function addCharacter( /*string*/newCharacterName ) {
-						var status = component.status;
-						if( status === Component.Ready ) {
-							var obj = component.createObject( characterView )
-							
-							if( obj === null ) {
-								console.error( i18n.tr( "Error creating new character." ) )
-							} else {
-								if( newCharacterName !== null ) {
-									obj.initialName = newCharacterName
-								}
-								
-								obj.characterID = characterListModel.count
-								
-								NotecardManager.addNotecard( i18n.tr( "Physical Characteristics" ), i18n.tr( "Age: \nDistiguishing Features: \nHair: \nEyes: \nHeight: \nWeight: "), NotecardManager.CHARACTER, obj.characterID );
-								NotecardManager.addNotecard( i18n.tr( "Personality" ), i18n.tr( "Key character traits: \nVirtues & vices: \nLikes & dislikes: " ), NotecardManager.CHARACTER, obj.characterID );
-								NotecardManager.addNotecard( i18n.tr( "Motivation" ), i18n.tr( "Goal: \nPlan to achieve the goal: " ), NotecardManager.CHARACTER, obj.characterID );
-								NotecardManager.addNotecard( i18n.tr( "Background" ), i18n.tr( "Family history: \nPersonal history: " ), NotecardManager.CHARACTER, obj.characterID );
-								NotecardManager.addNotecard( i18n.tr( "Relation to other characters" ), "", NotecardManager.CHARACTER, obj.characterID );
-							}
-						} else if( status === Component.Error ){
-							console.error( i18n.tr( "Error creating new character: " ) + component.errorString() );
-						}
-					}
-					
 					onClicked: {
 						var name = "Unnamed Character";
-						addCharacter( name )
+						var age = "";
+						var gender = "";
+						var archetype = "";
+						var job = "";
 						
-						characterListModel.append( { text:name } )
-						
-						selector.selectedIndex = characterListModel.count - 1
+						addCharacter( name, age, gender, archetype, job )
 					}
 				}
 				
