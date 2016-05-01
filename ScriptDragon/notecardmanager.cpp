@@ -125,16 +125,6 @@ void NotecardManager::removeAllNotecards() {
 	emit notecardsChanged();
 }
 
-/*Q_INVOKABLE QQmlListProperty<QObject> NotecardManager::getAllNotecards() {
-	allNotecards.clear();
-	
-	for( int i = 0; i < notecards.size(); ++i ) {
-		allNotecards.append( notecards[ i ] );
-	}
-	
-	return QQmlListProperty<QObject>( this, allNotecards );
-}*/
-
 Q_INVOKABLE void NotecardManager::removeNotecard( QObject* toRemove ) {
 	notecards.removeOne( toRemove );
 	

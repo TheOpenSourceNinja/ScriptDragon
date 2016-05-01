@@ -23,15 +23,15 @@ Rectangle {
 	property var associatedText: {
 		switch( associationType ) {
 			case NotecardManager.CHARACTER:
-				if( associatedID < NotecardManager.getCharactersPage().characters.length ) {
-					return NotecardManager.getCharactersPage().characters[ associatedID ].name;
-				} else {
-					return "No character";
-				}
+				return "No character";
 			
 			default:
 				return "None";
 		}
+	}
+	
+	function setAssociatedText( newText ) {
+		associatedText = newText
 	}
 
 	property int associationType

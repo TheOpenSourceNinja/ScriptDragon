@@ -33,6 +33,9 @@ Item {
 				text: i18n.tr( "Apply Name" )
 				onClicked: {
 					characterListModel.setProperty( characterID, "text", nameField.text )
+					for( var i = 0; i < notecardGrid.children.length; ++i ) {
+						notecardGrid.children[ i ].setAssociatedText( nameField.text );
+					}
 				}
 			}
 		}
