@@ -54,6 +54,7 @@ class NotecardManager : public QObject
 		QQmlEngine* engine;
 		QObject* charactersPage; //TODO: Try making this a property
 		QObject* notecardsPage;
+		std::vector< uint_fast8_t > maxIDWithinAssociatedThing;
 };
 
 //Define the singleton type provider function

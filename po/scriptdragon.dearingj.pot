@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-01 00:22-0700\n"
+"POT-Creation-Date: 2016-05-01 01:57-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,12 +18,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Character.qml:34
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Character.qml:26
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:37
 msgid "Name: "
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Character.qml:62
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Character.qml:33
 msgid "Apply Name"
 msgstr ""
 
@@ -39,21 +39,59 @@ msgid "Error creating new character."
 msgstr ""
 
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/CharactersPage.qml:38
-msgid "New Character's physical characteristics"
+msgid "Physical Characteristics"
 msgstr ""
 
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/CharactersPage.qml:38
 msgid ""
 "Age: \n"
+"Distiguishing Features: \n"
+"Hair: \n"
+"Eyes: \n"
 "Height: \n"
 "Weight: "
 msgstr ""
 
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/CharactersPage.qml:39
+msgid "Personality"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/CharactersPage.qml:39
+msgid ""
+"Key character traits: \n"
+"Virtues & vices: \n"
+"Likes & dislikes: "
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/CharactersPage.qml:40
+msgid "Motivation"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/CharactersPage.qml:40
+msgid ""
+"Goal: \n"
+"Plan to achieve the goal: "
+msgstr ""
+
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/CharactersPage.qml:41
+msgid "Background"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/CharactersPage.qml:41
+msgid ""
+"Family history: \n"
+"Personal history: "
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/CharactersPage.qml:42
+msgid "Relation to other characters"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/CharactersPage.qml:45
 msgid "Error creating new character: "
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/CharactersPage.qml:56
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/CharactersPage.qml:60
 msgid "Delete character"
 msgstr ""
 
@@ -572,7 +610,7 @@ msgstr ""
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:238
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:274
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:204
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:182
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:186
 msgid "Cancel"
 msgstr ""
 
@@ -744,39 +782,39 @@ msgid "act break"
 msgstr ""
 
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:196
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:171
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:175
 msgid "OK"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:50
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:54
 msgid "Choose a color for this notecard"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:79
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:83
 msgid "Notecard Title"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:91
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:95
 msgid "color"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:98
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:102
 msgid "Hold to delete"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:125
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:129
 msgid "Type a note here"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:134
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:138
 msgid "Associativity: "
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:142
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:146
 msgid "Link with character"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:161
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:165
 msgid "Choose character"
 msgstr ""
 

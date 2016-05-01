@@ -33,9 +33,13 @@ Page {
 									obj.initialName = newCharacterName
 								}
 								
-								obj.id = characterListModel.count
+								obj.characterID = characterListModel.count
 								
-								NotecardManager.addNotecard( i18n.tr( "New Character's physical characteristics" ), i18n.tr( "Age: \nHeight: \nWeight: "), NotecardManager.CHARACTER, obj.id ); //todo: add all relevant notecards
+								NotecardManager.addNotecard( i18n.tr( "Physical Characteristics" ), i18n.tr( "Age: \nDistiguishing Features: \nHair: \nEyes: \nHeight: \nWeight: "), NotecardManager.CHARACTER, obj.characterID );
+								NotecardManager.addNotecard( i18n.tr( "Personality" ), i18n.tr( "Key character traits: \nVirtues & vices: \nLikes & dislikes: " ), NotecardManager.CHARACTER, obj.characterID );
+								NotecardManager.addNotecard( i18n.tr( "Motivation" ), i18n.tr( "Goal: \nPlan to achieve the goal: " ), NotecardManager.CHARACTER, obj.characterID );
+								NotecardManager.addNotecard( i18n.tr( "Background" ), i18n.tr( "Family history: \nPersonal history: " ), NotecardManager.CHARACTER, obj.characterID );
+								NotecardManager.addNotecard( i18n.tr( "Relation to other characters" ), "", NotecardManager.CHARACTER, obj.characterID );
 							}
 						} else if( status === Component.Error ){
 							console.error( i18n.tr( "Error creating new character: " ) + component.errorString() );
@@ -98,20 +102,8 @@ Page {
 				}
 			}
 			
-			/*ComboBox {
-				id: selector
-				model: characterListModel
-				
-				ListModel {
-					id: characterListModel
-				}
-				
-				onCurrentIndexChanged: {
-					console.log( selectedIndex )
-					characterView.setVisibleChild( selectedIndex )
-				}
-			}*/
 		}
+		
 		
 		Item {
 			width: parent.width

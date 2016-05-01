@@ -37,11 +37,15 @@ Rectangle {
 	property int associationType
 	
 	property bool isDuplicate
+	property int idWithinAssociatedThing
 	
 	onTextChanged: {
 		NotecardManager.updateNotecard( this );
 	}
 	onTitleChanged: {
+		NotecardManager.updateNotecard( this );
+	}
+	onColorChanged: {
 		NotecardManager.updateNotecard( this );
 	}
 	

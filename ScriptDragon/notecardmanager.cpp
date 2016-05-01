@@ -29,10 +29,16 @@ Q_INVOKABLE void NotecardManager::addNotecard( QString newCardTitle, QString new
 		notecards.append( object );
 		object->setProperty( "text", newCardText );
 		object->setProperty( "title", newCardTitle );
-		object->setProperty( "title", "blah blah blah" );
 		object->setProperty( "associationType", ( uint_fast8_t ) assocType);
 		object->setProperty( "associatedID", associatedID );
 		object->setProperty( "isDuplicate", false );
+		
+		if( maxIDWithinAssociatedThing.size() <= associatedID ) {
+			maxIDWithinAssociatedThing.resize( associatedID + 1, 0 );
+		}
+		
+		maxIDWithinAssociatedThing[ associatedID ] += 1;
+		object->setProperty( "idWithinAssociatedThing", maxIDWithinAssociatedThing[ associatedID ] );
 		
 		if( associatedID < INT_MAX ) {
 			associateNotecardWith( object, assocType, associatedID );
@@ -71,8 +77,8 @@ Q_INVOKABLE void NotecardManager::associateNotecardWith( QObject* notecard, asso
 		object2->setProperty( "associatedID", associatedID );
 		
 		object2->setProperty( "isDuplicate", true );
-		/*object2->setProperty( "duplicateNotecard", notecard );
-		notecard->setProperty( "duplicateNotecard", object2 );*/
+		//maxIDWithinAssociatedThing[ associatedID ] += 1;
+		object2->setProperty( "idWithinAssociatedThing", maxIDWithinAssociatedThing[ associatedID ] );
 		
 		emit notecardsChanged();
 	}
@@ -168,26 +174,30 @@ Q_INVOKABLE void NotecardManager::setNotecardsPage( QObject* newNotecardsPage ) 
 }
 
 void NotecardManager::updateNotecard( QObject* origin ) {
-	std::cout << "updateNotecard() called" << std::endl;
+	//std::cout << "updateNotecard() called" << std::endl;
 	if( !origin->property( "isDuplicate" ).toBool() ) {
 		if( Q_LIKELY( notecardsWithAssociations.size() > ( uint_fast8_t ) associationType::CHARACTER ) ) {
-			uint_fast8_t characterID = origin->property( "associatedID" ).toInt();
+			uint_fast8_t characterID = origin->property( "associatedID" ).toUInt();
 			if( notecardsWithAssociations[ ( uint_fast8_t ) associationType::CHARACTER ].size() > characterID ) {
 				auto notecardsForCharacter = notecardsWithAssociations[ ( uint_fast8_t ) associationType::CHARACTER ][ characterID ];
 				for( auto iterator = notecardsForCharacter.begin(); iterator != notecardsForCharacter.end(); iterator++ ) {
 					auto notecard = *iterator;
-					//if( origin != notecard ) {
+					if( origin->property( "associatedID" ).toUInt() == notecard->property( "associatedID" ).toUInt() && origin->property( "associationType" ).toUInt() == notecard->property( "associationType" ).toUInt() && origin->property( "idWithinAssociatedThing" ).toUInt() == notecard->property( "idWithinAssociatedThing" ).toUInt() ) {
 						notecard->setProperty( "title", origin->property( "title" ) );
 						notecard->setProperty( "text", origin->property( "text" ) );
-					//}
+						notecard->setProperty( "color", origin->property( "color" ) );
+					}
 				}
 			}
 		}
 	} else {
 		for( auto iterator = notecardsWithDuplicates.begin(); iterator != notecardsWithDuplicates.end(); iterator++ ) {
 			auto notecard = *iterator;
-			notecard->setProperty( "title", origin->property( "title" ) );
-			notecard->setProperty( "text", origin->property( "text" ) );
+			if( origin->property( "associatedID" ).toUInt() == notecard->property( "associatedID" ).toUInt() && origin->property( "associationType" ).toUInt() == notecard->property( "associationType" ).toUInt() && origin->property( "idWithinAssociatedThing" ).toUInt() == notecard->property( "idWithinAssociatedThing" ).toUInt() ) {
+				notecard->setProperty( "title", origin->property( "title" ) );
+				notecard->setProperty( "text", origin->property( "text" ) );
+				notecard->setProperty( "color", origin->property( "color" ) );
+			}
 		}
 	}
 }
