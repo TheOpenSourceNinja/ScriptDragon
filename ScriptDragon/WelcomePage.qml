@@ -1,17 +1,32 @@
 import QtQuick 2.0
 import Ubuntu.Components 1.3
 import QtQuick.Dialogs 1.2
-import ninja.theopensource.scriptdragon 1.0
+import ninja.theopensource.scriptdragon 1.0 //Ignore the warning about this "QML module" not being found
 
 Page {
 	title: i18n.tr( "Welcome" )
-
+	id: thePage
+	
+	property var currentFileURL: "";
+	
+	Connections {
+		target: FileSaverAndLoader
+		onFileLoaded: {
+			//SettingsManager.setValue( "lastFileLoaded", fileURL );
+			thePage.currentFileURL = fileURL;
+		}
+		
+		onFileSaved: {
+			thePage.currentFileUrl = fileURL;
+		}
+	}
+	
 	//Used by the file open & save dialogs
 	property var fileNameFilters: [
 		"ScriptDragon files (*.scriptdragon)",
 		"All files (*)"
 	]
-
+	
 	FileDialog {
 		id: openDialog
 		title: i18n.tr( "Choose a file to open" )
@@ -22,16 +37,14 @@ Page {
 		nameFilters: fileNameFilters
 
 		onAccepted: {
-			label.text = fileUrl //If selectMultiple were true, we would use the plural fileUrls
-			//scriptTab.text = fileUrl
-			FileSaverAndLoader.load( fileUrl );
+			FileSaverAndLoader.load( fileUrl ); //If selectMultiple were true, we would use the plural fileUrls
 		}
 
 		onRejected: {
-			label.text = i18n.tr( "Open dialog cancelled" )
+			//label.text = i18n.tr( "Open dialog cancelled" )
 		}
 	}
-
+	
 	FileDialog {
 		id: saveDialog
 		title: i18n.tr( "Choose a file to save to" )
@@ -43,86 +56,112 @@ Page {
 		nameFilters: fileNameFilters
 
 		onAccepted: {
-			label.text = fileUrl
 			FileSaverAndLoader.save( fileUrl );
 		}
 
 		onRejected: {
-			label.text = i18n.tr( "Save dialog cancelled" )
+			//label.text = i18n.tr( "Save dialog cancelled" )
 		}
 	}
-
+	
 	Column {
 		spacing: units.gu(1)
 		anchors {
 			margins: units.gu(2)
 			fill: parent
 		}
-
-		Label {
-			id: label
-			objectName: "label"
-
-			text: i18n.tr("Hello world!")
-		}
-
-		Button {
-			objectName: "newButton"
+		
+		Column {
+			id: buttons;
 			width: parent.width
-			id: newButton
-			iconName: "document-new"
-			text: i18n.tr( "New file" )
-
-			onClicked: {
-				label.text = i18n.tr( "\"New file\" button clicked" )
+			
+			Button {
+				objectName: "newButton"
+				width: parent.width
+				id: newButton
+				iconName: "document-new"
+				text: i18n.tr( "New file" )
+				
+				onClicked: {
+					console.log( "New File button clicked" );
+					characters = [];
+					characterListModel.clear();
+					NotecardManager.removeAllNotecards();
+					locations = [];
+					//locationListModel.clear();//TODO: Uncomment this when the time comes
+					script = ""
+					report = ""
+					currentFileURL = ""
+				}
+			}
+			
+			Button {
+				objectName: "openButton"
+				width: parent.width
+				id: openButton
+				iconName: "document-open"
+				text: i18n.tr( "Open latest (hold to open a different file)" )
+				
+				onClicked: {
+					var fileURL = SettingsManager.getValue( "lastFileLoaded" );
+					if( fileURL !== undefined && fileURL !== "" ) {
+						FileSaverAndLoader.load( fileURL );
+					} else {
+						openDialog.visible = true;
+					}
+				}
+				
+				onPressAndHold: {
+					openDialog.visible = true //Setting visible to true is equivalent to calling openDialog.open()
+				}
+			}
+			
+			Button {
+				objectName: "saveButton"
+				width: parent.width
+				id: saveButton
+				iconName: "document-save"
+				text: i18n.tr("Save file (hold to save as new file)")
+				
+				onClicked: {
+					if( currentFileURL !== undefined && currentFileURL !== "" ) {
+						FileSaverAndLoader.save( currentFileURL );
+					} else {
+						saveDialog.visible = true;
+					}
+				}
+				
+				onPressAndHold: {
+					saveDialog.visible = true
+				}
 			}
 		}
-
-		Button {
-			objectName: "openButton"
-			width: parent.width
-			id: openButton
-			iconName: "document-open"
-			text: i18n.tr( "Open latest (hold to open a different file)" )
-
-			onClicked: {
-				label.text = i18n.tr( "\"Open latest\" button clicked" )
-			}
-
-			onPressAndHold: {
-				label.text = i18n.tr( "\"Open\" was chosen" )
-				openDialog.visible = true //Setting visible to true is equivalent to calling openDialog.open()
-			}
-		}
-
-		Button {
-			objectName: "saveButton"
-			width: parent.width
-			id: saveButton
-			iconName: "document-save"
-			text: i18n.tr("Save file (hold to save as new file)")
-
-			onClicked: {
-				label.text = i18n.tr( "Save button clicked" )
-			}
-
-			onPressAndHold: {
-				label.text = i18n.tr( "\"Save as\" was chosen")
-				saveDialog.visible = true
-			}
-		}
-
+		
 		TextArea {
 			id: tour
 			width: parent.width
+			height: parent.height - buttons.height;
 			readOnly: true
-			autoSize: true
+			//autoSize: true
 			maximumLineCount: 0
 			activeFocusOnPress: false
 			cursorVisible: false
 			selectByMouse: false //note: this appears not to do anything because of activeFocusOnPress and/or cursorVisible being false. readOnly being true might also be a factor. Setting it just in case.
-
-			text: i18n.tr("This is where I will introduce the app's basic features. Experienced users will know to use the tabs menu or the buttons to go straight to whatever.")
+			textFormat:Text.RichText;
+			
+			text: i18n.tr(
+				"Welcome to ScriptDragon. ScriptDragon is an app for screenwriters.<br />" +
+				"The different sections of the app can be accessed from the menu at the top of the screen:" +
+				"<ul>" +
+					"<li>Notecards: The app's main feature, notecards are where you write out all your ideas no matter how crazy.</li>" +
+					"<li>Characters: Displays notecards associated with specific characters.</li>" +
+					"<li>Locations: Displays notecards associated with specific locations.</li>" +
+					"<li>Random generators: Need inspiration? Look here!</li>" +
+					"<li>Script: Where you write the script.</li>" +
+					"<li>Reports: Statistics etc. generated based on the script.</li>" +
+					"<li>Welcome: This screen.</li>" +
+				"</ul>"
+			)
 		}
 	}
 }

@@ -14,13 +14,13 @@ NotecardManager::~NotecardManager() {
 }
 
 Q_INVOKABLE void NotecardManager::addNotecard( QString newCardTitle, QString newCardText, associationType assocType, int associatedID ) {
-	std::cout << "addNotecard() called with newCardTitle=\"" << newCardTitle.toStdString().c_str() << "\" newCardText=\"" << newCardText.toStdString().c_str() << "\" assocType=" << (uint_fast8_t) assocType << " assocatedID=" << associatedID << std::endl;
+	std::cout << "addNotecard() called with newCardTitle=\"" << newCardTitle.toStdString() << "\" newCardText=\"" << newCardText.toStdString() << "\" assocType=" << ( uint_fast8_t ) assocType << " assocatedID=" << associatedID << std::endl;
 	
 	QQmlComponent component( engine, QUrl( QStringLiteral( "qrc:///TextNotecard.qml" ) ) );
 	
 	while( Q_UNLIKELY( component.status() == QQmlComponent::Loading ) ) {};
 	
-	if( component.status() == QQmlComponent::Error ) {
+	if( Q_UNLIKELY( component.status() == QQmlComponent::Error ) ) {
 		std::cerr << "Error creating component" << std::endl;
 	} else {
 		QObject* object = component.create();
@@ -29,8 +29,10 @@ Q_INVOKABLE void NotecardManager::addNotecard( QString newCardTitle, QString new
 		notecards.append( object );
 		object->setProperty( "text", newCardText );
 		object->setProperty( "title", newCardTitle );
-		object->setProperty( "associationType", (uint_fast8_t) assocType);
+		object->setProperty( "title", "blah blah blah" );
+		object->setProperty( "associationType", ( uint_fast8_t ) assocType);
 		object->setProperty( "associatedID", associatedID );
+		object->setProperty( "isDuplicate", false );
 		
 		if( associatedID < INT_MAX ) {
 			associateNotecardWith( object, assocType, associatedID );
@@ -45,7 +47,7 @@ Q_INVOKABLE void NotecardManager::associateNotecardWith( QObject* notecard, asso
 	
 	while( Q_UNLIKELY( component.status() == QQmlComponent::Loading ) ) {};
 	
-	if( component.status() == QQmlComponent::Error ) {
+	if( Q_UNLIKELY( component.status() == QQmlComponent::Error ) ) {
 		std::cerr << "Error creating component" << std::endl;
 	} else {
 		QObject* object2 = component.create();
@@ -53,19 +55,24 @@ Q_INVOKABLE void NotecardManager::associateNotecardWith( QObject* notecard, asso
 		//object->setProperty( "charactersTab", charactersTab );
 		//notecards.append( object2 );
 		
-		if( (uint_fast8_t) assocType >= notecardsWithAssociations.size() ) {
-			notecardsWithAssociations.resize( (uint_fast8_t) assocType + 1 );
+		if( ( uint_fast8_t ) assocType >= notecardsWithAssociations.size() ) {
+			notecardsWithAssociations.resize( ( uint_fast8_t ) assocType + 1 );
 		}
 		
-		if( (uint_fast8_t) associatedID >= notecardsWithAssociations[ (uint_fast8_t) assocType ].size() ) {
-			notecardsWithAssociations[ (uint_fast8_t) assocType ].resize( associatedID + 1 );
+		if( ( uint_fast8_t ) associatedID >= notecardsWithAssociations[ ( uint_fast8_t ) assocType ].size() ) {
+			notecardsWithAssociations[ ( uint_fast8_t ) assocType ].resize( associatedID + 1 );
 		}
 		
-		notecardsWithAssociations[ (uint_fast8_t) assocType ][ associatedID ].append( object2 );
+		notecardsWithAssociations[ ( uint_fast8_t ) assocType ][ associatedID ].append( object2 );
+		notecardsWithDuplicates.push_back( notecard );
 		object2->setProperty( "text", notecard->property( "text" ) );
-		//object2->setProperty( "title", newCardTitle );
-		object2->setProperty( "associationType", (uint_fast8_t) assocType);
+		object2->setProperty( "title", notecard->property( "title" ) );
+		object2->setProperty( "associationType", ( uint_fast8_t ) assocType);
 		object2->setProperty( "associatedID", associatedID );
+		
+		object2->setProperty( "isDuplicate", true );
+		/*object2->setProperty( "duplicateNotecard", notecard );
+		notecard->setProperty( "duplicateNotecard", object2 );*/
 		
 		emit notecardsChanged();
 	}
@@ -75,12 +82,9 @@ Q_INVOKABLE QList< QObject* > NotecardManager::getAllNotecards() {
 	QList< QObject* > results;
 	
 	for( decltype( notecards )::size_type i = 0; i < notecards.size(); ++i ) {
-		std::cout << notecards[ i ]->property( "associatedID" ).toInt() << std::endl;
-		std::cout << notecards[ i ]->property( "associatedText" ).toString().toStdString().c_str() << std::endl;
 		
 		//if( notecards[ i ]->property( "associationType" ) == CHARACTER && characterID == notecards[ i ]->property( "associatedID" ).toInt() ) {
 			results.append( notecards[ i ] );
-			std::cout << "append notecard" << std::endl;
 		//} else {
 		//	std::cout << "not appending notecard" << std::endl;
 		//}
@@ -100,25 +104,19 @@ Q_INVOKABLE QObject* NotecardManager::getNotecardsPage() {
 Q_INVOKABLE QList< QObject* > NotecardManager::getNotecardsForCharacter( int characterID ) {
 	QList< QObject* > results;
 	
-	/*for( decltype( notecards )::size_type i = 0; i < notecards.size(); ++i ) {
-		std::cout << notecards[ i ]->property( "associatedID" ).toInt() << std::endl;
-		std::cout << notecards[ i ]->property( "associatedText" ).toString().toStdString().c_str() << std::endl;
-		
-		if( notecards[ i ]->property( "associationType" ) == CHARACTER && characterID == notecards[ i ]->property( "associatedID" ).toInt() ) {
-			results.append( notecards[ i ] );
-			std::cout << "append notecard" << std::endl;
-		} else {
-			std::cout << "not appending notecard" << std::endl;
-		}
-	}*/
-	
-	if( Q_LIKELY( notecardsWithAssociations.size() > (uint_fast8_t) associationType::CHARACTER ) ) {
-		if( notecardsWithAssociations[ (uint_fast8_t) associationType::CHARACTER ].size() > characterID ) {
-			results = notecardsWithAssociations[ (uint_fast8_t) associationType::CHARACTER ][ characterID ];
+	if( Q_LIKELY( notecardsWithAssociations.size() > ( uint_fast8_t ) associationType::CHARACTER ) ) {
+		if( notecardsWithAssociations[ ( uint_fast8_t ) associationType::CHARACTER ].size() > characterID ) {
+			results = notecardsWithAssociations[ ( uint_fast8_t ) associationType::CHARACTER ][ characterID ];
 		}
 	}
 	
 	return results;
+}
+
+void NotecardManager::removeAllNotecards() {
+	notecards.clear();
+	notecardsWithAssociations.clear();
+	emit notecardsChanged();
 }
 
 /*Q_INVOKABLE QQmlListProperty<QObject> NotecardManager::getAllNotecards() {
@@ -166,5 +164,30 @@ Q_INVOKABLE void NotecardManager::setNotecardsPage( QObject* newNotecardsPage ) 
 	
 	if( notecardsPage != NULL ) {
 		engine->setObjectOwnership( notecardsPage, QQmlEngine::CppOwnership );
+	}
+}
+
+void NotecardManager::updateNotecard( QObject* origin ) {
+	std::cout << "updateNotecard() called" << std::endl;
+	if( !origin->property( "isDuplicate" ).toBool() ) {
+		if( Q_LIKELY( notecardsWithAssociations.size() > ( uint_fast8_t ) associationType::CHARACTER ) ) {
+			uint_fast8_t characterID = origin->property( "associatedID" ).toInt();
+			if( notecardsWithAssociations[ ( uint_fast8_t ) associationType::CHARACTER ].size() > characterID ) {
+				auto notecardsForCharacter = notecardsWithAssociations[ ( uint_fast8_t ) associationType::CHARACTER ][ characterID ];
+				for( auto iterator = notecardsForCharacter.begin(); iterator != notecardsForCharacter.end(); iterator++ ) {
+					auto notecard = *iterator;
+					//if( origin != notecard ) {
+						notecard->setProperty( "title", origin->property( "title" ) );
+						notecard->setProperty( "text", origin->property( "text" ) );
+					//}
+				}
+			}
+		}
+	} else {
+		for( auto iterator = notecardsWithDuplicates.begin(); iterator != notecardsWithDuplicates.end(); iterator++ ) {
+			auto notecard = *iterator;
+			notecard->setProperty( "title", origin->property( "title" ) );
+			notecard->setProperty( "text", origin->property( "text" ) );
+		}
 	}
 }

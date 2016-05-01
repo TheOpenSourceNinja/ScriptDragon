@@ -78,8 +78,8 @@ ScriptFormatter::ScriptFormatter( QQmlEngine* newEngine, QObject *parent ) : QOb
 	
 }
 
-void ScriptFormatter::enforceFormatting(QQuickTextDocument* document) {
-	std::cout << "enforceFormatting() called" << std::endl;
+void ScriptFormatter::enforceFormatting( QQuickTextDocument* document ) { //The script doesn't quite look right when loaded from a file, so we call this function.
+	
 	if( document != nullptr && document != NULL ) {
 		for( QTextBlock block = document->textDocument()->firstBlock(); block != document->textDocument()->end(); block = block.next() ) {
 			setParagraphType( document, ( ScriptFormatter::paragraphType ) block.userState(), block.position() );

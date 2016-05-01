@@ -38,9 +38,18 @@ MainView {
 	//LayoutMirroring.enabled: true
 	LayoutMirroring.childrenInherit: true
 	
+	Connections {
+		target: FileSaverAndLoader
+		onFileLoaded: {
+			SettingsManager.setValue( "lastFileLoaded", fileURL );
+		}
+	}
 	
 	property alias characters: charactersPage.characters
 	property alias characterListModel: charactersPage.characterListModel
+	property alias locations: locationsPage.locations
+	property alias script: scriptPage.text
+	property alias report: reportsPage.report
 	
 	Component.onCompleted: {
 		NotecardManager.setCharactersPage( charactersPage );
@@ -53,12 +62,11 @@ MainView {
 		//https://doc.qt.io/qt-5/qml-qtquick-keys.html
 		//https://doc.qt.io/qt-5/qkeysequence.html#StandardKey-enum
 		switch( event.key ) {
-			case Qt.Key_S: {
+			case Qt.Key_S:
 				if( event.modifiers & Qt.ControlModifier ) {
 					console.log( "Ctrl+S was pressed" );
 				}
-			}
-			break;
+				break;
 			default: break;
 		}
 		
@@ -97,23 +105,27 @@ MainView {
 		Tab {
 			id: locationsTab
 			title: i18n.tr( "Locations" )
-
-			LocationsPage {}
+			
+			LocationsPage {
+				id: locationsPage
+			}
 		}
 
 		Tab {
 			id: randomGeneratorsTab
 			title: i18n.tr( "Random generators" )
-
-			RandomGeneratorsPage {}
+			
+			RandomGeneratorsPage {
+				id: randomGeneratorsPage
+			}
 		}
 
 		Tab {
 			id: scriptTab
 			title: i18n.tr( "Script" )
-
-			property alias text: scriptPage.text
-
+			
+			//property alias textDocument: scriptPage.textDocument
+			
 			ScriptPage {
 				id: scriptPage
 			}
@@ -123,14 +135,18 @@ MainView {
 			id: reportsTab
 			title: i18n.tr( "Reports" )
 
-			ReportsPage {}
+			ReportsPage {
+				id: reportsPage
+			}
 		}
 		
 		Tab {
 			id: welcomeTab
 			title: i18n.tr( "Welcome" )
 
-			WelcomePage {}
+			WelcomePage {
+				id: welcomePage
+			}
 		}
 	}
 }

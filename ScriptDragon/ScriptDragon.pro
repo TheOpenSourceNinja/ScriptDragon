@@ -12,7 +12,8 @@ SOURCES += main.cpp \
     scriptformatter.cpp \
     filesaverandloader.cpp \
     reportgenerator.cpp \
-    namegenerator.cpp
+    namegenerator.cpp \
+    settingsmanager.cpp
 
 RESOURCES += ScriptDragon.qrc
 
@@ -62,7 +63,8 @@ HEADERS += \
     scriptformatter.h \
     filesaverandloader.h \
     reportgenerator.h \
-    namegenerator.h
+    namegenerator.h \
+    settingsmanager.h
 
 #QMAKE_CXXFLAGS += -std=c++11
 CONFIG += c++11

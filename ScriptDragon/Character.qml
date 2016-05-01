@@ -71,7 +71,6 @@ ScrollView {
 			children: NotecardManager.getNotecardsForCharacter( id );
 			
 			function setChildren() {
-				console.log("test")
 				children = NotecardManager.getNotecardsForCharacter( id );
 			}
 			

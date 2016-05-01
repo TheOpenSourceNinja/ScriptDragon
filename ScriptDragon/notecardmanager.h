@@ -34,10 +34,13 @@ class NotecardManager : public QObject
 		Q_INVOKABLE QObject* getNotecardsPage();
 		Q_INVOKABLE QList< QObject* > getNotecardsForCharacter( int characterID = 0 );
 		
+		Q_INVOKABLE void removeAllNotecards();
 		Q_INVOKABLE void removeNotecard( QObject* toRemove );
 		
 		Q_INVOKABLE void setCharactersPage( QObject* newCharactersPage );
 		Q_INVOKABLE void setNotecardsPage( QObject* newNotecardsPage );
+		
+		Q_INVOKABLE void updateNotecard( QObject* origin );
 		
 	signals:
 		void notecardsChanged();
@@ -47,6 +50,7 @@ class NotecardManager : public QObject
 	private:
 		QList< QObject* > notecards;
 		std::vector< std::vector< QList< QObject* > > > notecardsWithAssociations;
+		std::vector< QObject* > notecardsWithDuplicates;
 		QQmlEngine* engine;
 		QObject* charactersPage; //TODO: Try making this a property
 		QObject* notecardsPage;

@@ -22,21 +22,28 @@ Rectangle {
 	property int associatedID
 	property var associatedText: {
 		switch( associationType ) {
-			case NotecardManager.CHARACTER: {
+			case NotecardManager.CHARACTER:
 				if( associatedID < NotecardManager.getCharactersPage().characters.length ) {
 					return NotecardManager.getCharactersPage().characters[ associatedID ].name;
 				} else {
 					return "No character";
 				}
-				break;
-			}
-			default: {
+			
+			default:
 				return "None";
-			}
 		}
 	}
 
 	property int associationType
+	
+	property bool isDuplicate
+	
+	onTextChanged: {
+		NotecardManager.updateNotecard( this );
+	}
+	onTitleChanged: {
+		NotecardManager.updateNotecard( this );
+	}
 	
 	ColorDialog {
 		id: colorDialog

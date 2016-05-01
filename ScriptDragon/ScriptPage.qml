@@ -7,6 +7,7 @@ import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
 
 Page {
+	property alias textDocument: scriptTA.textDocument
 	property alias text: scriptTA.text
 	
 	Connections {
@@ -44,57 +45,58 @@ Page {
 				
 				onAccepted: {
 					var urlToUse = fileUrl
-					{
-						var format = "";
+					
+					var format = "";
+					
+					var nameParts = [];
+					
+					switch( selectedNameFilterIndex ) {
+						case 0:
+							nameParts = fileUrl.toString().split( "." )
+							
+							if( nameParts.length > 1 ) {
+								format = nameParts.pop().toLowerCase();
+								
+								if( format == "htm" ) {
+									format = "html"
+								}
+							} else {
+								format = "txt"
+							}
+							
+							break;
 						
-						switch( selectedNameFilterIndex ) {
-							case 0: {
-								var nameParts = fileUrl.toString().split( "." )
-								
-								if( nameParts.length > 1 ) {
-									format = nameParts.pop().toLowerCase();
-									
-									if( format == "htm" ) {
-										format = "html"
-									}
-								} else {
-									format = "txt"
+						case 1:
+						case 2:
+						case 3:
+						case 4:
+							format = selectedNameFilterExtensions[ 0 ].split( "." ).pop().toLowerCase();
+							nameParts = fileUrl.toString().split( "." )
+							
+							var extensionFound = false
+							var possibleExtension = nameParts.pop().toLowerCase()
+							for( var i = 0; i < selectedNameFilterExtensions.length; ++i ) {
+								if( possibleExtension === selectedNameFilterExtensions[ i ].split( "." ).pop().toLowerCase() ) {
+									extensionFound = true
+									break
 								}
-
-								break;
 							}
-							case 1:
-							case 2:
-							case 3:
-							case 4: {
-								format = selectedNameFilterExtensions[ 0 ].split( "." ).pop().toLowerCase();
-								var nameParts = fileUrl.toString().split( "." )
-								
-								var extensionFound = false
-								var possibleExtension = nameParts.pop().toLowerCase()
-								for( var i = 0; i < selectedNameFilterExtensions.length; ++i ) {
-									if( possibleExtension == selectedNameFilterExtensions[ i ].split( "." ).pop().toLowerCase() ) {
-										extensionFound = true
-										break
-									}
-								}
-								
-								if( extensionFound ) {
-									urlToUse = fileUrl.toString()
-								} else {
-									urlToUse = fileUrl.toString() + "." + format
-								}
-								
-								urlToUse = url(urlToUse);
-								
-								console.log(urlToUse)
-								break;
+							
+							if( extensionFound ) {
+								urlToUse = fileUrl.toString()
+							} else {
+								urlToUse = fileUrl.toString() + "." + format
 							}
-							default: {
-								format = "txt";
-								break;
-							}
-						}
+							
+							urlToUse = url(urlToUse);
+							
+							console.log(urlToUse)
+							break;
+						
+						default:
+							format = "txt";
+							break;
+						
 					}
 					
 					if( format == "html" ) {

@@ -25,6 +25,7 @@ class ReportGenerator : public QObject
 		void transitionsPerScene( QTextDocument* report );
 		void shotsPerScene( QTextDocument* report );
 		void actBreaksPerScene( QTextDocument* report );
+		void dialogsPerCharacter( QTextDocument* report );
 		
 	signals:
 		

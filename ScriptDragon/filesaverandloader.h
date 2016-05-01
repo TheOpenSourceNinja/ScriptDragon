@@ -2,6 +2,7 @@
 #define FILESAVERANDLOADER_H
 
 #include <QObject>
+#include <QUrl>
 #include "notecardmanager.h"
 
 class FileSaverAndLoader : public QObject
@@ -19,7 +20,9 @@ class FileSaverAndLoader : public QObject
 		Q_INVOKABLE void setScriptPage( QObject* newScriptPage );
 		
 	signals:
-		void fileLoaded();
+		void fileLoaded( QUrl fileURL );
+		
+		void fileSaved( QUrl fileURL );
 	public slots:
 		
 	private:

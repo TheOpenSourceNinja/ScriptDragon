@@ -8,6 +8,7 @@
 #include <QJsonParseError>
 #include <QSaveFile>
 #include <QtGlobal>
+#include <QUrl>
 #include <iostream>
 #include <string>
 
@@ -56,7 +57,7 @@ void FileSaverAndLoader::load( QUrl fileURL ) {
 		}
 	}
 	
-	emit fileLoaded();
+	emit fileLoaded( fileURL );
 }
 
 void FileSaverAndLoader::save( QUrl fileURL ) {
@@ -78,7 +79,7 @@ void FileSaverAndLoader::save( QUrl fileURL ) {
 			QJsonObject json;
 			
 			if( Q_LIKELY( scriptPage != nullptr ) ) {
-				json.insert( "script", scriptPage->property("text").toString() );
+				json.insert( "script", scriptPage->property( "text" ).toString() );
 			}
 			if( Q_LIKELY( notecardManager != nullptr ) ) {
 				QJsonArray notecardArray;
@@ -105,13 +106,15 @@ void FileSaverAndLoader::save( QUrl fileURL ) {
 			std::cerr << "Error saving file" << std::endl;
 		}
 	}
+	
+	emit fileSaved( fileURL );
 }
 
-void FileSaverAndLoader::setNotecardManager(NotecardManager* newNM) {
+void FileSaverAndLoader::setNotecardManager( NotecardManager* newNM ) {
 	notecardManager = newNM;
 }
 
-void FileSaverAndLoader::setScriptPage(QObject* newScriptPage) {
+void FileSaverAndLoader::setScriptPage( QObject* newScriptPage ) {
 	scriptPage = newScriptPage;
 }
 

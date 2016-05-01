@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-23 12:47-0700\n"
+"POT-Creation-Date: 2016-05-01 00:22-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,9 +16,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Character.qml:34
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:34
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:37
 msgid "Name: "
 msgstr ""
 
@@ -27,9 +28,9 @@ msgid "Apply Name"
 msgstr ""
 
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/CharactersPage.qml:20
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:65
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:84
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:211
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:110
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:155
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:282
 msgid "New character"
 msgstr ""
 
@@ -56,31 +57,31 @@ msgstr ""
 msgid "Delete character"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:79
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:87
 msgid "Notecards"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:90
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:98
 msgid "Characters"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:99
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:107
 msgid "Locations"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:106
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:116
 msgid "Random generators"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:113
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:125
 msgid "Script"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:124
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:136
 msgid "Reports"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:131
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:145
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:7
 msgid "Welcome"
 msgstr ""
@@ -89,554 +90,717 @@ msgstr ""
 msgid "new"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:17
-msgid "male"
-msgstr ""
-
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:18
-msgid "female"
-msgstr ""
-
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:19
-msgid "other/nonspecific"
-msgstr ""
-
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:21
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:12
 msgid "Anima/Animus"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:21
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:12
 msgid "Eternal Child"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:21
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:12
 msgid "Devil"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:21
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:12
 msgid "God/Goddess"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:21
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:12
 msgid "Great Mother/Father"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:21
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:12
 msgid "Shapeshifter"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:21
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:12
 msgid "Threshold Guardian"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:21
-msgid "Trickster"
-msgstr ""
-
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:21
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:12
 msgid "Shadow"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:21
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:12
 msgid "Herald"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:21
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:12
 msgid "Ally"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:21
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:12
 msgid "Mentor"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:21
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:12
 msgid "Hero"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:23
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:20
+msgid "male"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:21
+msgid "female"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:22
+msgid "other/nonspecific"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:24
 msgid "farmer"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:23
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:24
 msgid "doctor"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:23
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:24
 msgid "jobless"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:23
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:24
 msgid "warrior"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:23
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:24
 msgid "bartender"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:23
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:24
 msgid "animal trainer"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:23
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:24
 msgid "toy maker"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:23
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:24
 msgid "entertainer"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:23
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:24
 msgid "police"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:23
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:24
 msgid "cook"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:23
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:24
 msgid "demolitions expert"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:23
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:24
 msgid "artist"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:23
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:24
 msgid "carpenter"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:23
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:24
 msgid "servant"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:25
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:26
 msgid "baby"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:25
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:26
 msgid "child"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:25
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:26
 msgid "teenager"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:25
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:26
 msgid "young adult"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:25
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:26
 msgid "middle-aged"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:25
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:26
 msgid "old"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:28
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:29
 msgid "Age: "
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:31
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:32
 msgid "Gender: "
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:32
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:35
 msgid "Archetype: "
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:33
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:36
 msgid "Job: "
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:39
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:42
 msgid "in the desert"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:39
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:42
 msgid "on the beach"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:39
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:42
 msgid "in the forest"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:39
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:42
 msgid "in a big city"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:39
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:42
 msgid "in a small village/town"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:39
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:42
 msgid "near a river/lake"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:39
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:42
 msgid "on or under the ocean"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:39
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:42
 msgid "in outer space"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:39
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:42
 msgid "on a farm"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:39
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:42
 msgid "in a field/plain/grassland"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:39
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:42
 msgid "in a garden"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:39
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:42
 msgid "in ice/snow/tundra"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:39
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:42
 msgid "in a swamp/wetland"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:39
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:42
 msgid "underground"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:40
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:43
 msgid "outside"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:40
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:43
 msgid "house"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:40
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:43
 msgid "castle"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:40
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:43
 msgid "skyscraper"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:40
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:43
 msgid "office"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:40
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:43
 msgid "hospital"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:40
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:43
 msgid "restaurant"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:40
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:43
 msgid "ancient/abandoned building"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:40
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:43
 msgid "cave"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:40
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:43
 msgid "vehicle"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:40
-msgid "a fork in the road"
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:43
+msgid "fork in the road"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:40
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:43
 msgid "school"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:40
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:43
 msgid "museum"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:40
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:43
 msgid "zoo"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:40
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:43
 msgid "factory"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:69
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:52
+msgid "Characters: "
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:76
+msgid ", and "
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:82
+msgid "touring/on vacation"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:82
+msgid "biking"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:82
+msgid "boating"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:82
+msgid "climbing"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:82
+msgid "camping"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:82
+msgid "fishing"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:82
+msgid "hiking"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:82
+msgid "horseback riding"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:82
+msgid "hunting"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:82
+msgid "picnicking"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:82
+msgid "swimming"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:82
+msgid "wildlife viewing"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:82
+msgid "taking photos"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:82
+msgid "hacking computers"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:82
+msgid "playing a board/card game"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:82
+msgid "playing sports"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:82
+msgid "fighting"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:82
+msgid "having a quiet discussion"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:82
+msgid "having a not-so-quiet 'discussion'"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:82
+msgid "crossing a threshold"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:82
+msgid "doing drugs"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:82
+msgid "trying to ignore each other"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:82
+msgid "Confronting a Big Evil Thing"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:82
+msgid "Searching for a MacGuffin"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:82
+msgid "doing his/her job"
+msgid_plural "doing their jobs"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:82
+msgid "firefighting"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:84
+msgid "Location: "
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:94
+msgid "Doing: "
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:114
 msgid "Describe the character's personality"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:73
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:114
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:150
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:186
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:130
+msgid ""
+"Anima/animus: The inner self, the id, the soul. This character is an "
+"unthinking, driving force."
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:130
+msgid ""
+"Eternal Child: One who never accepts the responsibilities and freedoms of "
+"adulthood."
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:130
+msgid "Devil: A demon, an evil person."
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:130
+msgid "God/Goddess: One who is good, powerful, and probably very arrogant."
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:130
+msgid ""
+"Great Mother/Father: A caring person who becomes like a parental figure to "
+"everyone they know."
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:130
+msgid ""
+"Shapeshifter: One whose role in the story changes, e.g. from ally to enemy "
+"or vice versa. May be a trickster."
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:130
+msgid ""
+"Threshold Guardian: One who challenges and tests the hero. Passing the test "
+"represents a significant change in the hero's life."
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:130
+msgid ""
+"Shadow: A looming, pervasive influence. One who follows behind other "
+"characters."
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:130
+msgid "Herald: A bringer of (usually good) news, a messenger."
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:130
+msgid "Ally: One who helps the hero, physically or emotionally."
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:130
+msgid "Mentor: A teacher, a wise counselor, an advisor to the hero."
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:130
+msgid ""
+"Hero: The main character, the Chosen One, the one who must become the savior"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:139
+msgid "Archetype description"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:144
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:185
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:221
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:257
 msgid "Generate another"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:81
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:122
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:158
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:194
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:152
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:193
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:229
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:265
 msgid "Save as notecard"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:90
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:131
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:167
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:203
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:202
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:175
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:161
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:202
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:238
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:274
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:204
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:182
 msgid "Cancel"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:101
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:125
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:218
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:172
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:196
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:289
 msgid "New location"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:105
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:176
 msgid "New Location"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:110
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:181
 msgid "Describe the location"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:142
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:161
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:225
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:213
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:232
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:296
 msgid "New event"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:146
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:217
 msgid "Describe the action"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:178
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:197
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:232
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:249
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:268
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:303
 msgid "New name"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:182
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:253
 msgid "Note which character this name belongs to"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:19
-msgid "scenes"
-msgstr ""
-
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:20
-msgid "actions"
-msgstr ""
-
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:21
-msgid "characters"
-msgstr ""
-
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:22
-msgid "dialogs"
-msgstr ""
-
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:23
-msgid "parentheticals"
-msgstr ""
-
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:24
-msgid "transitions"
-msgstr ""
-
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:25
-msgid "shots"
-msgstr ""
-
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:26
-msgid "act breaks"
-msgstr ""
-
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:30
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:31
 msgid "Choose a file to export to"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:37
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:31
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:38
 msgid "Infer format from file extension"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:38
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:32
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:39
 msgid "HyperText Markup Language"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:39
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:33
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:40
 msgid "Open Document Format"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:40
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:34
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:41
 msgid "Portable Document Format"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:41
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:35
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:42
 msgid "Portable Network Graphics"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:42
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:36
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:43
 msgid "Plain text"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:131
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:122
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:133
 msgid "Export"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:132
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:123
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:134
 msgid "Export the script as a PDF, ODT, HTML, ..."
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:133
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:124
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:135
 msgid "export;PDF;ODT;HTML;TXT;plain text"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:140
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:131
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:142
 msgid "Print"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:141
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:132
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:143
 msgid "Print the script"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:142
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:133
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:144
 msgid "print;default printer"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:153
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:148
+msgid "scenes"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:149
+msgid "actions"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:150
+msgid "characters"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:151
+msgid "dialogs"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:152
+msgid "parentheticals"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:153
+msgid "transitions"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:154
+msgid "shots"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ReportsPage.qml:155
+msgid "act breaks"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:155
 msgid "Change paragraph type"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:167
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:169
 msgid "scene"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:168
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:170
 msgid "action"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:169
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:171
 msgid "character"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:170
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:172
 msgid "dialog"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:171
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:173
 msgid "parenthetical"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:172
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:174
 msgid "transition"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:173
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:175
 msgid "shot"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:174
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:176
 msgid "act break"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:194
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:164
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:196
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:171
 msgid "OK"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:43
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:50
 msgid "Choose a color for this notecard"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:72
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:79
 msgid "Notecard Title"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:84
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:91
 msgid "color"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:91
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:98
 msgid "Hold to delete"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:118
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:125
 msgid "Type a note here"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:127
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:134
 msgid "Associativity: "
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:135
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:142
 msgid "Link with character"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:154
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:161
 msgid "Choose character"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:17
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:32
 msgid "Choose a file to open"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:31
-msgid "Open dialog cancelled"
-msgstr ""
-
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:37
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:50
 msgid "Choose a file to save to"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:51
-msgid "Save dialog cancelled"
-msgstr ""
-
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:66
-msgid "Hello world!"
-msgstr ""
-
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:74
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:83
 msgid "New file"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:77
-msgid "\"New file\" button clicked"
-msgstr ""
-
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:86
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:103
 msgid "Open latest (hold to open a different file)"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:89
-msgid "\"Open latest\" button clicked"
-msgstr ""
-
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:93
-msgid "\"Open\" was chosen"
-msgstr ""
-
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:103
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:124
 msgid "Save file (hold to save as new file)"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:106
-msgid "Save button clicked"
-msgstr ""
-
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:110
-msgid "\"Save as\" was chosen"
-msgstr ""
-
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:125
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:153
 msgid ""
-"This is where I will introduce the app's basic features. Experienced users "
-"will know to use the tabs menu or the buttons to go straight to whatever."
+"Welcome to ScriptDragon. ScriptDragon is an app for screenwriters.<br />"
 msgstr ""

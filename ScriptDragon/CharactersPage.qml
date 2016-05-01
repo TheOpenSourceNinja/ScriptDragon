@@ -26,10 +26,10 @@ Page {
 						if( status === Component.Ready ) {
 							var obj = component.createObject( characterView )
 							
-							if( obj == null ) {
+							if( obj === null ) {
 								console.error( i18n.tr( "Error creating new character." ) )
 							} else {
-								if( newCharacterName != null ) {
+								if( newCharacterName !== null ) {
 									obj.initialName = newCharacterName
 								}
 								
