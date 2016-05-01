@@ -106,7 +106,7 @@ void ScriptFormatter::setDefaultFontForDocument( QQuickTextDocument* document ) 
 }
 
 void ScriptFormatter::setParagraphType( QQuickTextDocument* document, ScriptFormatter::paragraphType newType, int cursorPosition ) {
-	std::cout << "setParagraphType() called. newType: " << (uint_fast8_t) newType << std::endl;
+	std::cout << "setParagraphType() called. newType: " << std::to_string( ( uint_fast8_t ) newType ) << std::endl;
 	//std::cout << document->textDocument()->toHtml().toStdString().c_str() << std::endl;
 	//std::cout << cursorPosition << std::endl;
 	std::cout << "Block text: " << document->textDocument()->findBlock( cursorPosition ).text().toStdString() << std::endl;
@@ -192,7 +192,6 @@ void ScriptFormatter::setParagraphType( QQuickTextDocument* document, ScriptForm
 	cursor.setBlockFormat( blockFormat );
 	cursor.endEditBlock();
 	//document->textDocument()->setModified( false );
-	std::cout << document->textDocument()->toHtml().toStdString().c_str() << std::endl;
 }
 
 void ScriptFormatter::textChanged(QQuickTextDocument* document, unsigned int cursorPosition) {
@@ -210,7 +209,7 @@ void ScriptFormatter::textChanged(QQuickTextDocument* document, unsigned int cur
 				setParagraphType( document, nextType[ ( paragraphType ) previousBlock.userState() ], cursorPosition );
 			}
 		} else {
-			std::cout << cursor.selectedText().toStdString().c_str() << std::endl;
+			std::cout << cursor.selectedText().toStdString() << std::endl;
 		}
 	} else {
 		std::cout << "document was not modified by the user" << std::endl;

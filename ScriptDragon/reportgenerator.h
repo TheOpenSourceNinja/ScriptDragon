@@ -25,6 +25,14 @@ class ReportGenerator : public QObject
 		void transitionsPerScene( QTextDocument* report );
 		void shotsPerScene( QTextDocument* report );
 		void actBreaksPerScene( QTextDocument* report );
+		void scenesPerAction( QTextDocument* report );
+		void dialogsPerAction( QTextDocument* report );
+		void charactersPerAction( QTextDocument* report );
+		void parentheticalsPerAction( QTextDocument* report );
+		void transitionsPerAction( QTextDocument* report );
+		void shotsPerAction( QTextDocument* report );
+		void actBreaksPerAction( QTextDocument* report );
+		
 		void dialogsPerCharacter( QTextDocument* report );
 		
 	signals:

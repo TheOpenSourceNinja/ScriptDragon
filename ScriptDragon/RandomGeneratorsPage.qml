@@ -15,7 +15,6 @@ Page {
 	property var characterName;
 	property var characterAge;
 	property var characterGender;
-	property var characterArchetype;
 	property var characterJob;
 	
 	//This function is outside of the new character Dialog because it also needs to be accessed by the new character Button
@@ -163,9 +162,8 @@ Page {
 			Button {
 				text: i18n.tr( "Save as character" )
 				onClicked: {
-					//var notecardText = dialog.text + "\n" + description.text;
-					//notecardsPage.addNotecard( notecardText, i18n.tr( "New character" ) );
-					charactersPage.addCharacter( characterName, characterAge, characterGender, characterArchetype, characterJob, description.text )
+					
+					charactersPage.addCharacter( characterName, characterAge, characterGender, characterArchetypes[ characterArchetypeChosen ], characterJob, description.text )
 					dialog.visible = false
 				}
 			}
@@ -270,6 +268,22 @@ Page {
 				text: i18n.tr( "Generate another" )
 				onClicked: {
 					dialog.text = newName( NameGenerator.NONSPECIFIC )
+					description.text = ""
+				}
+			}
+			
+			Button {
+				text: i18n.tr( "Generate another (male)" )
+				onClicked: {
+					dialog.text = newName( NameGenerator.MALE )
+					description.text = ""
+				}
+			}
+			
+			Button {
+				text: i18n.tr( "Generate another (female)" )
+				onClicked: {
+					dialog.text = newName( NameGenerator.FEMALE )
 					description.text = ""
 				}
 			}
