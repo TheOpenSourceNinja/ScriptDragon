@@ -17,7 +17,7 @@ Page {
 		}
 		
 		onFileSaved: {
-			thePage.currentFileUrl = fileURL;
+			thePage.currentFileURL = fileURL;
 		}
 	}
 	

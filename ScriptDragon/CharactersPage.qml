@@ -20,7 +20,7 @@ Page {
 				console.error( i18n.tr( "Error creating new character." ) )
 			} else {
 				if( name !== null ) {
-					obj.initialName = name
+					obj.name = name
 				}
 				
 				obj.characterID = characterListModel.count

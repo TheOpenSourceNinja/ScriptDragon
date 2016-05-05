@@ -30,6 +30,8 @@ class NotecardManager : public QObject
 		Q_INVOKABLE void addNotecard( QString newCardTitle = "", QString newCardText = "", associationType assocType = associationType::NONE, int associatedID = INT_MAX );
 		Q_INVOKABLE void associateNotecardWith( QObject* notecard, associationType assocType, int associatedID );
 		
+		void copyNotecardData( QObject* origin, QObject* destination );
+		
 		Q_INVOKABLE QList< QObject* > getAllNotecards();
 		Q_INVOKABLE QObject* getCharactersPage();
 		Q_INVOKABLE QObject* getNotecardsPage();

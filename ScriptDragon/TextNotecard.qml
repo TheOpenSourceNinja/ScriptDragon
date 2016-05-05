@@ -23,7 +23,7 @@ Rectangle {
 	property var associatedText: {
 		switch( associationType ) {
 			case NotecardManager.CHARACTER:
-				return "No character";
+				return NotecardManager.getCharactersPage().characters[ associatedID ].name;
 			
 			default:
 				return "None";
@@ -131,14 +131,17 @@ Rectangle {
 		
 		//-------------------------END SECTION: SPECIFIC TO THIS NOTECARD TYPE-----------------------------
 		//-------------------------BEGIN SECTION: COMMON TO ALL NOTECARDS-----------------------------
-		Row {
+		Column {
 			id: associativity
 			width: parent.width
+			height: associativityLabel.height + associatedTextLabel.height + ( linkButton.height * 1.5 )
 			Label {
 				text: i18n.tr( "Associativity: " )
+				id: associativityLabel;
 			}
 			Label {
 				text: associatedText
+				id: associatedTextLabel;
 			}
 
 			Button {

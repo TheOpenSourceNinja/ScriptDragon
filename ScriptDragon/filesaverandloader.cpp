@@ -11,10 +11,12 @@
 #include <QUrl>
 #include <iostream>
 #include <string>
+#include <QVariant>
 
 FileSaverAndLoader::FileSaverAndLoader( QObject *parent ) : QObject( parent ) {
 	notecardManager = nullptr;
 	scriptPage = nullptr;
+	charactersPage = nullptr;
 }
 
 void FileSaverAndLoader::load( QUrl fileURL ) {
@@ -22,36 +24,53 @@ void FileSaverAndLoader::load( QUrl fileURL ) {
 	
 	QFile loadFile( fileName );
 	if( Q_UNLIKELY( !loadFile.exists() ) ) {
+		
 		std::cerr << "Selected file \"" << fileName.toStdString() << "\" does not exist" << std::endl;
+		
 	} else if( Q_UNLIKELY( !loadFile.open( QIODevice::ReadOnly ) ) ) {
+		
 		std::cerr << "Selected file \"" << fileName.toStdString() << "\" could not be opened for reading" << std::endl;
+		
 	} else {
+		
 		QByteArray contents = loadFile.readAll();
 		
 		if( Q_UNLIKELY( contents.isNull() || contents.isEmpty() ) ) {
+			
 			std::cerr << "Error reading file \"" << fileName.toStdString() << "\"" << std::endl;
+			
 		} else {
+			
 			QJsonParseError errorHolder;
 			QJsonDocument jsonDoc = QJsonDocument::fromJson( contents, &errorHolder );
 			
 			if( errorHolder.error != QJsonParseError::NoError ) {
+				
 				std::cerr << "Error reading file \"" << fileName.toStdString() << "\": " << errorHolder.errorString().toStdString() << std::endl;
+				
 			} else if( !jsonDoc.isObject() ) {
+				
 				std::cerr << "Error reading file \"" << fileName.toStdString() << "\": Incorrect file format" << std::endl;
+				
 			} else {
+				
 				QJsonObject json = jsonDoc.object();
 				
 				if( Q_LIKELY( scriptPage != nullptr ) ) {
+					
 					QString scriptText = json.take( "script" ).toString();
 					std::cout << "Script text: \"" << scriptText.toStdString() << "\"" << std::endl;
 					
 					scriptPage->setProperty( "text", scriptText );
 					/*auto testing = scriptPage->findChild<QTextArea *>("scriptTA");
 					std::cout << 5 << std::endl;*/
+					
 				}
 				
 				if( Q_LIKELY( notecardManager != nullptr ) ) {
+					
 					//TODO: Stuff.
+					
 				}
 			}
 		}
@@ -61,9 +80,12 @@ void FileSaverAndLoader::load( QUrl fileURL ) {
 }
 
 void FileSaverAndLoader::save( QUrl fileURL ) {
+	
 	QString fileName = fileURL.toLocalFile();
 	if( !fileName.endsWith( ".scriptdragon", Qt::CaseInsensitive ) ) {
+		
 		fileName.append( ".scriptdragon" );
+		
 	}
 	
 	QSaveFile saveFile( fileName );
@@ -71,50 +93,86 @@ void FileSaverAndLoader::save( QUrl fileURL ) {
 	
 	saveFile.setDirectWriteFallback( true );
 	if( Q_UNLIKELY( !saveFile.open( QIODevice::WriteOnly ) ) ) {
+		
 		std::cerr << "Couldn't open file for writing" << std::endl;
 		saveFile.cancelWriting(); //I doubt this is needed since open() failed
+		
 	} else {
+		
 		//TODO: write a bunch of data here...
 		{
 			QJsonObject json;
 			
+			//script
 			if( Q_LIKELY( scriptPage != nullptr ) ) {
+				
 				json.insert( "script", scriptPage->property( "text" ).toString() );
+				
 			}
+			
+			//notecards
 			if( Q_LIKELY( notecardManager != nullptr ) ) {
+				
 				QJsonArray notecardArray;
 				foreach( QObject* notecard, notecardManager->getAllNotecards() ) {
+					
 					QJsonObject cardJson;
 					
 					QList< QString > properties( { "title", "text", "color", "associationType", "associatedID", "associatedText" } );
 					foreach( QString propertyName, properties ) {
+						
 						cardJson.insert( propertyName, notecard->property( propertyName.toStdString().c_str() ).toString() );
+						
 					}
 					
 					notecardArray.append( cardJson );
+					
 				}
 				
 				json.insert( "notecards", notecardArray );
+				
+			}
+			
+			//characters
+			if( Q_LIKELY( charactersPage != nullptr ) ) {
+				
+				QJsonArray characterArray;
+				auto characterList = charactersPage->property( "characters" );
+				std::cout << characterList.toString().toStdString() << std::endl;
+				//TODO: I am here.
+				
 			}
 			
 			QJsonDocument jsonDoc( json );
 			saveFile.write( jsonDoc.toJson( QJsonDocument::Indented ) );
+			
 		}
 		
 		//..then when we're done writing data, we commit.
 		if( Q_UNLIKELY( !saveFile.commit() ) ) {
+			
 			std::cerr << "Error saving file" << std::endl;
+			
 		}
 	}
 	
 	emit fileSaved( fileURL );
+	
+}
+
+void FileSaverAndLoader::setCharactersPage( QObject* newCharactersPage ) {
+	charactersPage = newCharactersPage;
 }
 
 void FileSaverAndLoader::setNotecardManager( NotecardManager* newNM ) {
+	
 	notecardManager = newNM;
+	
 }
 
 void FileSaverAndLoader::setScriptPage( QObject* newScriptPage ) {
+	
 	scriptPage = newScriptPage;
+	
 }
 

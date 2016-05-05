@@ -3,8 +3,7 @@ import Ubuntu.Components 1.3
 import ninja.theopensource.scriptdragon 1.0
 
 Item {
-	property alias name : nameField.text
-	property alias initialName : nameField.text
+	property var name: ""
 	property var characterID //index of this character in characterListModel
 	width: parent.width
 	height: parent.height
@@ -28,14 +27,13 @@ Item {
 			TextField {
 				id: nameField
 				inputMethodHints: Qt.ImhUppercaseOnly
+				text: name
 			}
 			Button {
 				text: i18n.tr( "Apply Name" )
 				onClicked: {
 					characterListModel.setProperty( characterID, "text", nameField.text )
-					for( var i = 0; i < notecardGrid.children.length; ++i ) {
-						notecardGrid.children[ i ].setAssociatedText( nameField.text );
-					}
+					name = nameField.text;
 				}
 			}
 		}

@@ -56,6 +56,7 @@ MainView {
 		NotecardManager.setNotecardsPage( notecardsPage );
 		FileSaverAndLoader.setNotecardManager( NotecardManager );
 		FileSaverAndLoader.setScriptPage( scriptPage );
+		FileSaverAndLoader.setCharactersPage( charactersPage );
 	}
 	
 	Keys.onPressed: { //todo: If we decide to implement keyboard shortcuts, this is a good place to start

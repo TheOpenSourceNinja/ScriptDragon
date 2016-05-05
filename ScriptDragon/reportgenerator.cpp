@@ -642,7 +642,7 @@ QString ReportGenerator::generateReport( int numerator, int denominator ) {
 		case ( uint_fast8_t ) ScriptFormatter::paragraphType::ACT_BREAK: {
 			switch( denominator ) {
 				case ( uint_fast8_t ) ScriptFormatter::paragraphType::SCENE: {
-					shotsPerScene( &report );
+					actBreaksPerScene( &report );
 					break;
 				}
 				case ( uint_fast8_t ) ScriptFormatter::paragraphType::ACTION: {

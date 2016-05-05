@@ -84,6 +84,16 @@ Q_INVOKABLE void NotecardManager::associateNotecardWith( QObject* notecard, asso
 	}
 }
 
+void NotecardManager::copyNotecardData(QObject* origin, QObject* destination) {
+	destination->setProperty( "title", origin->property( "title" ) );
+	destination->setProperty( "text", origin->property( "text" ) );
+	destination->setProperty( "color", origin->property( "color" ) );
+	destination->setProperty( "associatedID", origin->property( "associatedID" ) );
+	//destination->setProperty( "associatedText", origin->property( "associatedText" ) );
+	destination->setProperty( "associationType", origin->property( "associationType" ) );
+	//destination->update();
+}
+
 Q_INVOKABLE QList< QObject* > NotecardManager::getAllNotecards() {
 	QList< QObject* > results;
 	
@@ -173,9 +183,7 @@ void NotecardManager::updateNotecard( QObject* origin ) {
 				for( auto iterator = notecardsForCharacter.begin(); iterator != notecardsForCharacter.end(); iterator++ ) {
 					auto notecard = *iterator;
 					if( origin->property( "associatedID" ).toUInt() == notecard->property( "associatedID" ).toUInt() && origin->property( "associationType" ).toUInt() == notecard->property( "associationType" ).toUInt() && origin->property( "idWithinAssociatedThing" ).toUInt() == notecard->property( "idWithinAssociatedThing" ).toUInt() ) {
-						notecard->setProperty( "title", origin->property( "title" ) );
-						notecard->setProperty( "text", origin->property( "text" ) );
-						notecard->setProperty( "color", origin->property( "color" ) );
+						copyNotecardData( origin, notecard );
 					}
 				}
 			}
@@ -184,9 +192,7 @@ void NotecardManager::updateNotecard( QObject* origin ) {
 		for( auto iterator = notecardsWithDuplicates.begin(); iterator != notecardsWithDuplicates.end(); iterator++ ) {
 			auto notecard = *iterator;
 			if( origin->property( "associatedID" ).toUInt() == notecard->property( "associatedID" ).toUInt() && origin->property( "associationType" ).toUInt() == notecard->property( "associationType" ).toUInt() && origin->property( "idWithinAssociatedThing" ).toUInt() == notecard->property( "idWithinAssociatedThing" ).toUInt() ) {
-				notecard->setProperty( "title", origin->property( "title" ) );
-				notecard->setProperty( "text", origin->property( "text" ) );
-				notecard->setProperty( "color", origin->property( "color" ) );
+				copyNotecardData( origin, notecard );
 			}
 		}
 	}
