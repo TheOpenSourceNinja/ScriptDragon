@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-04 18:24-0700\n"
+"POT-Creation-Date: 2016-05-04 21:30-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -102,13 +102,13 @@ msgstr ""
 msgid "Error creating new character: "
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/CharactersPage.qml:51
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/CharactersPage.qml:64
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:121
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:309
 msgid "New character"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/CharactersPage.qml:65
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/CharactersPage.qml:78
 msgid "Delete character"
 msgstr ""
 
@@ -612,7 +612,7 @@ msgstr ""
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:249
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:301
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:204
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:189
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:191
 msgid "Cancel"
 msgstr ""
 
@@ -798,39 +798,39 @@ msgid "act break"
 msgstr ""
 
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:196
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:178
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:180
 msgid "OK"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:54
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:56
 msgid "Choose a color for this notecard"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:83
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:85
 msgid "Notecard Title"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:95
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:97
 msgid "color"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:102
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:104
 msgid "Hold to delete"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:129
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:131
 msgid "Type a note here"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:139
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:141
 msgid "Associativity: "
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:149
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:151
 msgid "Link with character"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:168
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:170
 msgid "Choose character"
 msgstr ""
 

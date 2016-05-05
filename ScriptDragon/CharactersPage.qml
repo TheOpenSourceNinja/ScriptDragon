@@ -40,6 +40,19 @@ Page {
 		}
 	}
 	
+	function deleteCharacter( indexToRemove ) {
+		//console.log( NotecardManager.getNotecardsForCharacter( indexToRemove ) );
+		var array = NotecardManager.getNotecardsForCharacter( indexToRemove );
+		for( var i = 0; i < array.length; ++i ) {
+			console.log( array[ i ] );
+			NotecardManager.removeAssociation( array[ i ] );
+		}
+		
+		characterListModel.remove( indexToRemove )
+		characterView.removeChild( indexToRemove )
+		selector.selectedIndex -= 1
+	}
+	
 	Column {
 		anchors.fill: parent
 		
@@ -64,11 +77,7 @@ Page {
 				Button {
 					text: i18n.tr( "Delete character" )
 					
-					onClicked: {
-						characterListModel.remove( selector.selectedIndex )
-						characterView.removeChild( selector.selectedIndex )
-						selector.selectedIndex -= 1
-					}
+					onClicked: deleteCharacter( selector.selectedIndex );
 				}
 			}
 			

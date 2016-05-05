@@ -38,6 +38,7 @@ class NotecardManager : public QObject
 		Q_INVOKABLE QList< QObject* > getNotecardsForCharacter( int characterID = 0 );
 		
 		Q_INVOKABLE void removeAllNotecards();
+		Q_INVOKABLE void removeAssociation( QObject* notecard );
 		Q_INVOKABLE void removeNotecard( QObject* toRemove );
 		
 		Q_INVOKABLE void setCharactersPage( QObject* newCharactersPage );

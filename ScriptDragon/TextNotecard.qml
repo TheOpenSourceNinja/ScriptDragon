@@ -21,8 +21,10 @@ Rectangle {
 	
 	property int associatedID
 	property var associatedText: {
+		console.log( "associationType: " + associationType );
 		switch( associationType ) {
 			case NotecardManager.CHARACTER:
+				console.log( associatedID );
 				return NotecardManager.getCharactersPage().characters[ associatedID ].name;
 			
 			default:

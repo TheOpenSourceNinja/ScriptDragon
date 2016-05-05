@@ -33,13 +33,13 @@ Page {
 		folder: shortcuts.documents //Reference: https://doc.qt.io/qt-5/qml-qtquick-dialogs-filedialog.html#shortcuts-prop
 		selectExisting: true
 		selectMultiple: false
-
+		
 		nameFilters: fileNameFilters
-
+		
 		onAccepted: {
 			FileSaverAndLoader.load( fileUrl ); //If selectMultiple were true, we would use the plural fileUrls
 		}
-
+		
 		onRejected: {
 			//label.text = i18n.tr( "Open dialog cancelled" )
 		}
@@ -49,16 +49,16 @@ Page {
 		id: saveDialog
 		title: i18n.tr( "Choose a file to save to" )
 		folder: shortcuts.documents
-
+		
 		selectExisting: false //From the docs: "Whether only existing files or directories can be selected... Setting this property to false implies that the dialog is for naming a file to which to save something... therefore selectMultiple must be false."
 		selectMultiple: false //If this were true then the user couldn't input a file name
-
+		
 		nameFilters: fileNameFilters
-
+		
 		onAccepted: {
 			FileSaverAndLoader.save( fileUrl );
 		}
-
+		
 		onRejected: {
 			//label.text = i18n.tr( "Save dialog cancelled" )
 		}
