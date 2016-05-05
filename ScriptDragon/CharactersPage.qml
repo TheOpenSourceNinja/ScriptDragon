@@ -53,6 +53,7 @@ Page {
 		selector.selectedIndex -= 1
 	}
 	
+	
 	Column {
 		anchors.fill: parent
 		

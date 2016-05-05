@@ -33,16 +33,20 @@ Q_INVOKABLE void NotecardManager::addNotecard( QString newCardTitle, QString new
 		object->setProperty( "associatedID", associatedID );
 		object->setProperty( "isDuplicate", false );
 		
-		if( maxIDWithinAssociatedThing.size() <= associatedID ) {
-			maxIDWithinAssociatedThing.resize( associatedID + 1, 0 );
-		}
-		
-		maxIDWithinAssociatedThing[ associatedID ] += 1;
-		object->setProperty( "idWithinAssociatedThing", maxIDWithinAssociatedThing[ associatedID ] );
 		
 		if( associatedID < INT_MAX ) {
+			if( maxIDWithinAssociatedThing.size() <= associatedID ) {
+				maxIDWithinAssociatedThing.resize( associatedID + 1, 0 );
+			}
+			
+			maxIDWithinAssociatedThing[ associatedID ] += 1;
+			object->setProperty( "idWithinAssociatedThing", maxIDWithinAssociatedThing[ associatedID ] );
 			associateNotecardWith( object, assocType, associatedID );
+		} else {
+			object->setProperty( "idWithinAssociatedThing", 0 );
 		}
+		
+		
 		
 		emit notecardsChanged();
 	}
@@ -97,7 +101,7 @@ void NotecardManager::copyNotecardData(QObject* origin, QObject* destination) {
 Q_INVOKABLE QList< QObject* > NotecardManager::getAllNotecards() {
 	QList< QObject* > results;
 	
-	for( decltype( notecards )::size_type i = 0; i < notecards.size(); ++i ) {
+	for( decltype( notecards.size() ) i = 0; i < notecards.size(); ++i ) {
 		
 		//if( notecards[ i ]->property( "associationType" ) == CHARACTER && characterID == notecards[ i ]->property( "associatedID" ).toInt() ) {
 			results.append( notecards[ i ] );
@@ -215,36 +219,52 @@ void NotecardManager::removeAssociation( QObject* notecard ) {
 }
 
 Q_INVOKABLE void NotecardManager::removeNotecard( QObject* toRemove ) {
-	notecards.removeOne( toRemove );
+	notecards.removeAll( toRemove );
 	
-	uint_fast8_t associationType = toRemove->property( "associationType" ).toUInt();
-	if( Q_LIKELY( notecardsWithAssociations.size() > associationType ) ) {
-		uint_fast8_t associatedID = toRemove->property( "associatedID" ).toUInt();
-		if( notecardsWithAssociations[ associationType ].size() > associatedID ) {
-			auto notecardsForCharacter = notecardsWithAssociations[ associationType ][ associatedID ];
+	if( !toRemove->property( "isDuplicate" ).toBool() ) {
+		std::cout << "This is not a duplicate" << std::endl;
+		uint_fast8_t assocType = toRemove->property( "associationType" ).toUInt();
+		if( assocType < notecardsWithAssociations.size() ) {
 			
-			switch( associationType ) {
-				case ( uint_fast8_t ) NotecardManager::associationType::CHARACTER: {
-					for( auto iterator = notecardsForCharacter.begin(); iterator != notecardsForCharacter.end(); iterator++ ) {
-						auto otherNotecard = *iterator;
-						if( associatedID == otherNotecard->property( "associatedID" ).toUInt() && associationType == otherNotecard->property( "associationType" ).toUInt() && toRemove->property( "idWithinAssociatedThing" ).toUInt() == otherNotecard->property( "idWithinAssociatedThing" ).toUInt() ) {
-							notecardsForCharacter.removeOne( otherNotecard );
+			uint_fast8_t associatedID = toRemove->property( "associatedID" ).toUInt();
+			if( associatedID < notecardsWithAssociations[ assocType ].size() ) {
+				//notecardsWithAssociations[ ( uint_fast8_t ) assocType ][ associatedID ].append( object2 );
+				for( auto i = notecardsWithAssociations[ assocType ][ associatedID ].begin(); i != notecardsWithAssociations[ assocType ][ associatedID ].end(); ++i ) {
+					QObject* otherNotecard = *i;
+					if( otherNotecard->property( "associationType" ).toUInt() == assocType && otherNotecard->property( "associatedID" ).toUInt() == associatedID && otherNotecard->property( "idWithinAssociatedThing" ).toUInt() == toRemove->property( "idWithinAssociatedThing" ).toUInt() ) {
+						if( otherNotecard->property( "isDuplicate" ).toBool() ) {
+							std::cout << "deleting the duplicate" << std::endl;
 						}
+						notecardsWithAssociations[ assocType ][ associatedID ].erase( i );
 					}
-					break;
 				}
 			}
 			
 		}
-	}
-	
-	for( unsigned int i = 0; i < notecardsWithAssociations.size(); ++i ) {
-		for( unsigned int j = 0; j < notecardsWithAssociations[ i ].size(); ++j ) {
-			if( notecardsWithAssociations[ i ][ j ].removeOne( toRemove ) ) {
-				break;
+		
+		for( decltype( notecardsWithDuplicates.size() ) i = 0; i < notecardsWithDuplicates.size(); ++i ) {
+			if( toRemove == notecardsWithDuplicates[ i ] ) {
+				notecardsWithDuplicates.erase( notecardsWithDuplicates.begin() + i );
 			}
 		}
+	} else {
+		std::cout << "This is a duplicate" << std::endl;
+		uint_fast8_t associatedID = toRemove->property( "associatedID" ).toUInt();
+		uint_fast8_t assocType = toRemove->property( "associationType" ).toUInt();
+		uint_fast8_t idWithin = toRemove->property( "idWithinAssociatedThing" ).toUInt();
+		
+		for( decltype( notecardsWithDuplicates.size() ) i = 0; i < notecardsWithDuplicates.size(); ++i ) {
+			
+			auto notecard = notecardsWithDuplicates[ i ];
+			if( notecard->property( "associatedID" ).toUInt() == associatedID && notecard->property( "associationType" ).toUInt() == assocType && notecard->property( "idWithinAssociatedThing" ).toUInt() == idWithin ) {
+				std::cout << "Found the original" << std::endl;
+				removeNotecard( notecard );
+			}
+			
+		}
 	}
+	
+	toRemove->deleteLater();
 	
 	emit notecardsChanged();
 }

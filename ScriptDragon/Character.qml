@@ -14,6 +14,11 @@ Item {
 	
 	property var associatedNotecards: []
 	
+	Connections {
+		target: NotecardManager
+		onNotecardsChanged: notecardGrid.setChildren();
+	}
+	
 	Column {
 		
 		Row {
