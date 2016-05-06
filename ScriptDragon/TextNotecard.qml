@@ -27,6 +27,10 @@ Rectangle {
 				console.log( associatedID );
 				return NotecardManager.getCharactersPage().characters[ associatedID ].name;
 			
+			case NotecardManager.LOCATION:
+				console.log( associatedID );
+				return NotecardManager.getLocationsPage().locations[ associatedID ].name;
+				
 			default:
 				return "None";
 		}
@@ -61,12 +65,6 @@ Rectangle {
 		onAccepted: {
 			theCard.color = currentColor //The QT documentation says we should use "color", not "currentColor", but I've found that "color" only works every other time whereas "currentColor" works every time.
 		}
-	}
-	
-	//note: memory corruption error disappears if the following NotecardData is commented out
-	//note 2: memory corruption error happens on Ubuntu 16.04 VM, not 15.10 real hardware
-	NotecardData {
-		id: data
 	}
 	
 	Column {

@@ -6,7 +6,6 @@ load(ubuntu-click)
 QT += qml quick printsupport
 
 SOURCES += main.cpp \
-    notecarddata.cpp \
     notecardmanager.cpp \
     exportmanager.cpp \
     scriptformatter.cpp \
@@ -53,11 +52,11 @@ DISTFILES += \
     LocationsPage.qml \
     RandomGeneratorsPage.qml \
     TextNotecard.qml \
+    Location.qml \
     Character.qml \
     ../po/scriptdragon.dearingj.pot
 
 HEADERS += \
-    notecarddata.h \
     notecardmanager.h \
     exportmanager.h \
     scriptformatter.h \

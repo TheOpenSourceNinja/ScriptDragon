@@ -53,10 +53,12 @@ MainView {
 	
 	Component.onCompleted: {
 		NotecardManager.setCharactersPage( charactersPage );
+		NotecardManager.setLocationsPage( locationsPage );
 		NotecardManager.setNotecardsPage( notecardsPage );
 		FileSaverAndLoader.setNotecardManager( NotecardManager );
 		FileSaverAndLoader.setScriptPage( scriptPage );
 		FileSaverAndLoader.setCharactersPage( charactersPage );
+		FileSaverAndLoader.setLocationsPage( locationsPage );
 	}
 	
 	Keys.onPressed: { //todo: If we decide to implement keyboard shortcuts, this is a good place to start

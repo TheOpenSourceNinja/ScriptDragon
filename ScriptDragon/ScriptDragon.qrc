@@ -12,5 +12,6 @@
         <file>Character.qml</file>
         <file>first_names.csv</file>
         <file>last_names.csv</file>
+        <file>Location.qml</file>
     </qresource>
 </RCC>

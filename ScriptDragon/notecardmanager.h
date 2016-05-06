@@ -34,14 +34,17 @@ class NotecardManager : public QObject
 		
 		Q_INVOKABLE QList< QObject* > getAllNotecards();
 		Q_INVOKABLE QObject* getCharactersPage();
+		Q_INVOKABLE QObject* getLocationsPage();
 		Q_INVOKABLE QObject* getNotecardsPage();
 		Q_INVOKABLE QList< QObject* > getNotecardsForCharacter( int characterID = 0 );
+		Q_INVOKABLE QList< QObject* > getNotecardsForLocation( int locationID = 0 );
 		
 		Q_INVOKABLE void removeAllNotecards();
 		Q_INVOKABLE void removeAssociation( QObject* notecard );
 		Q_INVOKABLE void removeNotecard( QObject* toRemove );
 		
 		Q_INVOKABLE void setCharactersPage( QObject* newCharactersPage );
+		Q_INVOKABLE void setLocationsPage( QObject* newLocationsPage );
 		Q_INVOKABLE void setNotecardsPage( QObject* newNotecardsPage );
 		
 		Q_INVOKABLE void updateNotecard( QObject* origin );
@@ -57,6 +60,7 @@ class NotecardManager : public QObject
 		std::vector< QObject* > notecardsWithDuplicates;
 		QQmlEngine* engine;
 		QObject* charactersPage; //TODO: Try making this a property
+		QObject* locationsPage; //TODO: Try making this a property
 		QObject* notecardsPage;
 		std::vector< uint_fast8_t > maxIDWithinAssociatedThing;
 };

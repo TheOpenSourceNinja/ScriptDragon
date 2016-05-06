@@ -3,7 +3,6 @@
 #include <QQuickView>
 #include <QString>
 
-#include "notecarddata.h"
 #include "notecardmanager.h"
 #include "exportmanager.h"
 #include "filesaverandloader.h"
@@ -22,7 +21,6 @@ int main(int argc, char *argv[])
 	
 	QString uri( "ninja.theopensource.scriptdragon" );
 	
-	qmlRegisterType<NotecardData>( uri.toStdString().c_str(), version[ 0 ], version[ 1 ], "NotecardData" );
 	qmlRegisterSingletonType<ExportManager>( uri.toStdString().c_str(), version[ 0 ], version[ 1 ], "ExportManager", exportManager_provider );
 	qmlRegisterSingletonType<NotecardManager>( uri.toStdString().c_str(), version[ 0 ], version[ 1 ], "NotecardManager", notecardManager_provider );
 	qmlRegisterSingletonType<ScriptFormatter>( uri.toStdString().c_str(), version[ 0 ], version[ 1 ], "ScriptFormatter", scriptFormatter_provider );

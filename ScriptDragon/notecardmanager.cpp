@@ -6,6 +6,7 @@
 NotecardManager::NotecardManager( QQmlEngine* newEngine, QObject *parent ) : QObject(parent) {
 	engine = newEngine;
 	charactersPage = NULL;
+	locationsPage = NULL;
 	notecardsPage = NULL;
 }
 
@@ -21,7 +22,13 @@ Q_INVOKABLE void NotecardManager::addNotecard( QString newCardTitle, QString new
 	while( Q_UNLIKELY( component.status() == QQmlComponent::Loading ) ) {};
 	
 	if( Q_UNLIKELY( component.status() == QQmlComponent::Error ) ) {
-		std::cerr << "Error creating component" << std::endl;
+		std::cerr << "Error creating component: " << std::endl;
+		
+		auto errorList = component.errors();
+		for( auto i = errorList.begin(); i != errorList.end(); ++i ) {
+			std::cerr << (*i).toString().toStdString() << std::endl;
+		}
+		
 	} else {
 		QObject* object = component.create();
 		engine->setObjectOwnership( object, QQmlEngine::CppOwnership );
@@ -117,6 +124,10 @@ Q_INVOKABLE QObject* NotecardManager::getCharactersPage() {
 	return charactersPage;
 }
 
+Q_INVOKABLE QObject* NotecardManager::getLocationsPage() {
+	return locationsPage;
+}
+
 Q_INVOKABLE QObject* NotecardManager::getNotecardsPage() {
 	return notecardsPage;
 }
@@ -127,6 +138,18 @@ Q_INVOKABLE QList< QObject* > NotecardManager::getNotecardsForCharacter( int cha
 	if( Q_LIKELY( notecardsWithAssociations.size() > ( uint_fast8_t ) associationType::CHARACTER ) ) {
 		if( notecardsWithAssociations[ ( uint_fast8_t ) associationType::CHARACTER ].size() > characterID ) {
 			results = notecardsWithAssociations[ ( uint_fast8_t ) associationType::CHARACTER ][ characterID ];
+		}
+	}
+	
+	return results;
+}
+
+Q_INVOKABLE QList< QObject* > NotecardManager::getNotecardsForLocation( int locationID ) {
+	QList< QObject* > results;
+	
+	if( Q_LIKELY( notecardsWithAssociations.size() > ( uint_fast8_t ) associationType::LOCATION ) ) {
+		if( notecardsWithAssociations[ ( uint_fast8_t ) associationType::LOCATION ].size() > locationID ) {
+			results = notecardsWithAssociations[ ( uint_fast8_t ) associationType::LOCATION ][ locationID ];
 		}
 	}
 	
@@ -278,6 +301,18 @@ Q_INVOKABLE void NotecardManager::setCharactersPage( QObject* newCharactersPage 
 	
 	if( charactersPage != NULL ) {
 		engine->setObjectOwnership( charactersPage, QQmlEngine::CppOwnership );
+	}
+}
+
+Q_INVOKABLE void NotecardManager::setLocationsPage( QObject* newLocationsPage ) {
+	if( locationsPage != NULL ) {
+		engine->setObjectOwnership( locationsPage, QQmlEngine::JavaScriptOwnership );
+	}
+	
+	locationsPage = newLocationsPage;
+	
+	if( locationsPage != NULL ) {
+		engine->setObjectOwnership( locationsPage, QQmlEngine::CppOwnership );
 	}
 }
 
