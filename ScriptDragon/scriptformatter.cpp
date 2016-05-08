@@ -106,15 +106,9 @@ void ScriptFormatter::setDefaultFontForDocument( QQuickTextDocument* document ) 
 }
 
 void ScriptFormatter::setParagraphType( QQuickTextDocument* document, ScriptFormatter::paragraphType newType, int cursorPosition ) {
-	std::cout << "setParagraphType() called. newType: " << std::to_string( ( uint_fast8_t ) newType ) << std::endl;
-	//std::cout << document->textDocument()->toHtml().toStdString().c_str() << std::endl;
-	//std::cout << cursorPosition << std::endl;
-	std::cout << "Block text: " << document->textDocument()->findBlock( cursorPosition ).text().toStdString() << std::endl;
 	
 	QTextCursor cursor( document->textDocument()->findBlock( cursorPosition ) );
 	cursor.select( QTextCursor::LineUnderCursor );
-	
-	std::cout << "Selected text: " << cursor.selectedText().toStdString().c_str() << std::endl;
 	
 	//cursor.setPosition( cursorPosition, QTextCursor::MoveAnchor);
 	cursor.beginEditBlock();
@@ -196,23 +190,22 @@ void ScriptFormatter::setParagraphType( QQuickTextDocument* document, ScriptForm
 
 void ScriptFormatter::textChanged(QQuickTextDocument* document, unsigned int cursorPosition) {
 	if( document->textDocument()->isModified() ) {
-		std::cout << "document was modified by the user" << std::endl;
 		//document->textDocument()->setModified( false );
 		
 		QTextCursor cursor( document->textDocument()->findBlock( cursorPosition ) );
 		cursor.select( QTextCursor::BlockUnderCursor );
 		
 		if( cursor.selectedText().isEmpty() ) {
-			std::cout << "selection is empty." << std::endl;
+			//std::cout << "selection is empty." << std::endl;
 			auto previousBlock = cursor.block().previous();
 			if( Q_LIKELY( previousBlock.length() > 0 ) ) { //Hopefully an empty text block will have length 0
 				setParagraphType( document, nextType[ ( paragraphType ) previousBlock.userState() ], cursorPosition );
 			}
 		} else {
-			std::cout << cursor.selectedText().toStdString() << std::endl;
+			//std::cout << cursor.selectedText().toStdString() << std::endl;
 		}
 	} else {
-		std::cout << "document was not modified by the user" << std::endl;
+		//std::cout << "document was not modified by the user" << std::endl;
 	}
 }
 

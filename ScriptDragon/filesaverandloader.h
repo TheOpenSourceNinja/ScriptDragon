@@ -20,8 +20,9 @@ class FileSaverAndLoader : public QObject
 		Q_INVOKABLE void setScriptPage( QObject* newScriptPage );
 		
 	signals:
-		void fileLoaded( QUrl fileURL );
+		void addCharacterName( QString characterName );
 		
+		void fileLoaded( QUrl fileURL );
 		void fileSaved( QUrl fileURL );
 	public slots:
 		

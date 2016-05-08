@@ -74,7 +74,13 @@ void FileSaverAndLoader::load( QUrl fileURL ) {
 				
 				if( Q_LIKELY( charactersPage != nullptr ) && Q_LIKELY( json.contains( "characters" ) ) ) {
 					
-					//TODO: Stuff.
+					QJsonArray characters = json.take( "characters" ).toArray();
+					for( auto i = characters.begin(); i != characters.end(); ++i ) {
+						
+						QString characterName = (*i).toString();
+						emit addCharacterName( characterName );
+						
+					}
 					
 				}
 				

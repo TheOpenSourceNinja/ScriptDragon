@@ -11,6 +11,32 @@ Page {
 	
 	property var component: Qt.createComponent( "Character.qml" );
 	
+	Connections {
+		target: FileSaverAndLoader;
+		onAddCharacterName: {
+			var status = component.status;
+			if( status === Component.Ready ) {
+				var obj = component.createObject( characterView )
+				
+				if( obj === null ) {
+					console.error( i18n.tr( "Error adding character." ) )
+				} else {
+					if( characterName !== null ) {
+						obj.name = characterName
+					}
+					
+					obj.characterID = characterListModel.count
+					
+					characterListModel.append( { text:characterName } )
+					
+					selector.selectedIndex = characterListModel.count - 1
+				}
+			} else if( status === Component.Error ){
+				console.error( i18n.tr( "Error adding character: " ) + component.errorString() );
+			}
+		}
+	}
+	
 	function addCharacter( name, age, gender, archetype, job, personality ) {
 		var status = component.status;
 		if( status === Component.Ready ) {
