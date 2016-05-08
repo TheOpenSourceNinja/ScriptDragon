@@ -25,9 +25,7 @@ Page {
 				
 				obj.locationID = locationListModel.count
 				
-				NotecardManager.addNotecard( i18n.tr( "Physical Locationistics" ), "", NotecardManager.LOCATION, obj.locationID );
-				
-				console.log( "test" );
+				NotecardManager.addNotecard( i18n.tr( "Location" ), "", NotecardManager.LOCATION, obj.locationID );
 				
 				locationListModel.append( { text:name } )
 				
@@ -75,9 +73,16 @@ Page {
 				
 				Button {
 					text: i18n.tr( "Delete location" )
+					enabled: locationListModel.count > 0
 					
 					onClicked: deleteLocation( selector.selectedIndex );
 				}
+			}
+			
+			Rectangle {
+				id: spacer //This rectangle is a workaround: something invisible was overlapping the buttons, preventing them from receiving click events.
+				width: parent.width
+				height: units.gu(2);
 			}
 			
 			ListItem.ItemSelector {
@@ -122,6 +127,7 @@ Page {
 			width: parent.width
 			height: parent.height - header.height
 			id: locationView
+			objectName: "locationView"
 			
 			function setVisibleChild( childNumber ) {
 				for( var i = 0; i < children.length; ++i ) {

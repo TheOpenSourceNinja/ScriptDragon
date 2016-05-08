@@ -53,7 +53,6 @@ Page {
 		selector.selectedIndex -= 1
 	}
 	
-	
 	Column {
 		anchors.fill: parent
 		
@@ -77,9 +76,16 @@ Page {
 				
 				Button {
 					text: i18n.tr( "Delete character" )
+					enabled: characterListModel.count > 0
 					
 					onClicked: deleteCharacter( selector.selectedIndex );
 				}
+			}
+			
+			Rectangle {
+				id: spacer //This rectangle is a workaround: something invisible was overlapping the buttons, preventing them from receiving click events.
+				width: parent.width
+				height: units.gu(2);
 			}
 			
 			ListItem.ItemSelector {
@@ -124,6 +130,7 @@ Page {
 			width: parent.width
 			height: parent.height - header.height
 			id: characterView
+			objectName: "characterView"
 			
 			function setVisibleChild( childNumber ) {
 				for( var i = 0; i < children.length; ++i ) {

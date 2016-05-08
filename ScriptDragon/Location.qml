@@ -55,6 +55,7 @@ Item {
 				width: scrollView.width
 				
 				function setChildren() {
+					console.log( "setting children of a location" );
 					children = NotecardManager.getNotecardsForLocation( locationID );
 				}
 				

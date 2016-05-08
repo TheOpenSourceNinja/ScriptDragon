@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-05 19:30-0700\n"
+"POT-Creation-Date: 2016-05-07 21:15-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -104,13 +104,13 @@ msgstr ""
 msgid "Error creating new character: "
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/CharactersPage.qml:65
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/CharactersPage.qml:64
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:121
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:309
 msgid "New character"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/CharactersPage.qml:79
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/CharactersPage.qml:78
 msgid "Delete character"
 msgstr ""
 
@@ -119,21 +119,23 @@ msgid "Error creating new location."
 msgstr ""
 
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/LocationsPage.qml:28
-msgid "Physical Locationistics"
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:190
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:207
+msgid "Location"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/LocationsPage.qml:37
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/LocationsPage.qml:35
 msgid "Error creating new location: "
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/LocationsPage.qml:63
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/LocationsPage.qml:61
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:183
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:207
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:316
 msgid "New location"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/LocationsPage.qml:77
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/LocationsPage.qml:75
 msgid "Delete location"
 msgstr ""
 
@@ -162,7 +164,7 @@ msgid "Reports"
 msgstr ""
 
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/Main.qml:148
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:7
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:8
 msgid "Welcome"
 msgstr ""
 
@@ -637,7 +639,7 @@ msgstr ""
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:249
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/RandomGeneratorsPage.qml:301
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:204
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:189
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:241
 msgid "Cancel"
 msgstr ""
 
@@ -817,63 +819,73 @@ msgid "act break"
 msgstr ""
 
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/ScriptPage.qml:196
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:178
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:228
 msgid "OK"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:60
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:67
 msgid "Choose a color for this notecard"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:83
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:90
 msgid "Notecard Title"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:95
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:102
 msgid "color"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:102
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:109
 msgid "Hold to delete"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:129
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:136
 msgid "Type a note here"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:139
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:146
 msgid "Associativity: "
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:149
-msgid "Link with character"
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:156
+msgid "Change association"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:168
-msgid "Choose character"
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:175
+msgid "Choose"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:32
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:184
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:198
+msgid "Select something"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:187
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/TextNotecard.qml:202
+msgid "Character"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:33
 msgid "Choose a file to open"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:50
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:51
 msgid "Choose a file to save to"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:83
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:95
 msgid "New file"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:103
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:118
 msgid "Open latest (hold to open a different file)"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:124
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:139
 msgid "Save file (hold to save as new file)"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:153
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:170
 msgid ""
 "Welcome to ScriptDragon. ScriptDragon is an app for screenwriters.<br />"
 msgstr ""

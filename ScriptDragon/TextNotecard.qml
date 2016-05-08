@@ -22,17 +22,24 @@ Rectangle {
 	property int associatedID
 	property var associatedText: {
 		console.log( "associationType: " + associationType );
+		console.log( "associatedID: " );
 		switch( associationType ) {
+			case NotecardManager.NONE:
+				console.log( "None" );
+				return "None";
+			
 			case NotecardManager.CHARACTER:
 				console.log( associatedID );
-				return NotecardManager.getCharactersPage().characters[ associatedID ].name;
+				var str = NotecardManager.getCharactersPage().characters[ associatedID ].name;
+				return str;
 			
 			case NotecardManager.LOCATION:
 				console.log( associatedID );
 				return NotecardManager.getLocationsPage().locations[ associatedID ].name;
-				
+			
 			default:
-				return "None";
+				console.log( associatedID );
+				return "Association type not in switch statement";
 		}
 	}
 	
@@ -146,9 +153,9 @@ Rectangle {
 
 			Button {
 				id: linkButton
-				text: i18n.tr( "Link with character" )
+				text: i18n.tr( "Change association" )
 				
-				enabled: NotecardManager.getCharactersPage().characterListModel.count > 0
+				enabled: ( NotecardManager.getCharactersPage().characterListModel.count > 0 || NotecardManager.getLocationsPage().locationListModel.count > 0 )
 				
 				onClicked: {
 					//console.log(charactersTab);
@@ -158,18 +165,61 @@ Rectangle {
 						//characterDialog.selector.selectedIndex = associatedID;
 					}
 					
-					PopupUtils.open( characterDialogComponent )
+					PopupUtils.open( dialogComponent )
 				}
 				
 				Component {
-					id: characterDialogComponent
+					id: dialogComponent
 					Dialog {
-						id: characterDialog
-						title: i18n.tr( "Choose character" )
+						id: dialog
+						title: i18n.tr( "Choose" )
+						
+						property var selectedAssociationType;
+						property var selectedAssociatedID;
+						property var selectedAssociatedText;
+						
+						ListItem.ItemSelector {
+							id: typeSelector
+							model: {
+								var list = [ i18n.tr( "Select something" ) ];
+								
+								if( NotecardManager.getCharactersPage().characterListModel.count > 0 ) {
+									list.push( i18n.tr( "Character" ) );
+								}
+								if( NotecardManager.getLocationsPage().locationListModel.count > 0 ) {
+									list.push( i18n.tr( "Location" ) );
+								}
+								
+								return list;
+							}
+							
+							onSelectedIndexChanged: {
+								console.log( selectedIndex );
+								if( model[ selectedIndex ] == i18n.tr( "Select something" ) ) {
+									console.log( "'Select something' selected" );
+									selector.model = [];
+									selectedAssociationType = NotecardManager.NONE;
+								} else if( model[ selectedIndex ] == i18n.tr( "Character" ) ) {
+									console.log( "Character selected" );
+									selector.model = NotecardManager.getCharactersPage().characterListModel;
+									selectedAssociationType = NotecardManager.CHARACTER;
+									selectedAssociatedText = NotecardManager.getCharactersPage().characters[ selector.selectedIndex ].name
+								} else if( model[ selectedIndex ] == i18n.tr( "Location" ) ) {
+									console.log( "Location selected" );
+									selector.model = NotecardManager.getLocationsPage().locationListModel;
+									selectedAssociationType = NotecardManager.LOCATION;
+									selectedAssociatedText = NotecardManager.getLocationsPage().locations[ selector.selectedIndex ].name
+								}
+								
+								selectedAssociatedID = selector.selectedIndex;
+							}
+							
+							expanded: false;
+						}
 						
 						ListItem.ItemSelector {
 							id: selector
-							model: NotecardManager.getCharactersPage().characterListModel
+							model: []
 							expanded: false
 						}
 						
@@ -177,17 +227,19 @@ Rectangle {
 							Button {
 								text: i18n.tr( "OK" )
 								onClicked: {
-									associationType = NotecardManager.CHARACTER
-									associatedID = selector.selectedIndex
-									associatedText = NotecardManager.getCharactersPage().characters[ associatedID ].name
-									NotecardManager.notecardsChanged()
-									PopupUtils.close( characterDialog )
+									console.log( "this notecard is a duplicate? " + theCard.isDuplicate );
+									
+									associationType = selectedAssociationType;
+									associatedID = selectedAssociatedID;
+									associatedText = selectedAssociatedText;
+									NotecardManager.associateNotecardWith( theCard, selectedAssociationType, selectedAssociatedID );
+									PopupUtils.close( dialog )
 								}
 							}
 							
 							Button {
 								text: i18n.tr( "Cancel" )
-								onClicked: PopupUtils.close( characterDialog )
+								onClicked: PopupUtils.close( dialog )
 							}
 						}
 					}

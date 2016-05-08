@@ -525,30 +525,213 @@ void ReportGenerator::actBreaksPerAction( QTextDocument* report ) {
 	}
 }
 
-void ReportGenerator::dialogsPerCharacter( QTextDocument* report ) {
-	std::cout << report->toPlainText().toStdString() << std::endl;
-	QString temp = report->toPlainText();
+void ReportGenerator::scenesPerCharacter( QTextDocument* report ) {
 	QTextCursor cursor( report->firstBlock() );
-	QList<QString> numeratorsFound;
 	auto doc = script->textDocument();
-	QString character;
+	
+	QStringList characters;
+	QVector< QStringList > scenes;
+	QString currentScene = "Unnamed first scene";
 	
 	for( QTextBlock block = doc->begin(); block != doc->end(); block = block.next() ) {
+		
 		if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::CHARACTER ) {
-			character = block.text();
-			cursor.insertBlock();
-			cursor.insertText( character + ": " );
-			numeratorsFound.clear();
-		} else if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::DIALOG ) {
 			
-			if( !numeratorsFound.contains( block.text() ) ) {
-				numeratorsFound.append( block.text() );
-				cursor.insertText( block.text() + ", " );
+			if( !characters.contains( block.text(), Qt::CaseInsensitive ) ) {
+				characters.append( block.text() );
+			}
+			
+			if( scenes.length() <= characters.indexOf( block.text() ) ) {
+				scenes.resize( characters.indexOf( block.text() ) + 1 );
+			}
+			
+			scenes[ characters.indexOf( block.text() ) ].append( currentScene );
+			
+		} else if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SCENE ) {
+			
+			currentScene = block.text();
+			
+		}
+		
+	}
+	
+	//TODO: Can we sort characters without messing up scenes?
+	
+	for( decltype( characters.size() ) c = 0; c < characters.size(); ++c ) {
+		
+		cursor.insertText( characters[ c ] + ": " );
+		
+		for( decltype( scenes[ c ].size() ) s = 0; s < scenes[ c ].size(); ++s ) {
+			cursor.insertText( scenes[ c ][ s ] + ", " );
+		}
+		
+		cursor.insertBlock();
+		
+	}
+}
+
+void ReportGenerator::actionsPerCharacter( QTextDocument* report ) {
+	QTextCursor cursor( report->firstBlock() );
+	auto doc = script->textDocument();
+	
+	QStringList characters;
+	
+	for( QTextBlock block = doc->begin(); block != doc->end(); block = block.next() ) {
+		
+		if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::CHARACTER ) {
+			
+			if( !characters.contains( block.text(), Qt::CaseInsensitive ) ) {
+				characters.append( block.text() );
 			}
 			
 		}
-		temp = report->toPlainText();
+		
 	}
+	
+	characters.sort();
+	
+	for( decltype( characters.size() ) c = 0; c < characters.size(); ++c ) {
+		
+		cursor.insertText( characters[ c ] + ": " );
+		uint_fast8_t sceneNumber = 0;
+		
+		for( QTextBlock block = doc->begin(); block != doc->end(); block = block.next() ) {
+			if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SCENE || block == doc->firstBlock() ) {
+				sceneNumber += 1;
+			}
+			
+			if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::ACTION ) {
+				
+				if( block.text().contains( characters[ c ], Qt::CaseInsensitive ) ) {
+					
+					cursor.insertText( QString( "Scene #" ) + std::to_string( sceneNumber ).c_str() + ": " + block.text() + ", " ); //TODO: Translate.
+					
+				}
+				
+			}
+			
+		}
+		
+		cursor.insertBlock();
+		
+	}
+}
+
+void ReportGenerator::dialogsPerCharacter( QTextDocument* report ) {
+	QTextCursor cursor( report->firstBlock() );
+	auto doc = script->textDocument();
+	
+	QStringList characters;
+	
+	for( QTextBlock block = doc->begin(); block != doc->end(); block = block.next() ) {
+		
+		if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::CHARACTER ) {
+			
+			if( !characters.contains( block.text(), Qt::CaseInsensitive ) ) {
+				
+				characters.append( block.text() );
+				
+			}
+			
+		}
+		
+	}
+	
+	characters.sort();
+	
+	for( decltype( characters.size() ) c = 0; c < characters.size(); ++c ) {
+		
+		cursor.insertText( characters[ c ] + ": " );
+		uint_fast8_t sceneNumber = 0;
+		QString previousNameEncountered = "";
+		
+		for( QTextBlock block = doc->begin(); block != doc->end(); block = block.next() ) {
+			if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SCENE || block == doc->firstBlock() ) {
+				
+				sceneNumber += 1;
+				
+			}
+			
+			if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::CHARACTER ) {
+				
+				previousNameEncountered = block.text();
+				
+			} else if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::DIALOG ) {
+				
+				if( characters[ c ].compare( previousNameEncountered, Qt::CaseInsensitive ) == 0 ) {
+					
+					cursor.insertText( QString( "Scene #" ) + std::to_string( sceneNumber ).c_str() + ": " + block.text() + ", " ); //TODO: Translate.
+					
+				}
+				
+			}
+			
+		}
+		
+		cursor.insertBlock();
+		
+	}
+}
+
+void ReportGenerator::parentheticalsPerCharacter( QTextDocument* report ) {
+	QTextCursor cursor( report->firstBlock() );
+	auto doc = script->textDocument();
+	
+	QStringList characters;
+	
+	for( QTextBlock block = doc->begin(); block != doc->end(); block = block.next() ) {
+		
+		if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::CHARACTER ) {
+			
+			if( !characters.contains( block.text(), Qt::CaseInsensitive ) ) {
+				
+				characters.append( block.text() );
+				
+			}
+			
+		}
+		
+	}
+	
+	characters.sort();
+	
+	for( decltype( characters.size() ) c = 0; c < characters.size(); ++c ) {
+		
+		cursor.insertText( characters[ c ] + ": " );
+		uint_fast8_t sceneNumber = 0;
+		QString previousNameEncountered = "";
+		
+		for( QTextBlock block = doc->begin(); block != doc->end(); block = block.next() ) {
+			if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SCENE || block == doc->firstBlock() ) {
+				
+				sceneNumber += 1;
+				
+			}
+			
+			if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::CHARACTER ) {
+				
+				previousNameEncountered = block.text();
+				
+			} else if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::PARENTHETICAL ) {
+				
+				if( characters[ c ].compare( previousNameEncountered, Qt::CaseInsensitive ) == 0 ) {
+					
+					cursor.insertText( QString( "Scene #" ) + std::to_string( sceneNumber ).c_str() + ": " + block.text() + ", " ); //TODO: Translate.
+					
+				}
+				
+			}
+			
+		}
+		
+		cursor.insertBlock();
+		
+	}
+}
+
+void ReportGenerator::transitionsPerCharacter( QTextDocument* report ) {
+	QTextCursor cursor( report->firstBlock() );
+	cursor.insertText( "I don't know how to deal with this combination" ); //TODO: translate
 }
 
 QString ReportGenerator::generateReport( int numerator, int denominator ) {
@@ -558,18 +741,46 @@ QString ReportGenerator::generateReport( int numerator, int denominator ) {
 		return report.toHtml();
 	}
 	
-	//auto script = scriptPage->property( "text" )->textDocument();
+	QString unimplemented = "Not implemented yet"; //TODO: translate
 	
 	switch( numerator ) {
+		case ( uint_fast8_t ) ScriptFormatter::paragraphType::SCENE: {
+			switch( denominator ) {
+				case ( uint_fast8_t ) ScriptFormatter::paragraphType::ACTION: {
+					scenesPerAction( &report );
+					break;
+				}
+				case( uint_fast8_t ) ScriptFormatter::paragraphType::CHARACTER: {
+					scenesPerCharacter( &report );
+					break;
+				}
+				default: {
+					report.setPlainText( unimplemented );
+					break;
+				}
+			}
+
+			break;
+		}
+		
 		case ( uint_fast8_t ) ScriptFormatter::paragraphType::ACTION: {
 			switch( denominator ) {
 				case ( uint_fast8_t ) ScriptFormatter::paragraphType::SCENE: {
 					actionsPerScene( &report );
 					break;
 				}
+				case ( uint_fast8_t ) ScriptFormatter::paragraphType::CHARACTER: {
+					actionsPerCharacter( &report );
+					break;
+				}
+				default: {
+					report.setPlainText( unimplemented );
+					break;
+				}
 			}
 			break;
 		}
+		
 		case ( uint_fast8_t ) ScriptFormatter::paragraphType::CHARACTER: {
 			switch( denominator ) {
 				case ( uint_fast8_t ) ScriptFormatter::paragraphType::SCENE: {
@@ -580,9 +791,14 @@ QString ReportGenerator::generateReport( int numerator, int denominator ) {
 					charactersPerAction( &report );
 					break;
 				}
+				default: {
+					report.setPlainText( unimplemented );
+					break;
+				}
 			}
 			break;
 		}
+		
 		case ( uint_fast8_t ) ScriptFormatter::paragraphType::DIALOG: {
 			switch( denominator ) {
 				case ( uint_fast8_t ) ScriptFormatter::paragraphType::SCENE: {
@@ -597,9 +813,14 @@ QString ReportGenerator::generateReport( int numerator, int denominator ) {
 					dialogsPerCharacter( &report );
 					break;
 				}
+				default: {
+					report.setPlainText( unimplemented );
+					break;
+				}
 			}
 			break;
 		}
+		
 		case ( uint_fast8_t ) ScriptFormatter::paragraphType::PARENTHETICAL: {
 			switch( denominator ) {
 				case ( uint_fast8_t ) ScriptFormatter::paragraphType::SCENE: {
@@ -610,9 +831,18 @@ QString ReportGenerator::generateReport( int numerator, int denominator ) {
 					parentheticalsPerAction( &report );
 					break;
 				}
+				case ( uint_fast8_t ) ScriptFormatter::paragraphType::CHARACTER: {
+					parentheticalsPerCharacter( &report );
+					break;
+				}
+				default: {
+					report.setPlainText( unimplemented );
+					break;
+				}
 			}
 			break;
 		}
+		
 		case ( uint_fast8_t ) ScriptFormatter::paragraphType::TRANSITION: {
 			switch( denominator ) {
 				case ( uint_fast8_t ) ScriptFormatter::paragraphType::SCENE: {
@@ -623,9 +853,18 @@ QString ReportGenerator::generateReport( int numerator, int denominator ) {
 					transitionsPerAction( &report );
 					break;
 				}
+				case ( uint_fast8_t ) ScriptFormatter::paragraphType::CHARACTER: {
+					transitionsPerCharacter( &report );
+					break;
+				}
+				default: {
+					report.setPlainText( unimplemented );
+					break;
+				}
 			}
 			break;
 		}
+		
 		case ( uint_fast8_t ) ScriptFormatter::paragraphType::SHOT: {
 			switch( denominator ) {
 				case ( uint_fast8_t ) ScriptFormatter::paragraphType::SCENE: {
@@ -636,9 +875,14 @@ QString ReportGenerator::generateReport( int numerator, int denominator ) {
 					shotsPerAction( &report );
 					break;
 				}
+				default: {
+					report.setPlainText( unimplemented );
+					break;
+				}
 			}
 			break;
 		}
+		
 		case ( uint_fast8_t ) ScriptFormatter::paragraphType::ACT_BREAK: {
 			switch( denominator ) {
 				case ( uint_fast8_t ) ScriptFormatter::paragraphType::SCENE: {
@@ -649,126 +893,15 @@ QString ReportGenerator::generateReport( int numerator, int denominator ) {
 					actBreaksPerAction( &report );
 					break;
 				}
-			}
-			break;
-		}
-		case ( uint_fast8_t ) ScriptFormatter::paragraphType::SCENE: {
-			switch( denominator ) {
-				case ( uint_fast8_t ) ScriptFormatter::paragraphType::ACTION: {
-					scenesPerAction( &report );
+				default: {
+					report.setPlainText( unimplemented );
 					break;
 				}
 			}
-
 			break;
 		}
-	}
-	
-	/*QList<QString> numeratorsFound;
-	
-	QTextCursor cursor( report.firstBlock() );
-	uint_fast16_t sceneNumber = 0;
-	auto doc = script->textDocument();
-	for( QTextBlock block = doc->begin(); block != doc->end(); block = block.next() ) {
-		switch( denominator ) {
-			case ( uint_fast8_t ) ScriptFormatter::paragraphType::SCENE: {
-				if( block == doc->firstBlock() || block.userState() == ( uint_fast8_t ) denominator ) {
-					if( numeratorsFound.empty() ) {
-						cursor.insertText( "None found" ); //TODO: Translate
-					}
-					sceneNumber += 1;
-					cursor.insertBlock();
-					cursor.insertText( std::string( "Scene #" + std::to_string( sceneNumber ) + ": " ).c_str() ); //TODO: Translate
-					numeratorsFound.clear();
-				}
-				break;
-			}
-			case ( uint_fast8_t ) ScriptFormatter::paragraphType::ACTION: {
-				if( block.userState() == ( uint_fast8_t ) denominator ) {
-					if( numeratorsFound.empty() ) {
-						cursor.insertText( "None found" ); //TODO: Translate
-					}
-					cursor.insertBlock();
-					cursor.insertText( block.text() + ": " );
-					numeratorsFound.clear();
-				}
-				break;
-			}
-			case ( uint_fast8_t ) ScriptFormatter::paragraphType::CHARACTER: {
-				if( block.userState() == ( uint_fast8_t ) denominator ) {
-					if( numeratorsFound.empty() ) {
-						cursor.insertText( "None found" ); //TODO: Translate
-					}
-					cursor.insertBlock();
-					cursor.insertText( block.text() + ": " );
-					numeratorsFound.clear();
-				}
-				break;
-			}
-			case ( uint_fast8_t ) ScriptFormatter::paragraphType::DIALOG: {
-				if( block.userState() == ( uint_fast8_t ) denominator ) {
-					if( numeratorsFound.empty() ) {
-						cursor.insertText( "None found" ); //TODO: Translate
-					}
-					cursor.insertBlock();
-					cursor.insertText( block.text() + ": " );
-					numeratorsFound.clear();
-				}
-				break;
-			}
-			case ( uint_fast8_t ) ScriptFormatter::paragraphType::PARENTHETICAL: {
-				if( block.userState() == ( uint_fast8_t ) denominator ) {
-					if( numeratorsFound.empty() ) {
-						cursor.insertText( "None found" ); //TODO: Translate
-					}
-					cursor.insertBlock();
-					cursor.insertText( block.text() + ": " );
-					numeratorsFound.clear();
-				}
-				break;
-			}
-			case ( uint_fast8_t ) ScriptFormatter::paragraphType::TRANSITION: {
-				if( block.userState() == ( uint_fast8_t ) denominator ) {
-					if( numeratorsFound.empty() ) {
-						cursor.insertText( "None found" ); //TODO: Translate
-					}
-					cursor.insertBlock();
-					cursor.insertText( block.text() + ": " );
-					numeratorsFound.clear();
-				}
-				break;
-			}
-			case ( uint_fast8_t ) ScriptFormatter::paragraphType::SHOT: {
-				if( block.userState() == ( uint_fast8_t ) denominator ) {
-					if( numeratorsFound.empty() ) {
-						cursor.insertText( "None found" ); //TODO: Translate
-					}
-					cursor.insertBlock();
-					cursor.insertText( block.text() + ": " );
-					numeratorsFound.clear();
-				}
-				break;
-			}
-			case ( uint_fast8_t ) ScriptFormatter::paragraphType::ACT_BREAK: {
-				if( block.userState() == ( uint_fast8_t ) denominator ) {
-					if( numeratorsFound.empty() ) {
-						cursor.insertText( "None found" ); //TODO: Translate
-					}
-					cursor.insertBlock();
-					cursor.insertText( block.text() + ": " );
-					numeratorsFound.clear();
-				}
-				break;
-			}
-		}
 		
-		if( block.userState() == numerator ) {
-			if( !numeratorsFound.contains( block.text() ) ) {
-				numeratorsFound.append( block.text() );
-				cursor.insertText( block.text() + ", " );
-			}
-		}
-	}*/
+	}
 	
 	return report.toHtml();
 }

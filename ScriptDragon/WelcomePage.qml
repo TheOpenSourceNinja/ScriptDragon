@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Ubuntu.Components 1.3
-import QtQuick.Dialogs 1.2
+import QtQuick.Dialogs 1.2 as QtDialogs
+import Ubuntu.Components.Popups 1.0 as UbuntuDialogs
 import ninja.theopensource.scriptdragon 1.0 //Ignore the warning about this "QML module" not being found
 
 Page {
@@ -27,7 +28,7 @@ Page {
 		"All files (*)"
 	]
 	
-	FileDialog {
+	QtDialogs.FileDialog {
 		id: openDialog
 		title: i18n.tr( "Choose a file to open" )
 		folder: shortcuts.documents //Reference: https://doc.qt.io/qt-5/qml-qtquick-dialogs-filedialog.html#shortcuts-prop
@@ -45,7 +46,7 @@ Page {
 		}
 	}
 	
-	FileDialog {
+	QtDialogs.FileDialog {
 		id: saveDialog
 		title: i18n.tr( "Choose a file to save to" )
 		folder: shortcuts.documents
@@ -71,6 +72,17 @@ Page {
 			fill: parent
 		}
 		
+		Component {
+			id: savePopoverComponent
+			UbuntuDialogs.Popover {
+				id: savePopover
+				
+				Label {
+					text: "Saved"
+				}
+			}
+		}
+		
 		Column {
 			id: buttons;
 			width: parent.width
@@ -82,8 +94,11 @@ Page {
 				iconName: "document-new"
 				text: i18n.tr( "New file" )
 				
+				
+				
 				onClicked: {
 					console.log( "New File button clicked" );
+					
 					characters = [];
 					characterListModel.clear();
 					NotecardManager.removeAllNotecards();
@@ -129,6 +144,8 @@ Page {
 					} else {
 						saveDialog.visible = true;
 					}
+					
+					PopupUtils.open( savePopoverComponent, savePopover );
 				}
 				
 				onPressAndHold: {

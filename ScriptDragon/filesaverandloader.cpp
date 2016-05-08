@@ -4,6 +4,8 @@
 #include <QList>
 #include <QJsonArray>
 #include <QJsonDocument>
+//This file MUST be stored as UTF-8 because of headerString
+
 #include <QJsonObject>
 #include <QJsonParseError>
 #include <QSaveFile>
@@ -12,11 +14,13 @@
 #include <iostream>
 #include <string>
 #include <QVariant>
+#include <QQuickItem>
 
 FileSaverAndLoader::FileSaverAndLoader( QObject *parent ) : QObject( parent ) {
 	notecardManager = nullptr;
 	scriptPage = nullptr;
 	charactersPage = nullptr;
+	headerString = "🐉🐲ScriptDragon🐲🐉\n";
 }
 
 void FileSaverAndLoader::load( QUrl fileURL ) {
@@ -34,12 +38,14 @@ void FileSaverAndLoader::load( QUrl fileURL ) {
 	} else {
 		
 		QByteArray contents = loadFile.readAll();
+		QByteArray header = headerString.toUtf8();
 		
-		if( Q_UNLIKELY( contents.isNull() || contents.isEmpty() ) ) {
+		if( Q_UNLIKELY( contents.isNull() || contents.isEmpty() || !contents.startsWith( header ) ) ) {
 			
 			std::cerr << "Error reading file \"" << fileName.toStdString() << "\"" << std::endl;
 			
 		} else {
+			contents.remove( 0, header.length() );
 			
 			QJsonParseError errorHolder;
 			QJsonDocument jsonDoc = QJsonDocument::fromJson( contents, &errorHolder );
@@ -56,10 +62,9 @@ void FileSaverAndLoader::load( QUrl fileURL ) {
 				
 				QJsonObject json = jsonDoc.object();
 				
-				if( Q_LIKELY( scriptPage != nullptr ) ) {
+				if( Q_LIKELY( scriptPage != nullptr ) && Q_LIKELY( json.contains( "script" ) ) ) {
 					
 					QString scriptText = json.take( "script" ).toString();
-					std::cout << "Script text: \"" << scriptText.toStdString() << "\"" << std::endl;
 					
 					scriptPage->setProperty( "text", scriptText );
 					/*auto testing = scriptPage->findChild<QTextArea *>("scriptTA");
@@ -67,7 +72,19 @@ void FileSaverAndLoader::load( QUrl fileURL ) {
 					
 				}
 				
-				if( Q_LIKELY( notecardManager != nullptr ) ) {
+				if( Q_LIKELY( charactersPage != nullptr ) && Q_LIKELY( json.contains( "characters" ) ) ) {
+					
+					//TODO: Stuff.
+					
+				}
+				
+				if( Q_LIKELY( locationsPage != nullptr ) && Q_LIKELY( json.contains( "locations" ) ) ) {
+					
+					//TODO: Stuff.
+					
+				}
+				
+				if( Q_LIKELY( notecardManager != nullptr ) && Q_LIKELY( json.contains( "notecards" ) ) ) {
 					
 					//TODO: Stuff.
 					
@@ -137,14 +154,40 @@ void FileSaverAndLoader::save( QUrl fileURL ) {
 			if( Q_LIKELY( charactersPage != nullptr ) ) {
 				
 				QJsonArray characterArray;
-				auto characterList = charactersPage->property( "characters" );
-				std::cout << characterList.toString().toStdString() << std::endl;
-				//TODO: I am here.
+				auto characterView = charactersPage->findChild< QObject* >( "characterView" );
+				auto children = characterView->children();
+				
+				for( uint_fast8_t i = 0; i < children.size(); ++i ) {
+					QObject* child = children[ i ];
+					QString name = child->property( "name" ).toString();
+					characterArray.append( QJsonValue( name ) );
+				}
+				
+				json.insert( "characters", characterArray );
 				
 			}
 			
+			//locations
+			if( Q_LIKELY( locationsPage != nullptr ) ) {
+				
+				QJsonArray locationArray;
+				auto locationView = locationsPage->findChild< QObject* >( "locationView" );
+				auto children = locationView->children();
+				
+				for( uint_fast8_t i = 0; i < children.size(); ++i ) {
+					QObject* child = children[ i ];
+					QString name = child->property( "name" ).toString();
+					locationArray.append( QJsonValue( name ) );
+				}
+				
+				json.insert( "locations", locationArray );
+				
+			}
+			
+			QByteArray fileContent = headerString.toUtf8();
 			QJsonDocument jsonDoc( json );
-			saveFile.write( jsonDoc.toJson( QJsonDocument::Indented ) );
+			fileContent.append( jsonDoc.toJson( QJsonDocument::Indented ) );
+			saveFile.write( fileContent );
 			
 		}
 		
@@ -162,6 +205,10 @@ void FileSaverAndLoader::save( QUrl fileURL ) {
 
 void FileSaverAndLoader::setCharactersPage( QObject* newCharactersPage ) {
 	charactersPage = newCharactersPage;
+}
+
+void FileSaverAndLoader::setLocationsPage( QObject* newLocationsPage ) {
+	locationsPage = newLocationsPage;
 }
 
 void FileSaverAndLoader::setNotecardManager( NotecardManager* newNM ) {

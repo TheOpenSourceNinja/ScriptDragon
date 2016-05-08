@@ -39,7 +39,7 @@ Page {
 		text += i18n.tr( "Gender: " ) + characterGender + "<br />"
 		
 		characterArchetypeChosen = Math.floor( Math.random() * characterArchetypes.length );
-		characterArchetype = characterArchetypes[ characterArchetypeChosen ];
+		var characterArchetype = characterArchetypes[ characterArchetypeChosen ];
 		text += i18n.tr( "Archetype: " ) + characterArchetype + "<br />"
 		characterJob = jobs[ Math.floor( Math.random() * jobs.length ) ];
 		text += i18n.tr( "Job: " ) + characterJob +"<br />"
