@@ -11,6 +11,32 @@ Page {
 	
 	property var component: Qt.createComponent( "Location.qml" );
 	
+	Connections {
+		target: FileSaverAndLoader;
+		onAddLocationName: {
+			var status = component.status;
+			if( status === Component.Ready ) {
+				var obj = component.createObject( locationView )
+				
+				if( obj === null ) {
+					console.error( i18n.tr( "Error adding location." ) )
+				} else {
+					if( locationName !== null ) {
+						obj.name = locationName
+					}
+					
+					obj.locationID = locationListModel.count
+					
+					locationListModel.append( { text:locationName } )
+					
+					selector.selectedIndex = locationListModel.count - 1
+				}
+			} else if( status === Component.Error ){
+				console.error( i18n.tr( "Error adding location: " ) + component.errorString() );
+			}
+		}
+	}
+	
 	function addLocation( name ) {
 		var status = component.status;
 		if( status === Component.Ready ) {

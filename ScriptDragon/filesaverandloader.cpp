@@ -40,11 +40,16 @@ void FileSaverAndLoader::load( QUrl fileURL ) {
 		QByteArray contents = loadFile.readAll();
 		QByteArray header = headerString.toUtf8();
 		
-		if( Q_UNLIKELY( contents.isNull() || contents.isEmpty() || !contents.startsWith( header ) ) ) {
+		if( Q_UNLIKELY( contents.isNull() || contents.isEmpty() ) ) {
 			
 			std::cerr << "Error reading file \"" << fileName.toStdString() << "\"" << std::endl;
 			
+		} else if( Q_UNLIKELY( !contents.startsWith( header ) ) ) {
+			
+			std::cerr << "Error reading file \"" << fileName.toStdString() << "\": Header not found" << std::endl;
+			
 		} else {
+			
 			contents.remove( 0, header.length() );
 			
 			QJsonParseError errorHolder;
@@ -86,7 +91,13 @@ void FileSaverAndLoader::load( QUrl fileURL ) {
 				
 				if( Q_LIKELY( locationsPage != nullptr ) && Q_LIKELY( json.contains( "locations" ) ) ) {
 					
-					//TODO: Stuff.
+					QJsonArray locations = json.take( "locations" ).toArray();
+					for( auto i = locations.begin(); i != locations.end(); ++i ) {
+						
+						QString locationName = (*i).toString();
+						emit addLocationName( locationName );
+						
+					}
 					
 				}
 				

@@ -734,6 +734,102 @@ void ReportGenerator::transitionsPerCharacter( QTextDocument* report ) {
 	cursor.insertText( "I don't know how to deal with this combination" ); //TODO: translate
 }
 
+void ReportGenerator::shotsPerCharacter( QTextDocument* report ) {
+	QTextCursor cursor( report->firstBlock() );
+	auto doc = script->textDocument();
+	
+	QStringList characters;
+	
+	for( QTextBlock block = doc->begin(); block != doc->end(); block = block.next() ) {
+		
+		if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::CHARACTER ) {
+			
+			if( !characters.contains( block.text(), Qt::CaseInsensitive ) ) {
+				characters.append( block.text() );
+			}
+			
+		}
+		
+	}
+	
+	characters.sort();
+	
+	for( decltype( characters.size() ) c = 0; c < characters.size(); ++c ) {
+		
+		cursor.insertText( characters[ c ] + ": " );
+		uint_fast8_t sceneNumber = 0;
+		
+		for( QTextBlock block = doc->begin(); block != doc->end(); block = block.next() ) {
+			if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SCENE || block == doc->firstBlock() ) {
+				sceneNumber += 1;
+			}
+			
+			if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SHOT ) {
+				
+				if( block.text().contains( characters[ c ], Qt::CaseInsensitive ) ) {
+					
+					cursor.insertText( QString( "Scene #" ) + std::to_string( sceneNumber ).c_str() + ": " + block.text() + ", " ); //TODO: Translate.
+					
+				}
+				
+			}
+			
+		}
+		
+		cursor.insertBlock();
+		
+	}
+}
+
+void ReportGenerator::actBreaksPerCharacter( QTextDocument* report ) {
+	QTextCursor cursor( report->firstBlock() );
+	auto doc = script->textDocument();
+	
+	QStringList characters;
+	QVector< QStringList > acts;
+	QString currentAct = "Act 1"; //TODO: Translate.
+	
+	for( QTextBlock block = doc->begin(); block != doc->end(); block = block.next() ) {
+		
+		if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::CHARACTER ) {
+			
+			if( !characters.contains( block.text(), Qt::CaseInsensitive ) ) {
+				characters.append( block.text() );
+			}
+			
+			if( acts.length() <= characters.indexOf( block.text() ) ) {
+				acts.resize( characters.indexOf( block.text() ) + 1 );
+			}
+			
+			acts[ characters.indexOf( block.text() ) ].append( currentAct );
+			
+		} else if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::ACT_BREAK ) {
+			
+			currentAct = block.text();
+			
+		}
+		
+	}
+	
+	for( uint_fast8_t c = 0; c < acts.length(); ++c ) {
+		acts[ c ] = acts[ c ].toSet().toList(); //Converting to a QSet and back removes duplicates
+	}
+	
+	//TODO: Can we sort characters without messing up acts?
+	
+	for( decltype( characters.size() ) c = 0; c < characters.size(); ++c ) {
+		
+		cursor.insertText( characters[ c ] + " is in " ); //TODO: Translate.
+		
+		for( decltype( acts[ c ].size() ) s = 0; s < acts[ c ].size(); ++s ) {
+			cursor.insertText( acts[ c ][ s ] + ", " );
+		}
+		
+		cursor.insertBlock();
+		
+	}
+}
+
 QString ReportGenerator::generateReport( int numerator, int denominator ) {
 	QTextDocument report;
 	
@@ -875,6 +971,10 @@ QString ReportGenerator::generateReport( int numerator, int denominator ) {
 					shotsPerAction( &report );
 					break;
 				}
+				case ( uint_fast8_t ) ScriptFormatter::paragraphType::CHARACTER: {
+					shotsPerCharacter( &report );
+					break;
+				}
 				default: {
 					report.setPlainText( unimplemented );
 					break;
@@ -891,6 +991,10 @@ QString ReportGenerator::generateReport( int numerator, int denominator ) {
 				}
 				case ( uint_fast8_t ) ScriptFormatter::paragraphType::ACTION: {
 					actBreaksPerAction( &report );
+					break;
+				}
+				case ( uint_fast8_t ) ScriptFormatter::paragraphType::CHARACTER: {
+					actBreaksPerCharacter( &report );
 					break;
 				}
 				default: {

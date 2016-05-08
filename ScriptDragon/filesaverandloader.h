@@ -21,6 +21,7 @@ class FileSaverAndLoader : public QObject
 		
 	signals:
 		void addCharacterName( QString characterName );
+		void addLocationName( QString locationName );
 		
 		void fileLoaded( QUrl fileURL );
 		void fileSaved( QUrl fileURL );
