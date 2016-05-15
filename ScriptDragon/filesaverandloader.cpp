@@ -20,7 +20,8 @@ FileSaverAndLoader::FileSaverAndLoader( QObject *parent ) : QObject( parent ) {
 	notecardManager = nullptr;
 	scriptPage = nullptr;
 	charactersPage = nullptr;
-	headerString = "🐉🐲ScriptDragon🐲🐉\n";
+	storylinesPage = nullptr;
+	headerString = QString::fromUtf8( u8"\U0001F409\U0001F432ScriptDragon\U0001F432\U0001F409\n" );
 }
 
 void FileSaverAndLoader::load( QUrl fileURL ) {
@@ -67,6 +68,7 @@ void FileSaverAndLoader::load( QUrl fileURL ) {
 				
 				QJsonObject json = jsonDoc.object();
 				
+				//script
 				if( Q_LIKELY( scriptPage != nullptr ) && Q_LIKELY( json.contains( "script" ) ) ) {
 					
 					QString scriptText = json.take( "script" ).toString();
@@ -77,6 +79,7 @@ void FileSaverAndLoader::load( QUrl fileURL ) {
 					
 				}
 				
+				//characters
 				if( Q_LIKELY( charactersPage != nullptr ) && Q_LIKELY( json.contains( "characters" ) ) ) {
 					
 					QJsonArray characters = json.take( "characters" ).toArray();
@@ -89,6 +92,7 @@ void FileSaverAndLoader::load( QUrl fileURL ) {
 					
 				}
 				
+				//locations
 				if( Q_LIKELY( locationsPage != nullptr ) && Q_LIKELY( json.contains( "locations" ) ) ) {
 					
 					QJsonArray locations = json.take( "locations" ).toArray();
@@ -101,9 +105,35 @@ void FileSaverAndLoader::load( QUrl fileURL ) {
 					
 				}
 				
+				//storylines
+				if( Q_LIKELY( storylinesPage != nullptr ) && Q_LIKELY( json.contains( "storylines" ) ) ) {
+					
+					QJsonArray storylines = json.take( "storylines" ).toArray();
+					for( auto i = storylines.begin(); i != storylines.end(); ++i ) {
+						
+						QString storylineName = (*i).toString();
+						emit addStorylineName( storylineName );
+						
+					}
+					
+				}
+				
+				//notecards
 				if( Q_LIKELY( notecardManager != nullptr ) && Q_LIKELY( json.contains( "notecards" ) ) ) {
 					
-					//TODO: Stuff.
+					QJsonArray notecards = json.take( "notecards" ).toArray();
+					for( auto i = notecards.begin(); i != notecards.end(); ++i ) {
+						
+						QJsonObject notecard = (*i).toObject();
+						NotecardManager::associationType associationType = (NotecardManager::associationType) ( (uint_fast8_t) notecard.take( "associationType" ).toInt() );
+						int associatedID = notecard.take( "associatedID" ).toInt();
+						QString color = notecard.take( "color" ).toString();
+						QString title = notecard.take( "title" ).toString();
+						QString text = notecard.take( "text" ).toString();
+						int idWithinAssociatedThing = notecard.take( "idWithinAssociatedThing" ).toInt();
+						
+						notecardManager->addNotecard( title, text, associationType, associatedID, idWithinAssociatedThing, color );
+					}
 					
 				}
 			}
@@ -133,7 +163,6 @@ void FileSaverAndLoader::save( QUrl fileURL ) {
 		
 	} else {
 		
-		//TODO: write a bunch of data here...
 		{
 			QJsonObject json;
 			
@@ -152,10 +181,16 @@ void FileSaverAndLoader::save( QUrl fileURL ) {
 					
 					QJsonObject cardJson;
 					
-					QList< QString > properties( { "title", "text", "color", "associationType", "associatedID", "associatedText" } );
-					foreach( QString propertyName, properties ) {
+					QList< QString > stringProperties( { "title", "text", "color" } );
+					foreach( QString propertyName, stringProperties ) {
 						
 						cardJson.insert( propertyName, notecard->property( propertyName.toStdString().c_str() ).toString() );
+						
+					}
+					QList< QString > intProperties( { "associationType", "associatedID", "idWithinAssociatedThing" } );
+					foreach( QString propertyName, intProperties ) {
+						
+						cardJson.insert( propertyName, notecard->property( propertyName.toStdString().c_str() ).toInt() );
 						
 					}
 					
@@ -201,6 +236,23 @@ void FileSaverAndLoader::save( QUrl fileURL ) {
 				
 			}
 			
+			//storylines
+			if( Q_LIKELY( storylinesPage != nullptr ) ) {
+				
+				QJsonArray storylineArray;
+				auto storylineView = storylinesPage->findChild< QObject* >( "storylineView" );
+				auto children = storylineView->children();
+				
+				for( uint_fast8_t i = 0; i < children.size(); ++i ) {
+					QObject* child = children[ i ];
+					QString name = child->property( "name" ).toString();
+					storylineArray.append( QJsonValue( name ) );
+				}
+				
+				json.insert( "storylines", storylineArray );
+				
+			}
+			
 			QByteArray fileContent = headerString.toUtf8();
 			QJsonDocument jsonDoc( json );
 			fileContent.append( jsonDoc.toJson( QJsonDocument::Indented ) );
@@ -221,11 +273,15 @@ void FileSaverAndLoader::save( QUrl fileURL ) {
 }
 
 void FileSaverAndLoader::setCharactersPage( QObject* newCharactersPage ) {
+	
 	charactersPage = newCharactersPage;
+	
 }
 
 void FileSaverAndLoader::setLocationsPage( QObject* newLocationsPage ) {
+	
 	locationsPage = newLocationsPage;
+	
 }
 
 void FileSaverAndLoader::setNotecardManager( NotecardManager* newNM ) {
@@ -240,3 +296,8 @@ void FileSaverAndLoader::setScriptPage( QObject* newScriptPage ) {
 	
 }
 
+void FileSaverAndLoader::setStorylinesPage( QObject* newStorylinesPage ) {
+	
+	storylinesPage = newStorylinesPage;
+	
+}

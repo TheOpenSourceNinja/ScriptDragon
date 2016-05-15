@@ -21,24 +21,20 @@ Rectangle {
 	
 	property int associatedID
 	property var associatedText: {
-		console.log( "associationType: " + associationType );
-		console.log( "associatedID: " );
 		switch( associationType ) {
 			case NotecardManager.NONE:
-				console.log( "None" );
 				return "None";
 			
 			case NotecardManager.CHARACTER:
-				console.log( associatedID );
-				var str = NotecardManager.getCharactersPage().characters[ associatedID ].name;
-				return str;
+				return NotecardManager.getCharactersPage().characters[ associatedID ].name;
 			
 			case NotecardManager.LOCATION:
-				console.log( associatedID );
 				return NotecardManager.getLocationsPage().locations[ associatedID ].name;
 			
+			case NotecardManager.STORYLINE:
+				return NotecardManager.getStorylinesPage().storylines[ associatedID ].name;
+				
 			default:
-				console.log( associatedID );
 				return "Association type not in switch statement";
 		}
 	}

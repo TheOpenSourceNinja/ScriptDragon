@@ -54,7 +54,9 @@ DISTFILES += \
     TextNotecard.qml \
     Location.qml \
     Character.qml \
-    ../po/scriptdragon.dearingj.pot
+    ../po/scriptdragon.dearingj.pot \
+    Storyline.qml \
+    StorylinesPage.qml
 
 HEADERS += \
     notecardmanager.h \

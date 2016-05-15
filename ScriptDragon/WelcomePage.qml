@@ -173,6 +173,7 @@ Page {
 					"<li>Notecards: The app's main feature, notecards are where you write out all your ideas no matter how crazy.</li>" +
 					"<li>Characters: Displays notecards associated with specific characters.</li>" +
 					"<li>Locations: Displays notecards associated with specific locations.</li>" +
+					"<li>Storylines: Displays notecards associated with specific storylines.</li>" +
 					"<li>Random generators: Need inspiration? Look here!</li>" +
 					"<li>Script: Where you write the script.</li>" +
 					"<li>Reports: Statistics etc. generated based on the script.</li>" +

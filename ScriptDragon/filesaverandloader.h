@@ -18,10 +18,12 @@ class FileSaverAndLoader : public QObject
 		Q_INVOKABLE void setLocationsPage( QObject* newLocationsPage );
 		Q_INVOKABLE void setNotecardManager( NotecardManager* newNM );
 		Q_INVOKABLE void setScriptPage( QObject* newScriptPage );
+		Q_INVOKABLE void setStorylinesPage( QObject* newStorylinesPage );
 		
 	signals:
 		void addCharacterName( QString characterName );
 		void addLocationName( QString locationName );
+		void addStorylineName( QString storylineName );
 		
 		void fileLoaded( QUrl fileURL );
 		void fileSaved( QUrl fileURL );
@@ -32,6 +34,7 @@ class FileSaverAndLoader : public QObject
 		QObject* scriptPage;
 		QObject* charactersPage;
 		QObject* locationsPage;
+		QObject* storylinesPage;
 		QString headerString;
 		
 		//extern Q_CORE_EXPORT int qt_ntfs_permission_lookup; //Increment to turn on NTFS permission checking, decrement to turn it off

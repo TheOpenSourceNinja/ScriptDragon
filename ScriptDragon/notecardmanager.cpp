@@ -8,13 +8,14 @@ NotecardManager::NotecardManager( QQmlEngine* newEngine, QObject *parent ) : QOb
 	charactersPage = NULL;
 	locationsPage = NULL;
 	notecardsPage = NULL;
+	storylinesPage = NULL;
 }
 
 NotecardManager::~NotecardManager() {
 	//delete engine;
 }
 
-Q_INVOKABLE void NotecardManager::addNotecard( QString newCardTitle, QString newCardText, associationType assocType, int associatedID ) {
+Q_INVOKABLE void NotecardManager::addNotecard( QString newCardTitle, QString newCardText, associationType assocType, int associatedID, int idWithinAssociatedThing, QString color ) {
 	std::cout << "addNotecard() called with newCardTitle=\"" << newCardTitle.toStdString() << "\" newCardText=\"" << newCardText.toStdString() << "\" assocType=" << ( uint_fast8_t ) assocType << " assocatedID=" << associatedID << std::endl;
 	
 	QQmlComponent component( engine, QUrl( QStringLiteral( "qrc:///TextNotecard.qml" ) ) );
@@ -38,10 +39,12 @@ Q_INVOKABLE void NotecardManager::addNotecard( QString newCardTitle, QString new
 		object->setProperty( "title", newCardTitle );
 		object->setProperty( "associationType", ( uint_fast8_t ) assocType);
 		object->setProperty( "associatedID", associatedID );
+		object->setProperty( "idWithinAssociatedThing", idWithinAssociatedThing );
+		object->setProperty( "color", color );
 		object->setProperty( "isDuplicate", false );
 		
 		
-		if( associatedID < INT_MAX ) {
+		if( associatedID < INT_MAX && assocType != associationType::NONE ) {
 			if( maxIDWithinAssociatedThing.size() <= associatedID ) {
 				maxIDWithinAssociatedThing.resize( associatedID + 1, 0 );
 			}
@@ -110,6 +113,7 @@ Q_INVOKABLE void NotecardManager::associateNotecardWith( QObject* notecard, asso
 			duplicate->setProperty( "title", notecard->property( "title" ) );
 			duplicate->setProperty( "associationType", ( uint_fast8_t ) assocType);
 			duplicate->setProperty( "associatedID", associatedID );
+			duplicate->setProperty( "color", notecard->property( "color" ) );
 			
 			duplicate->setProperty( "isDuplicate", true );
 			//maxIDWithinAssociatedThing[ associatedID ] += 1;
@@ -157,6 +161,10 @@ Q_INVOKABLE QObject* NotecardManager::getNotecardsPage() {
 	return notecardsPage;
 }
 
+Q_INVOKABLE QObject* NotecardManager::getStorylinesPage() {
+	return storylinesPage;
+}
+
 Q_INVOKABLE QList< QObject* > NotecardManager::getNotecardsForCharacter( int characterID ) {
 	QList< QObject* > results;
 	
@@ -175,6 +183,18 @@ Q_INVOKABLE QList< QObject* > NotecardManager::getNotecardsForLocation( int loca
 	if( Q_LIKELY( notecardsWithAssociations.size() > ( uint_fast8_t ) associationType::LOCATION ) ) {
 		if( Q_LIKELY( notecardsWithAssociations[ ( uint_fast8_t ) associationType::LOCATION ].size() > locationID ) ) {
 			results = notecardsWithAssociations[ ( uint_fast8_t ) associationType::LOCATION ][ locationID ];
+		}
+	}
+	
+	return results;
+}
+
+Q_INVOKABLE QList< QObject* > NotecardManager::getNotecardsForStoryline( int storylineID ) {
+	QList< QObject* > results;
+	
+	if( Q_LIKELY( notecardsWithAssociations.size() > ( uint_fast8_t ) associationType::STORYLINE ) ) {
+		if( Q_LIKELY( notecardsWithAssociations[ ( uint_fast8_t ) associationType::STORYLINE ].size() > storylineID ) ) {
+			results = notecardsWithAssociations[ ( uint_fast8_t ) associationType::STORYLINE ][ storylineID ];
 		}
 	}
 	
@@ -350,6 +370,18 @@ Q_INVOKABLE void NotecardManager::setNotecardsPage( QObject* newNotecardsPage ) 
 	
 	if( notecardsPage != NULL ) {
 		engine->setObjectOwnership( notecardsPage, QQmlEngine::CppOwnership );
+	}
+}
+
+Q_INVOKABLE void NotecardManager::setStorylinesPage( QObject* newStorylinesPage ) {
+	if( storylinesPage != NULL ) {
+		engine->setObjectOwnership( storylinesPage, QQmlEngine::JavaScriptOwnership );
+	}
+	
+	storylinesPage = newStorylinesPage;
+	
+	if( storylinesPage != NULL ) {
+		engine->setObjectOwnership( storylinesPage, QQmlEngine::CppOwnership );
 	}
 }
 

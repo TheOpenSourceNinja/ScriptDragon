@@ -55,10 +55,12 @@ MainView {
 		NotecardManager.setCharactersPage( charactersPage );
 		NotecardManager.setLocationsPage( locationsPage );
 		NotecardManager.setNotecardsPage( notecardsPage );
+		NotecardManager.setStorylinesPage( storylinesPage );
 		FileSaverAndLoader.setNotecardManager( NotecardManager );
 		FileSaverAndLoader.setScriptPage( scriptPage );
 		FileSaverAndLoader.setCharactersPage( charactersPage );
 		FileSaverAndLoader.setLocationsPage( locationsPage );
+		FileSaverAndLoader.setStorylinesPage( storylinesPage );
 	}
 	
 	Keys.onPressed: { //todo: If we decide to implement keyboard shortcuts, this is a good place to start
@@ -75,6 +77,7 @@ MainView {
 		
 		if( event.matches( StandardKey.Save ) ) {
 			console.log( "Standard save key sequence hit" );
+			FileSaverAndLoader.save( welcomePage.currentFileURL );
 		} else if( event.matches( StandardKey.SaveAs ) ) {
 			console.log( "Standard Save As key sequence hit" );
 		}
@@ -111,6 +114,15 @@ MainView {
 			
 			LocationsPage {
 				id: locationsPage
+			}
+		}
+		
+		Tab {
+			id: storylinesTab
+			title: i18n.tr( "Storylines" )
+			
+			StorylinesPage {
+				id: storylinesPage
 			}
 		}
 

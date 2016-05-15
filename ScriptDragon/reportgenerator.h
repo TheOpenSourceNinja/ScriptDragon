@@ -13,7 +13,7 @@ class ReportGenerator : public QObject
 	public:
 		explicit ReportGenerator( QQmlEngine* newEngine = NULL, QObject *parent = 0 );
 		
-		Q_INVOKABLE QString generateReport( int numerator, int denominator ); //Both parameters should be of type ScriptFormatter::paragraphType. Had to make them integers for use with QML.
+		Q_INVOKABLE QString generateReport( int numerator, int denominator ); //Both parameters should be of type ScriptFormatter::paragraphType. Had to make them ints for use with QML.
 		
 		Q_INVOKABLE void setScript( QQuickTextDocument* newScript );
 		
@@ -39,6 +39,10 @@ class ReportGenerator : public QObject
 		void transitionsPerCharacter( QTextDocument* report );
 		void shotsPerCharacter( QTextDocument* report );
 		void actBreaksPerCharacter( QTextDocument* report );
+		void scenesPerDialog( QTextDocument* report );
+		void actionsPerDialog( QTextDocument* report );
+		void parentheticalsPerDialog( QTextDocument* report );
+		void transitionsPerDialog( QTextDocument* report );
 		
 	signals:
 		

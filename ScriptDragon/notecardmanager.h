@@ -23,11 +23,12 @@ class NotecardManager : public QObject
 			LOCATION,
 			EVENT,
 			SCRIPT_LINE,
+			STORYLINE,
 			MISC
 		};
 		Q_ENUMS( associationType );
 		
-		Q_INVOKABLE void addNotecard( QString newCardTitle = "", QString newCardText = "", associationType assocType = associationType::NONE, int associatedID = INT_MAX );
+		Q_INVOKABLE void addNotecard( QString newCardTitle = "", QString newCardText = "", associationType assocType = associationType::NONE, int associatedID = INT_MAX, int idWithinAssociatedThing = 0, QString color = "#ffffff" );
 		Q_INVOKABLE void associateNotecardWith( QObject* notecard, associationType assocType, int associatedID );
 		
 		void copyNotecardData( QObject* origin, QObject* destination );
@@ -36,8 +37,10 @@ class NotecardManager : public QObject
 		Q_INVOKABLE QObject* getCharactersPage();
 		Q_INVOKABLE QObject* getLocationsPage();
 		Q_INVOKABLE QObject* getNotecardsPage();
+		Q_INVOKABLE QObject* getStorylinesPage();
 		Q_INVOKABLE QList< QObject* > getNotecardsForCharacter( int characterID = 0 );
 		Q_INVOKABLE QList< QObject* > getNotecardsForLocation( int locationID = 0 );
+		Q_INVOKABLE QList< QObject* > getNotecardsForStoryline( int locationID = 0 );
 		
 		Q_INVOKABLE void removeAllNotecards();
 		Q_INVOKABLE void removeAssociation( QObject* notecard );
@@ -46,6 +49,7 @@ class NotecardManager : public QObject
 		Q_INVOKABLE void setCharactersPage( QObject* newCharactersPage );
 		Q_INVOKABLE void setLocationsPage( QObject* newLocationsPage );
 		Q_INVOKABLE void setNotecardsPage( QObject* newNotecardsPage );
+		Q_INVOKABLE void setStorylinesPage( QObject* newStorylinesPage );
 		
 		Q_INVOKABLE void updateNotecard( QObject* origin );
 		
@@ -62,6 +66,7 @@ class NotecardManager : public QObject
 		QObject* charactersPage; //TODO: Try making this a property
 		QObject* locationsPage; //TODO: Try making this a property
 		QObject* notecardsPage;
+		QObject* storylinesPage;
 		std::vector< uint_fast8_t > maxIDWithinAssociatedThing;
 };
 

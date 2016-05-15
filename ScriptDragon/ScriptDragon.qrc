@@ -13,5 +13,7 @@
         <file>first_names.csv</file>
         <file>last_names.csv</file>
         <file>Location.qml</file>
+        <file>StorylinesPage.qml</file>
+        <file>Storyline.qml</file>
     </qresource>
 </RCC>

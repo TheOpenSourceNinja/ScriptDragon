@@ -90,7 +90,7 @@ Page {
 					text: i18n.tr( "New character" )
 					
 					onClicked: {
-						var name = "Unnamed Character";
+						var name = i18n.tr( "Unnamed Character" );
 						var age = "";
 						var gender = "";
 						var archetype = "";

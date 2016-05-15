@@ -6,72 +6,72 @@ import ninja.theopensource.scriptdragon 1.0
 
 Page {
 	
-	property alias locations: locationView.children
-	property alias locationListModel: locationListModel
+	property alias storylines: storylineView.children
+	property alias storylineListModel: storylineListModel
 	
-	property var component: Qt.createComponent( "Location.qml" );
+	property var component: Qt.createComponent( "Storyline.qml" );
 	
 	Connections {
 		target: FileSaverAndLoader;
-		onAddLocationName: {
+		onAddStorylineName: {
 			var status = component.status;
 			if( status === Component.Ready ) {
-				var obj = component.createObject( locationView )
+				var obj = component.createObject( storylineView )
 				
 				if( obj === null ) {
-					console.error( i18n.tr( "Error adding location." ) )
+					console.error( i18n.tr( "Error adding storyline." ) )
 				} else {
-					if( locationName !== null ) {
-						obj.name = locationName
+					if( storylineName !== null ) {
+						obj.name = storylineName
 					}
 					
-					obj.locationID = locationListModel.count
+					obj.storylineID = storylineListModel.count
 					
-					locationListModel.append( { text:locationName } )
+					storylineListModel.append( { text:storylineName } )
 					
-					selector.selectedIndex = locationListModel.count - 1
+					selector.selectedIndex = storylineListModel.count - 1
 				}
 			} else if( status === Component.Error ){
-				console.error( i18n.tr( "Error adding location: " ) + component.errorString() );
+				console.error( i18n.tr( "Error adding storyline: " ) + component.errorString() );
 			}
 		}
 	}
 	
-	function addLocation( name ) {
+	function addStoryline( name ) {
 		var status = component.status;
 		if( status === Component.Ready ) {
-			var obj = component.createObject( locationView )
+			var obj = component.createObject( storylineView )
 			
 			if( obj === null ) {
-				console.error( i18n.tr( "Error creating new location." ) )
+				console.error( i18n.tr( "Error creating new storyline." ) )
 			} else {
 				if( name !== null ) {
 					obj.name = name
 				}
 				
-				obj.locationID = locationListModel.count
+				obj.storylineID = storylineListModel.count
 				
-				NotecardManager.addNotecard( i18n.tr( "Location" ), "", NotecardManager.LOCATION, obj.locationID );
+				NotecardManager.addNotecard( i18n.tr( "Storyline" ), "", NotecardManager.STORYLINE, obj.storylineID );
 				
-				locationListModel.append( { text:name } )
+				storylineListModel.append( { text:name } )
 				
-				selector.selectedIndex = locationListModel.count - 1
+				selector.selectedIndex = storylineListModel.count - 1
 			}
 		} else if( status === Component.Error ){
-			console.error( i18n.tr( "Error creating new location: " ) + component.errorString() );
+			console.error( i18n.tr( "Error creating new storyline: " ) + component.errorString() );
 		}
 	}
 	
-	function deleteLocation( indexToRemove ) {
-		//console.log( NotecardManager.getNotecardsForLocation( indexToRemove ) );
-		var array = NotecardManager.getNotecardsForLocation( indexToRemove );
+	function deleteStoryline( indexToRemove ) {
+		//console.log( NotecardManager.getNotecardsForStoryline( indexToRemove ) );
+		var array = NotecardManager.getNotecardsForStoryline( indexToRemove );
 		for( var i = 0; i < array.length; ++i ) {
 			console.log( array[ i ] );
 			NotecardManager.removeAssociation( array[ i ] );
 		}
 		
-		locationListModel.remove( indexToRemove )
-		locationView.removeChild( indexToRemove )
+		storylineListModel.remove( indexToRemove )
+		storylineView.removeChild( indexToRemove )
 		selector.selectedIndex -= 1
 	}
 	
@@ -84,24 +84,27 @@ Page {
 			width: parent.width
 			Row {
 				Button {
-					text: i18n.tr( "New location" )
+					text: i18n.tr( "New storyline" )
+					
+					property int storylineNumber: 0;
 					
 					onClicked: {
-						var name = i18n.tr( "Unnamed Location" );
+						var name = i18n.tr( "Storyline " ) + storylineNumber;
+						storylineNumber++;
 						var age = "";
 						var gender = "";
 						var archetype = "";
 						var job = "";
 						
-						addLocation( name, age, gender, archetype, job )
+						addStoryline( name, age, gender, archetype, job )
 					}
 				}
 				
 				Button {
-					text: i18n.tr( "Delete location" )
-					enabled: locationListModel.count > 0
+					text: i18n.tr( "Delete storyline" )
+					enabled: storylineListModel.count > 0
 					
-					onClicked: deleteLocation( selector.selectedIndex );
+					onClicked: deleteStoryline( selector.selectedIndex );
 				}
 			}
 			
@@ -112,23 +115,23 @@ Page {
 			}
 			
 			ListItem.ItemSelector {
-				text: "Choose location:"
+				text: "Choose storyline:"
 				id: selector
-				model: locationListModel
+				model: storylineListModel
 				expanded: false
 				
 				onDelegateClicked: {
 					//console.log( index )
-					locationView.setVisibleChild( index )
+					storylineView.setVisibleChild( index )
 				}
 				
 				onSelectedIndexChanged: {
 					//console.log( selectedIndex )
-					locationView.setVisibleChild( selectedIndex )
+					storylineView.setVisibleChild( selectedIndex )
 				}
 				
 				ListModel {
-					id: locationListModel
+					id: storylineListModel
 					onDataChanged: {
 						//console.log("onDataChanged() called");
 						
@@ -152,8 +155,8 @@ Page {
 		Item {
 			width: parent.width
 			height: parent.height - header.height
-			id: locationView
-			objectName: "locationView"
+			id: storylineView
+			objectName: "storylineView"
 			
 			function setVisibleChild( childNumber ) {
 				for( var i = 0; i < children.length; ++i ) {
