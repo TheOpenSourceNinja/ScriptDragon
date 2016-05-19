@@ -108,7 +108,6 @@ void ScriptFormatter::setDefaultFontForDocument( QQuickTextDocument* document ) 
 void ScriptFormatter::setParagraphType( QQuickTextDocument* document, ScriptFormatter::paragraphType newType, int cursorPosition ) {
 	
 	QTextCursor cursor( document->textDocument()->findBlock( cursorPosition ) );
-	cursor.select( QTextCursor::LineUnderCursor );
 	
 	//cursor.setPosition( cursorPosition, QTextCursor::MoveAnchor);
 	cursor.beginEditBlock();
@@ -179,9 +178,13 @@ void ScriptFormatter::setParagraphType( QQuickTextDocument* document, ScriptForm
 		}
 	}
 	
-	//cursor.select( QTextCursor::BlockUnderCursor );
 	cursor.block().setUserState( (uint_fast8_t) newType );
+	
+	//cursor.select( QTextCursor::BlockUnderCursor ); //For some reason selecting BlockUnderCursor does not work the same as moving from the start to the end of the block
+	cursor.movePosition( QTextCursor::StartOfLine, QTextCursor::MoveAnchor );
+	cursor.movePosition( QTextCursor::EndOfLine, QTextCursor::KeepAnchor);
 	cursor.setCharFormat( charFormat );
+	
 	cursor.setBlockCharFormat( charFormat );
 	cursor.setBlockFormat( blockFormat );
 	cursor.endEditBlock();

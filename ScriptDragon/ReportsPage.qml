@@ -90,14 +90,14 @@ Page {
 						}
 						
 						if( format == "html" ) {
-							ExportManager.textDocumentToHTMLFile( scriptTA.textDocument, urlToUse );
+							ExportManager.textDocumentToHTMLFile( reportTA.textDocument, urlToUse );
 						}  else if( format == "odt" ) {
-							ExportManager.textDocumentToOpenDocumentFile( scriptTA.textDocument, urlToUse );
+							ExportManager.textDocumentToOpenDocumentFile( reportTA.textDocument, urlToUse );
 						} else if( format == "pdf" ) {
-							ExportManager.textDocumentToPDF( scriptTA.textDocument, urlToUse );
+							ExportManager.textDocumentToPDF( reportTA.textDocument, urlToUse );
 						} else if( format == "png" ) {
-							scriptTA.forceActiveFocus() //ensures the background is properly whitened
-							scriptTA.grabToImage( function( result ) { //FIXME: This just takes a screenshot, does not scroll
+							reportTA.forceActiveFocus() //ensures the background is properly whitened
+							reportTA.grabToImage( function( result ) { //FIXME: This just takes a screenshot, does not scroll
 								var s = urlToUse.toString().substring(7); //Remove the file:// from the beginning
 								if( result.saveToFile( s ) ) {
 									console.log( "Saved image to file " + s );
@@ -106,7 +106,7 @@ Page {
 								}
 							})
 						} else { //Plain text
-							ExportManager.textDocumentToPlainTextFile( scriptTA.textDocument, urlToUse );
+							ExportManager.textDocumentToPlainTextFile( reportTA.textDocument, urlToUse );
 						}
 						
 					}

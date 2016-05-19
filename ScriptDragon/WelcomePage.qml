@@ -5,7 +5,6 @@ import Ubuntu.Components.Popups 1.0 as UbuntuDialogs
 import ninja.theopensource.scriptdragon 1.0 //Ignore the warning about this "QML module" not being found
 
 Page {
-	title: i18n.tr( "Welcome" )
 	id: thePage
 	
 	property var currentFileURL: "";
@@ -72,6 +71,26 @@ Page {
 			fill: parent
 		}
 		
+		ActionBar {
+			actions: [
+				Action {
+					iconName: "document-new"
+					text: i18n.tr( "New file" )
+				},
+				
+				Action {
+					iconName: "document-save"
+					text: i18n.tr( "Save file (hold to save as new file)" )
+				},
+				
+				Action {
+					iconName: "document-open"
+					text: i18n.tr( "Open latest (hold to open a different file)" )
+				}
+				
+			]
+		}
+		
 		Component {
 			id: savePopoverComponent
 			UbuntuDialogs.Popover {
@@ -93,8 +112,6 @@ Page {
 				id: newButton
 				iconName: "document-new"
 				text: i18n.tr( "New file" )
-				
-				
 				
 				onClicked: {
 					console.log( "New File button clicked" );

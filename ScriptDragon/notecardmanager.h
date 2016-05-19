@@ -28,7 +28,7 @@ class NotecardManager : public QObject
 		};
 		Q_ENUMS( associationType );
 		
-		Q_INVOKABLE void addNotecard( QString newCardTitle = "", QString newCardText = "", associationType assocType = associationType::NONE, int associatedID = INT_MAX, int idWithinAssociatedThing = 0, QString color = "#ffffff" );
+		Q_INVOKABLE void addNotecard( QString newCardTitle = "", QString newCardText = "", associationType assocType = associationType::NONE, int associatedID = INT32_MAX, int idWithinAssociatedThing = 0, QString color = "#ffffff" );
 		Q_INVOKABLE void associateNotecardWith( QObject* notecard, associationType assocType, int associatedID );
 		
 		void copyNotecardData( QObject* origin, QObject* destination );

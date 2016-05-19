@@ -43,6 +43,13 @@ class ReportGenerator : public QObject
 		void actionsPerDialog( QTextDocument* report );
 		void parentheticalsPerDialog( QTextDocument* report );
 		void transitionsPerDialog( QTextDocument* report );
+		void scenesPerParenthetical( QTextDocument* report );
+		void actionsPerParenthetical( QTextDocument* report );
+		void charactersPerParenthetical( QTextDocument* report );
+		void dialogsPerParenthetical( QTextDocument* report );
+		void transitionsPerParenthetical( QTextDocument* report );
+		void shotsPerParenthetical( QTextDocument* report );
+		void actBreaksPerParenthetical( QTextDocument* report );
 		
 	signals:
 		

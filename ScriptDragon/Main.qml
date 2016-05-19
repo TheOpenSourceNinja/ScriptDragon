@@ -82,7 +82,7 @@ MainView {
 			console.log( "Standard Save As key sequence hit" );
 		}
 	}
-
+	
 	Tabs {
 		id: tabs
 		
@@ -98,7 +98,7 @@ MainView {
 				id: notecardsPage
 			}
 		}
-
+		
 		Tab {
 			id: charactersTab
 			title: i18n.tr( "Characters" )
@@ -107,7 +107,7 @@ MainView {
 				id: charactersPage
 			}
 		}
-
+		
 		Tab {
 			id: locationsTab
 			title: i18n.tr( "Locations" )
@@ -125,7 +125,7 @@ MainView {
 				id: storylinesPage
 			}
 		}
-
+		
 		Tab {
 			id: randomGeneratorsTab
 			title: i18n.tr( "Random generators" )
@@ -134,7 +134,7 @@ MainView {
 				id: randomGeneratorsPage
 			}
 		}
-
+		
 		Tab {
 			id: scriptTab
 			title: i18n.tr( "Script" )
@@ -145,7 +145,7 @@ MainView {
 				id: scriptPage
 			}
 		}
-
+		
 		Tab {
 			id: reportsTab
 			title: i18n.tr( "Reports" )

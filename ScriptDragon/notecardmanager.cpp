@@ -16,7 +16,6 @@ NotecardManager::~NotecardManager() {
 }
 
 Q_INVOKABLE void NotecardManager::addNotecard( QString newCardTitle, QString newCardText, associationType assocType, int associatedID, int idWithinAssociatedThing, QString color ) {
-	std::cout << "addNotecard() called with newCardTitle=\"" << newCardTitle.toStdString() << "\" newCardText=\"" << newCardText.toStdString() << "\" assocType=" << ( uint_fast8_t ) assocType << " assocatedID=" << associatedID << std::endl;
 	
 	QQmlComponent component( engine, QUrl( QStringLiteral( "qrc:///TextNotecard.qml" ) ) );
 	
@@ -44,7 +43,7 @@ Q_INVOKABLE void NotecardManager::addNotecard( QString newCardTitle, QString new
 		object->setProperty( "isDuplicate", false );
 		
 		
-		if( associatedID < INT_MAX && assocType != associationType::NONE ) {
+		if( associatedID < INT32_MAX && assocType != associationType::NONE ) {
 			if( maxIDWithinAssociatedThing.size() <= associatedID ) {
 				maxIDWithinAssociatedThing.resize( associatedID + 1, 0 );
 			}
@@ -63,10 +62,7 @@ Q_INVOKABLE void NotecardManager::addNotecard( QString newCardTitle, QString new
 }
 
 Q_INVOKABLE void NotecardManager::associateNotecardWith( QObject* notecard, associationType assocType, int associatedID ) {
-	//TODO: FIX
-	std::cout << "Is duplicate? " << notecard->property( "isDuplicate" ).toString().toStdString() << std::endl;
-	std::cout << "Is valid? " << notecard->property( "isDuplicate" ).isValid() << std::endl;
-	std::cout << "Is null? " << notecard->property( "isDuplicate" ).isNull() << std::endl;
+	
 	if( notecard->property( "isDuplicate" ).toBool() ) {
 		
 		//find & call this function on the original, then delete this duplicate
@@ -229,9 +225,9 @@ void NotecardManager::removeAssociation( QObject* notecard ) {
 								std::cout << "After: " << notecard->property( "associationType" ).toUInt() << std::endl;
 								
 								std::cout << "Before: " << notecard->property( "associatedID" ).toUInt() << std::endl;
-								notecard->setProperty( "associatedID", INT_MAX );
+								notecard->setProperty( "associatedID", INT32_MAX );
 								std::cout << "After: " << notecard->property( "associatedID" ).toUInt() << std::endl;
-								notecard->setProperty( "idWithinAssociatedThing", INT_MAX );
+								notecard->setProperty( "idWithinAssociatedThing", INT32_MAX );
 								
 								copyNotecardData( notecard, otherNotecard );
 								
@@ -259,9 +255,9 @@ void NotecardManager::removeAssociation( QObject* notecard ) {
 				
 				otherNotecard->setProperty( "associationType", ( uint_fast8_t ) associationType::NONE );
 				
-				otherNotecard->setProperty( "associatedID", INT_MAX );
+				otherNotecard->setProperty( "associatedID", INT32_MAX );
 				
-				otherNotecard->setProperty( "idWithinAssociatedThing", INT_MAX );
+				otherNotecard->setProperty( "idWithinAssociatedThing", INT32_MAX );
 				
 				notecardsWithDuplicates.erase( iterator );
 				iterator = notecardsWithDuplicates.begin();
@@ -277,9 +273,9 @@ void NotecardManager::removeAssociation( QObject* notecard ) {
 		std::cout << "After: " << notecard->property( "associationType" ).toUInt() << std::endl;
 		
 		std::cout << "Before: " << notecard->property( "associatedID" ).toUInt() << std::endl;
-		notecard->setProperty( "associatedID", INT_MAX );
+		notecard->setProperty( "associatedID", INT32_MAX );
 		std::cout << "After: " << notecard->property( "associatedID" ).toUInt() << std::endl;
-		notecard->setProperty( "idWithinAssociatedThing", INT_MAX );
+		notecard->setProperty( "idWithinAssociatedThing", INT32_MAX );
 		notecardsWithAssociations[ assocType ][ associatedID ].removeAll( notecard );
 	}
 	

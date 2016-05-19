@@ -55,7 +55,6 @@ Item {
 				width: scrollView.width
 				
 				function setChildren() {
-					console.log( "setting children of a storyline" );
 					children = NotecardManager.getNotecardsForStoryline( storylineID );
 				}
 				

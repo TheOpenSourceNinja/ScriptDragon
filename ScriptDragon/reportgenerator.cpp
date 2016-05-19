@@ -731,8 +731,36 @@ void ReportGenerator::parentheticalsPerCharacter( QTextDocument* report ) {
 }
 
 void ReportGenerator::transitionsPerCharacter( QTextDocument* report ) {
+	uint_fast16_t transitions = 0;
+	QStringList characters;
+	
+	auto doc = script->textDocument();
+	
+	for( QTextBlock block = doc->begin(); block != doc->end(); block = block.next() ) {
+		if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::TRANSITION ) {
+			transitions++;
+		} else if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::CHARACTER ) {
+			if( !characters.contains( block.text(), Qt::CaseInsensitive ) ) {
+				characters.append( block.text() );
+			}
+		}
+	}
+	
 	QTextCursor cursor( report->firstBlock() );
-	cursor.insertText( "I don't know how to deal with this combination" ); //TODO: translate
+	
+	QTextTableFormat format;
+	format.setHeaderRowCount( 1 );
+	QTextTable* table = cursor.insertTable( 2, 3, format );
+	table->cellAt( 0, 0 ).firstCursorPosition().insertText( "Transitions" ); //TODO: Translate.
+	table->cellAt( 0, 1 ).firstCursorPosition().insertText( "Characters" ); //TODO: Translate.
+	table->cellAt( 0, 2 ).firstCursorPosition().insertText( "Transitions/character" ); //TODO: Translate.
+	table->cellAt( 1, 0 ).firstCursorPosition().insertText( std::to_string( transitions ).c_str() );
+	table->cellAt( 1, 1 ).firstCursorPosition().insertText( std::to_string( characters.length() ).c_str() );
+	
+	if( characters.length() > 0 ) {
+		table->cellAt( 1, 2 ).firstCursorPosition().insertText( std::to_string( ( ( double ) transitions ) / characters.length() ).c_str() );
+	}
+	
 }
 
 void ReportGenerator::shotsPerCharacter( QTextDocument* report ) {
@@ -902,8 +930,237 @@ void ReportGenerator::parentheticalsPerDialog( QTextDocument* report ) {
 }
 
 void ReportGenerator::transitionsPerDialog( QTextDocument* report ) {
+	uint_fast16_t transitions = 0;
+	uint_fast16_t dialogs = 0;
+	
+	auto doc = script->textDocument();
+	
+	for( QTextBlock block = doc->begin(); block != doc->end(); block = block.next() ) {
+		if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::TRANSITION ) {
+			transitions++;
+		} else if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::DIALOG ) {
+			dialogs++;
+		}
+	}
+	
 	QTextCursor cursor( report->firstBlock() );
-	cursor.insertText( "I don't know how to deal with this combination" ); //TODO: translate
+	
+	QTextTableFormat format;
+	format.setHeaderRowCount( 1 );
+	QTextTable* table = cursor.insertTable( 2, 3, format );
+	table->cellAt( 0, 0 ).firstCursorPosition().insertText( "Transitions" ); //TODO: Translate.
+	table->cellAt( 0, 1 ).firstCursorPosition().insertText( "Dialogs" ); //TODO: Translate.
+	table->cellAt( 0, 2 ).firstCursorPosition().insertText( "Transitions/dialog" ); //TODO: Translate.
+	table->cellAt( 1, 0 ).firstCursorPosition().insertText( std::to_string( transitions ).c_str() );
+	table->cellAt( 1, 1 ).firstCursorPosition().insertText( std::to_string( dialogs ).c_str() );
+	
+	if( dialogs > 0 ) {
+		table->cellAt( 1, 2 ).firstCursorPosition().insertText( std::to_string( ( ( double ) transitions ) / dialogs ).c_str() );
+	}
+	
+}
+
+void ReportGenerator::scenesPerParenthetical( QTextDocument* report ) {
+	QTextCursor cursor( report->firstBlock() );
+	uint_fast8_t sceneNumber = 0;
+	auto doc = script->textDocument();
+	bool foundAnything = false;
+	QString scene = "";
+	bool firstActionFound = false;
+	
+	for( QTextBlock block = doc->begin(); block != doc->end(); block = block.next() ) {
+		if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::PARENTHETICAL ) {
+			if( Q_LIKELY( firstActionFound ) ) {
+				cursor.insertBlock();
+			} else {
+				firstActionFound = true;
+			}
+			cursor.insertText( block.text() + ": " + scene );
+			foundAnything = true;
+			
+		} else if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SCENE ) {
+			
+			sceneNumber += 1;
+			foundAnything = false;
+			scene = QString( std::string( "Scene #" + std::to_string( sceneNumber ) + " (" + block.text().toStdString() + ")" ).c_str() ); //TODO: Translate
+			
+		}
+	}
+	
+	if( !foundAnything ) {
+		//cursor.insertText( "None found" ); //TODO: Translate
+	}
+}
+
+void ReportGenerator::actionsPerParenthetical( QTextDocument* report ) {
+	QTextCursor cursor( report->firstBlock() );
+	QTextDocument* doc = script->textDocument();
+	QTextTableFormat format;
+	format.setHeaderRowCount( 1 );
+	QTextTable* table = cursor.insertTable( 2, 3, format ); //Start with only 2 rows; others will be added dynamically. We do know in advance there will only be 3 columns: parenthetical, action before, and action after.
+	table->cellAt( 0, 0 ).firstCursorPosition().insertText( "Parenthetical" ); //TODO: Translate.
+	table->cellAt( 0, 1 ).firstCursorPosition().insertText( "Action preceding" ); //TODO: Translate.
+	table->cellAt( 0, 2 ).firstCursorPosition().insertText( "Action following" ); //TODO: Translate.
+	
+	uint_fast8_t currentRow = 1;
+	for( QTextBlock block = doc->begin(); block != doc->end(); block = block.next() ) {
+		if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::ACTION ) {
+			if( Q_LIKELY( currentRow > 1 ) ) {
+				table->cellAt( currentRow - 1, 2 ).firstCursorPosition().insertText( block.text() );
+			}
+			table->cellAt( currentRow, 1 ).firstCursorPosition().insertText( block.text() );
+		} else if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::PARENTHETICAL ) {
+			table->cellAt( currentRow, 0  ).firstCursorPosition().insertText( block.text() );
+			currentRow++;
+			table->appendRows( 1 );
+		}
+	}
+}
+
+void ReportGenerator::charactersPerParenthetical( QTextDocument* report ) {
+	QTextCursor cursor( report->firstBlock() );
+	QString character = "";
+	auto doc = script->textDocument();
+	
+	for( QTextBlock block = doc->begin(); block != doc->end(); block = block.next() ) {
+		if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::PARENTHETICAL ) {
+			if( block != doc->firstBlock() && character.isEmpty()) {
+				cursor.insertText( "None found" ); //TODO: Translate
+			}
+			
+			cursor.insertText( block.text() + ": " );
+			
+			if( !character.isEmpty() ) {
+				cursor.insertText( character );
+			}
+			
+			if( block != doc->firstBlock() ) {
+				cursor.insertBlock();
+			}
+			
+			character = "";
+			
+		} else if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::CHARACTER ) {
+			
+			character = block.text();
+			
+		}
+	}
+	
+}
+
+void ReportGenerator::dialogsPerParenthetical( QTextDocument* report ) {
+	
+	QTextCursor cursor( report->firstBlock() );
+	auto doc = script->textDocument();
+	
+	for( QTextBlock block = doc->begin(); block != doc->end(); block = block.next() ) {
+		if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::PARENTHETICAL ) {
+			QTextBlock next;
+			do {
+				next = block.next();
+			} while( next.isValid() && next.userState() != ( uint_fast8_t ) ScriptFormatter::paragraphType::DIALOG );
+			
+			cursor.insertText( block.text() + ": " );
+			cursor.insertText( next.text() );
+			
+			if( block != doc->firstBlock() ) {
+				cursor.insertBlock();
+			}
+			
+		}
+	}
+	
+}
+
+void ReportGenerator::transitionsPerParenthetical( QTextDocument* report ) {
+	uint_fast16_t transitions = 0;
+	uint_fast16_t parentheticals = 0;
+	
+	auto doc = script->textDocument();
+	
+	for( QTextBlock block = doc->begin(); block != doc->end(); block = block.next() ) {
+		if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::TRANSITION ) {
+			transitions++;
+		} else if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::PARENTHETICAL ) {
+			parentheticals++;
+		}
+	}
+	
+	QTextCursor cursor( report->firstBlock() );
+	
+	QTextTableFormat format;
+	format.setHeaderRowCount( 1 );
+	QTextTable* table = cursor.insertTable( 2, 3, format );
+	table->cellAt( 0, 0 ).firstCursorPosition().insertText( "Transitions" ); //TODO: Translate.
+	table->cellAt( 0, 1 ).firstCursorPosition().insertText( "Parentheticals" ); //TODO: Translate.
+	table->cellAt( 0, 2 ).firstCursorPosition().insertText( "Transitions/parenthetical" ); //TODO: Translate.
+	table->cellAt( 1, 0 ).firstCursorPosition().insertText( std::to_string( transitions ).c_str() );
+	table->cellAt( 1, 1 ).firstCursorPosition().insertText( std::to_string( parentheticals ).c_str() );
+	
+	if( parentheticals > 0 ) {
+		table->cellAt( 1, 2 ).firstCursorPosition().insertText( std::to_string( ( ( double ) transitions ) / parentheticals ).c_str() );
+	}
+	
+}
+
+void ReportGenerator::shotsPerParenthetical( QTextDocument* report ) {
+	auto doc = script->textDocument();
+	QString shot = "";
+	QTextCursor cursor( report->firstBlock() );
+	
+	for( QTextBlock block = doc->firstBlock(); block != doc->end(); block = block.next() ) {
+		switch( block.userState() ) {
+			case ( uint_fast8_t ) ScriptFormatter::paragraphType::SHOT: {
+				shot = block.text();
+				break;
+			}
+			case ( uint_fast8_t ) ScriptFormatter::paragraphType::SCENE:
+			case ( uint_fast8_t ) ScriptFormatter::paragraphType::TRANSITION:
+			case ( uint_fast8_t ) ScriptFormatter::paragraphType::ACT_BREAK: {
+				shot = "This parenthetical is not in a shot"; //TODO: Translate.
+				break;
+			}
+			case ( uint_fast8_t ) ScriptFormatter::paragraphType::PARENTHETICAL: {
+				cursor.insertText( block.text() + ": " + shot );
+				cursor.insertBlock();
+				break;
+			}
+			default: break;
+		}
+		
+	}
+}
+
+void ReportGenerator::actBreaksPerParenthetical( QTextDocument* report ) {
+	uint_fast16_t actBreaks = 0;
+	uint_fast16_t parentheticals = 0;
+	
+	auto doc = script->textDocument();
+	
+	for( QTextBlock block = doc->begin(); block != doc->end(); block = block.next() ) {
+		if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::ACT_BREAK ) {
+			actBreaks++;
+		} else if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::PARENTHETICAL ) {
+			parentheticals++;
+		}
+	}
+	
+	QTextCursor cursor( report->firstBlock() );
+	
+	QTextTableFormat format;
+	format.setHeaderRowCount( 1 );
+	QTextTable* table = cursor.insertTable( 2, 3, format );
+	table->cellAt( 0, 0 ).firstCursorPosition().insertText( "Act breaks" ); //TODO: Translate.
+	table->cellAt( 0, 1 ).firstCursorPosition().insertText( "Parentheticals" ); //TODO: Translate.
+	table->cellAt( 0, 2 ).firstCursorPosition().insertText( "Act breaks/parenthetical" ); //TODO: Translate.
+	table->cellAt( 1, 0 ).firstCursorPosition().insertText( std::to_string( actBreaks ).c_str() );
+	table->cellAt( 1, 1 ).firstCursorPosition().insertText( std::to_string( parentheticals ).c_str() );
+	
+	if( parentheticals > 0 ) {
+		table->cellAt( 1, 2 ).firstCursorPosition().insertText( std::to_string( ( ( double ) actBreaks ) / parentheticals ).c_str() );
+	}
+	
 }
 
 QString ReportGenerator::generateReport( int numerator, int denominator ) {
@@ -930,6 +1187,10 @@ QString ReportGenerator::generateReport( int numerator, int denominator ) {
 					scenesPerDialog( &report );
 					break;
 				}
+				case ( uint_fast8_t ) ScriptFormatter::paragraphType::PARENTHETICAL: {
+					scenesPerParenthetical( &report );
+					break;
+				}
 				default: {
 					report.setPlainText( unimplemented );
 					break;
@@ -953,6 +1214,10 @@ QString ReportGenerator::generateReport( int numerator, int denominator ) {
 					actionsPerDialog( &report );
 					break;
 				}
+				case ( uint_fast8_t ) ScriptFormatter::paragraphType::PARENTHETICAL: {
+					actionsPerParenthetical( &report );
+					break;
+				}
 				default: {
 					report.setPlainText( unimplemented );
 					break;
@@ -969,6 +1234,10 @@ QString ReportGenerator::generateReport( int numerator, int denominator ) {
 				}
 				case ( uint_fast8_t ) ScriptFormatter::paragraphType::ACTION: {
 					charactersPerAction( &report );
+					break;
+				}
+				case ( uint_fast8_t ) ScriptFormatter::paragraphType::PARENTHETICAL: {
+					charactersPerParenthetical( &report );
 					break;
 				}
 				default: {
@@ -989,8 +1258,12 @@ QString ReportGenerator::generateReport( int numerator, int denominator ) {
 					dialogsPerAction( &report );
 					break;
 				}
-				case( uint_fast8_t ) ScriptFormatter::paragraphType::CHARACTER: {
+				case ( uint_fast8_t ) ScriptFormatter::paragraphType::CHARACTER: {
 					dialogsPerCharacter( &report );
+					break;
+				}
+				case ( uint_fast8_t ) ScriptFormatter::paragraphType::PARENTHETICAL: {
+					dialogsPerParenthetical( &report );
 					break;
 				}
 				default: {
@@ -1045,6 +1318,10 @@ QString ReportGenerator::generateReport( int numerator, int denominator ) {
 					transitionsPerDialog( &report );
 					break;
 				}
+				case ( uint_fast8_t ) ScriptFormatter::paragraphType::PARENTHETICAL: {
+					transitionsPerParenthetical( &report );
+					break;
+				}
 				default: {
 					report.setPlainText( unimplemented );
 					break;
@@ -1067,6 +1344,10 @@ QString ReportGenerator::generateReport( int numerator, int denominator ) {
 					shotsPerCharacter( &report );
 					break;
 				}
+				case ( uint_fast8_t ) ScriptFormatter::paragraphType::PARENTHETICAL: {
+					shotsPerParenthetical( &report );
+					break;
+				}
 				default: {
 					report.setPlainText( unimplemented );
 					break;
@@ -1087,6 +1368,10 @@ QString ReportGenerator::generateReport( int numerator, int denominator ) {
 				}
 				case ( uint_fast8_t ) ScriptFormatter::paragraphType::CHARACTER: {
 					actBreaksPerCharacter( &report );
+					break;
+				}
+				case ( uint_fast8_t ) ScriptFormatter::paragraphType::PARENTHETICAL: {
+					actBreaksPerParenthetical( &report );
 					break;
 				}
 				default: {
