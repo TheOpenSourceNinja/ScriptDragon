@@ -50,6 +50,20 @@ class ReportGenerator : public QObject
 		void transitionsPerParenthetical( QTextDocument* report );
 		void shotsPerParenthetical( QTextDocument* report );
 		void actBreaksPerParenthetical( QTextDocument* report );
+		void scenesPerTransition( QTextDocument* report );
+		void actionsPerTransition( QTextDocument* report );
+		void charactersPerTransition( QTextDocument* report );
+		void dialogsPerTransition( QTextDocument* report );
+		void parentheticalsPerTransition( QTextDocument* report );
+		void shotsPerTransition( QTextDocument* report );
+		void actBreaksPerTransition( QTextDocument* report );
+		void scenesPerShot( QTextDocument* report );
+		void actionsPerShot( QTextDocument* report );
+		void charactersPerShot( QTextDocument* report );
+		void dialogsPerShot( QTextDocument* report );
+		void parentheticalsPerShot( QTextDocument* report );
+		void transitionsPerShot( QTextDocument* report );
+		void actBreaksPerShot( QTextDocument* report );
 		
 	signals:
 		

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-18 19:59-0700\n"
+"POT-Creation-Date: 2016-05-22 19:50-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -900,19 +900,16 @@ msgstr ""
 msgid "Choose a file to save to"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:78
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:114
 msgid "New file"
 msgstr ""
 
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:83
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:156
-msgid "Save file (hold to save as new file)"
-msgstr ""
-
-#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:88
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:135
 msgid "Open latest (hold to open a different file)"
+msgstr ""
+
+#: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:156
+msgid "Save file (hold to save as new file)"
 msgstr ""
 
 #: /media/SecondDrive/Programming/ScriptDragon/ScriptDragon/WelcomePage.qml:187

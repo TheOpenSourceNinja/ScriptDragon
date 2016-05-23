@@ -1163,6 +1163,498 @@ void ReportGenerator::actBreaksPerParenthetical( QTextDocument* report ) {
 	
 }
 
+void ReportGenerator::scenesPerTransition( QTextDocument* report ) {
+	QTextCursor cursor( report->firstBlock() );
+	QTextDocument* doc = script->textDocument();
+	QTextTableFormat format;
+	format.setHeaderRowCount( 1 );
+	QTextTable* table = cursor.insertTable( 2, 3, format ); //Start with only 2 rows; others will be added dynamically. We do know in advance there will only be 3 columns: transition, scene before, and scene after.
+	table->cellAt( 0, 0 ).firstCursorPosition().insertText( "Transition" ); //TODO: Translate.
+	table->cellAt( 0, 1 ).firstCursorPosition().insertText( "Scene preceding" ); //TODO: Translate.
+	table->cellAt( 0, 2 ).firstCursorPosition().insertText( "Scene following" ); //TODO: Translate.
+	
+	uint_fast8_t currentRow = 1;
+	for( QTextBlock block = doc->begin(); block != doc->end(); block = block.next() ) {
+		if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::TRANSITION ) {
+			table->cellAt( currentRow, 0  ).firstCursorPosition().insertText( block.text() );
+			
+			{
+				QTextBlock preceding = block;
+				bool found = false;
+				do {
+					preceding = preceding.previous();
+					if( preceding.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SCENE ) {
+						table->cellAt( currentRow, 1 ).firstCursorPosition().insertText( preceding.text() );
+						found = true;
+					}
+				} while( !found && preceding.length() > 0 );
+			}
+			{
+				QTextBlock following = block;
+				bool found = false;
+				do {
+					following = following.next();
+					if( following.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SCENE ) {
+						table->cellAt( currentRow, 2 ).firstCursorPosition().insertText( following.text() );
+						found = true;
+					}
+				} while( !found && following.length() > 0 );
+			}
+			
+			currentRow++;
+			table->appendRows( 1 );
+		}
+	}
+}
+
+void ReportGenerator::actionsPerTransition( QTextDocument* report ) {
+	QTextCursor cursor( report->firstBlock() );
+	QTextDocument* doc = script->textDocument();
+	QTextTableFormat format;
+	format.setHeaderRowCount( 1 );
+	QTextTable* table = cursor.insertTable( 2, 3, format ); //Start with only 2 rows; others will be added dynamically. We do know in advance there will only be 3 columns: transition, before, and after.
+	table->cellAt( 0, 0 ).firstCursorPosition().insertText( "Transition" ); //TODO: Translate.
+	table->cellAt( 0, 1 ).firstCursorPosition().insertText( "Action preceding" ); //TODO: Translate.
+	table->cellAt( 0, 2 ).firstCursorPosition().insertText( "Action following" ); //TODO: Translate.
+	
+	uint_fast8_t currentRow = 1;
+	for( QTextBlock block = doc->begin(); block != doc->end(); block = block.next() ) {
+		if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::TRANSITION ) {
+			table->cellAt( currentRow, 0  ).firstCursorPosition().insertText( block.text() );
+			
+			{
+				QTextBlock preceding = block;
+				bool found = false;
+				do {
+					preceding = preceding.previous();
+					if( preceding.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::ACTION ) {
+						table->cellAt( currentRow, 1 ).firstCursorPosition().insertText( preceding.text() );
+						found = true;
+					}
+				} while( !found && preceding.length() > 0 );
+			}
+			{
+				QTextBlock following = block;
+				bool found = false;
+				do {
+					following = following.next();
+					if( following.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::ACTION ) {
+						table->cellAt( currentRow, 2 ).firstCursorPosition().insertText( following.text() );
+						found = true;
+					}
+				} while( !found && following.length() > 0 );
+			}
+			
+			currentRow++;
+			table->appendRows( 1 );
+		}
+	}
+}
+
+void ReportGenerator::charactersPerTransition( QTextDocument* report ) {
+	QTextCursor cursor( report->firstBlock() );
+	QTextDocument* doc = script->textDocument();
+	QTextTableFormat format;
+	format.setHeaderRowCount( 1 );
+	QTextTable* table = cursor.insertTable( 2, 3, format ); //Start with only 2 rows; others will be added dynamically. We do know in advance there will only be 3 columns: transition, before, and after.
+	table->cellAt( 0, 0 ).firstCursorPosition().insertText( "Transition" ); //TODO: Translate.
+	table->cellAt( 0, 1 ).firstCursorPosition().insertText( "Characters in preceding scene" ); //TODO: Translate.
+	table->cellAt( 0, 2 ).firstCursorPosition().insertText( "Characters in following scene" ); //TODO: Translate.
+	
+	uint_fast8_t currentRow = 1;
+	for( QTextBlock block = doc->begin(); block != doc->end(); block = block.next() ) {
+		if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::TRANSITION ) {
+			table->cellAt( currentRow, 0  ).firstCursorPosition().insertText( block.text() );
+			
+			{
+				QTextBlock preceding = block;
+				bool found = false;
+				QStringList characters;
+				
+				do {
+					preceding = preceding.previous();
+					if( preceding.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::CHARACTER ) {
+						if( !characters.contains( preceding.text(), Qt::CaseInsensitive ) ) {
+							characters.append( preceding.text() );
+						}
+					} else if( preceding.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SCENE ) {
+						found = true;
+					}
+				} while( !found && preceding.length() > 0 );
+				
+				characters.sort();
+				table->cellAt( currentRow, 1 ).firstCursorPosition().insertText( characters.join( ", " ) );
+			}
+			{
+				QTextBlock following = block.next();
+				if( following.length() > 0 ) {
+					bool found = false;
+					QStringList characters;
+					
+					do {
+						following = following.next();
+						if( following.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::CHARACTER ) {
+							if( !characters.contains( following.text(), Qt::CaseInsensitive ) ) {
+								characters.append( following.text() );
+							}
+						} else if( following.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SCENE ) {
+							found = true;
+						}
+					} while( !found && following.length() > 0 );
+					
+					characters.sort();
+					table->cellAt( currentRow, 2 ).firstCursorPosition().insertText( characters.join( ", " ) );
+				}
+			}
+			
+			currentRow++;
+			table->appendRows( 1 );
+		}
+	}
+}
+
+void ReportGenerator::dialogsPerTransition( QTextDocument* report ) {
+	QTextCursor cursor( report->firstBlock() );
+	QTextDocument* doc = script->textDocument();
+	QTextTableFormat format;
+	format.setHeaderRowCount( 1 );
+	QTextTable* table = cursor.insertTable( 2, 3, format ); //Start with only 2 rows; others will be added dynamically. We do know in advance there will only be 3 columns: transition, before, and after.
+	table->cellAt( 0, 0 ).firstCursorPosition().insertText( "Transition" ); //TODO: Translate.
+	table->cellAt( 0, 1 ).firstCursorPosition().insertText( "Dialog preceding" ); //TODO: Translate.
+	table->cellAt( 0, 2 ).firstCursorPosition().insertText( "Dialog following" ); //TODO: Translate.
+	
+	uint_fast8_t currentRow = 1;
+	for( QTextBlock block = doc->begin(); block != doc->end(); block = block.next() ) {
+		if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::TRANSITION ) {
+			table->cellAt( currentRow, 0  ).firstCursorPosition().insertText( block.text() );
+			
+			{
+				QTextBlock preceding = block;
+				bool found = false;
+				do {
+					preceding = preceding.previous();
+					if( preceding.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::DIALOG ) {
+						table->cellAt( currentRow, 1 ).firstCursorPosition().insertText( preceding.text() );
+						found = true;
+					}
+				} while( !found && preceding.length() > 0 );
+			}
+			{
+				QTextBlock following = block;
+				bool found = false;
+				do {
+					following = following.next();
+					if( following.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::DIALOG ) {
+						table->cellAt( currentRow, 2 ).firstCursorPosition().insertText( following.text() );
+						found = true;
+					}
+				} while( !found && following.length() > 0 );
+			}
+			
+			currentRow++;
+			table->appendRows( 1 );
+		}
+	}
+}
+
+void ReportGenerator::parentheticalsPerTransition( QTextDocument* report ) {
+	QTextCursor cursor( report->firstBlock() );
+	QTextDocument* doc = script->textDocument();
+	QTextTableFormat format;
+	format.setHeaderRowCount( 1 );
+	QTextTable* table = cursor.insertTable( 2, 3, format ); //Start with only 2 rows; others will be added dynamically. We do know in advance there will only be 3 columns: transition, before, and after.
+	table->cellAt( 0, 0 ).firstCursorPosition().insertText( "Transition" ); //TODO: Translate.
+	table->cellAt( 0, 1 ).firstCursorPosition().insertText( "Parenthetical preceding" ); //TODO: Translate.
+	table->cellAt( 0, 2 ).firstCursorPosition().insertText( "Parenthetical following" ); //TODO: Translate.
+	
+	uint_fast8_t currentRow = 1;
+	for( QTextBlock block = doc->begin(); block != doc->end(); block = block.next() ) {
+		if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::TRANSITION ) {
+			table->cellAt( currentRow, 0  ).firstCursorPosition().insertText( block.text() );
+			
+			{
+				QTextBlock preceding = block;
+				bool found = false;
+				do {
+					preceding = preceding.previous();
+					if( preceding.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::PARENTHETICAL ) {
+						table->cellAt( currentRow, 1 ).firstCursorPosition().insertText( preceding.text() );
+						found = true;
+					}
+				} while( !found && preceding.length() > 0 );
+			}
+			{
+				QTextBlock following = block;
+				bool found = false;
+				do {
+					following = following.next();
+					if( following.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::PARENTHETICAL ) {
+						table->cellAt( currentRow, 2 ).firstCursorPosition().insertText( following.text() );
+						found = true;
+					}
+				} while( !found && following.length() > 0 );
+			}
+			
+			currentRow++;
+			table->appendRows( 1 );
+		}
+	}
+}
+
+void ReportGenerator::shotsPerTransition( QTextDocument* report ) {
+	QTextCursor cursor( report->firstBlock() );
+	QTextDocument* doc = script->textDocument();
+	QTextTableFormat format;
+	format.setHeaderRowCount( 1 );
+	QTextTable* table = cursor.insertTable( 2, 3, format ); //Start with only 2 rows; others will be added dynamically. We do know in advance there will only be 3 columns: transition, before, and after.
+	table->cellAt( 0, 0 ).firstCursorPosition().insertText( "Transition" ); //TODO: Translate.
+	table->cellAt( 0, 1 ).firstCursorPosition().insertText( "Parenthetical preceding" ); //TODO: Translate.
+	table->cellAt( 0, 2 ).firstCursorPosition().insertText( "Parenthetical following" ); //TODO: Translate.
+	
+	uint_fast8_t currentRow = 1;
+	for( QTextBlock block = doc->begin(); block != doc->end(); block = block.next() ) {
+		if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::TRANSITION ) {
+			table->cellAt( currentRow, 0  ).firstCursorPosition().insertText( block.text() );
+			
+			{
+				QTextBlock preceding = block;
+				bool found = false;
+				do {
+					preceding = preceding.previous();
+					if( preceding.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SHOT ) {
+						table->cellAt( currentRow, 1 ).firstCursorPosition().insertText( preceding.text() );
+						found = true;
+					}
+				} while( !found && preceding.length() > 0 );
+			}
+			{
+				QTextBlock following = block;
+				bool found = false;
+				do {
+					following = following.next();
+					if( following.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SHOT ) {
+						table->cellAt( currentRow, 2 ).firstCursorPosition().insertText( following.text() );
+						found = true;
+					}
+				} while( !found && following.length() > 0 );
+			}
+			
+			currentRow++;
+			table->appendRows( 1 );
+		}
+	}
+}
+
+void ReportGenerator::actBreaksPerTransition( QTextDocument* report ) {
+	QTextCursor cursor( report->firstBlock() );
+	QTextDocument* doc = script->textDocument();
+	QTextTableFormat format;
+	format.setHeaderRowCount( 1 );
+	QTextTable* table = cursor.insertTable( 2, 3, format ); //Start with only 2 rows; others will be added dynamically. We do know in advance there will only be 3 columns: transition, before, and after.
+	table->cellAt( 0, 0 ).firstCursorPosition().insertText( "Transition" ); //TODO: Translate.
+	table->cellAt( 0, 1 ).firstCursorPosition().insertText( "Act break preceding" ); //TODO: Translate.
+	table->cellAt( 0, 2 ).firstCursorPosition().insertText( "Act break following" ); //TODO: Translate.
+	
+	uint_fast8_t currentRow = 1;
+	for( QTextBlock block = doc->begin(); block != doc->end(); block = block.next() ) {
+		if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::TRANSITION ) {
+			table->cellAt( currentRow, 0  ).firstCursorPosition().insertText( block.text() );
+			
+			{
+				QTextBlock preceding = block;
+				bool found = false;
+				do {
+					preceding = preceding.previous();
+					if( preceding.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::ACT_BREAK ) {
+						table->cellAt( currentRow, 1 ).firstCursorPosition().insertText( preceding.text() );
+						found = true;
+					}
+				} while( !found && preceding.length() > 0 );
+			}
+			{
+				QTextBlock following = block;
+				bool found = false;
+				do {
+					following = following.next();
+					if( following.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::ACT_BREAK ) {
+						table->cellAt( currentRow, 2 ).firstCursorPosition().insertText( following.text() );
+						found = true;
+					}
+				} while( !found && following.length() > 0 );
+			}
+			
+			currentRow++;
+			table->appendRows( 1 );
+		}
+	}
+}
+
+void ReportGenerator::scenesPerShot( QTextDocument* report ) {
+	QTextCursor cursor( report->firstBlock() );
+	auto doc = script->textDocument();
+	bool foundAnything = false;
+	QString shot = "";
+	bool firstShotFound = false;
+	
+	for( QTextBlock block = doc->begin(); block != doc->end(); block = block.next() ) {
+		if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SHOT ) {
+			if( Q_LIKELY( firstShotFound ) ) {
+				cursor.insertBlock();
+			} else {
+				firstShotFound = true;
+			}
+			cursor.insertText( block.text() + ": " + shot );
+			foundAnything = true;
+			
+		} else if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SCENE ) {
+			
+			foundAnything = false;
+			shot = block.text();
+			
+		}
+	}
+	
+	if( !foundAnything ) {
+		//cursor.insertText( "None found" ); //TODO: Translate
+	}
+}
+
+void ReportGenerator::actionsPerShot( QTextDocument* report ) {
+	QTextDocument* doc = script->textDocument();
+	QTextCursor cursor( report->firstBlock() );
+	
+	for( QTextBlock block = doc->firstBlock(); block != doc->end(); block = block.next() ) {
+		if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SHOT ) {
+			cursor.insertText( block.text() + ": " );
+			
+			bool keepGoing = true;
+			for( QTextBlock innerBlock = block.next(); innerBlock != doc->end() && keepGoing; innerBlock = innerBlock.next() ) {
+				if( innerBlock.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SHOT 
+						|| innerBlock.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::TRANSITION
+						|| innerBlock.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SCENE
+						|| innerBlock.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::ACT_BREAK ) {
+					keepGoing = false;
+				} else if( innerBlock.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::ACTION ) {
+					cursor.insertText( innerBlock.text() + ", " );
+				}
+			}
+		}
+	}
+}
+
+void ReportGenerator::charactersPerShot( QTextDocument* report ) {
+	QTextDocument* doc = script->textDocument();
+	QTextCursor cursor( report->firstBlock() );
+	
+	for( QTextBlock block = doc->firstBlock(); block != doc->end(); block = block.next() ) {
+		if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SHOT ) {
+			cursor.insertText( block.text() + ": " );
+			
+			bool keepGoing = true;
+			for( QTextBlock innerBlock = block.next(); innerBlock != doc->end() && keepGoing; innerBlock = innerBlock.next() ) {
+				if( innerBlock.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SHOT 
+						|| innerBlock.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::TRANSITION
+						|| innerBlock.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SCENE
+						|| innerBlock.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::ACT_BREAK ) {
+					keepGoing = false;
+				} else if( innerBlock.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::CHARACTER ) {
+					cursor.insertText( innerBlock.text() + ", " );
+				}
+			}
+		}
+	}
+}
+
+void ReportGenerator::dialogsPerShot( QTextDocument* report ) {
+	QTextDocument* doc = script->textDocument();
+	QTextCursor cursor( report->firstBlock() );
+	
+	for( QTextBlock block = doc->firstBlock(); block != doc->end(); block = block.next() ) {
+		if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SHOT ) {
+			cursor.insertText( block.text() + ": " );
+			
+			bool keepGoing = true;
+			for( QTextBlock innerBlock = block.next(); innerBlock != doc->end() && keepGoing; innerBlock = innerBlock.next() ) {
+				if( innerBlock.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SHOT 
+						|| innerBlock.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::TRANSITION
+						|| innerBlock.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SCENE
+						|| innerBlock.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::ACT_BREAK ) {
+					keepGoing = false;
+				} else if( innerBlock.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::DIALOG ) {
+					cursor.insertText( innerBlock.text() + ", " );
+				}
+			}
+		}
+	}
+}
+
+void ReportGenerator::parentheticalsPerShot( QTextDocument* report ) {
+	QTextDocument* doc = script->textDocument();
+	QTextCursor cursor( report->firstBlock() );
+	
+	for( QTextBlock block = doc->firstBlock(); block != doc->end(); block = block.next() ) {
+		if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SHOT ) {
+			cursor.insertText( block.text() + ": " );
+			
+			bool keepGoing = true;
+			for( QTextBlock innerBlock = block.next(); innerBlock != doc->end() && keepGoing; innerBlock = innerBlock.next() ) {
+				if( innerBlock.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SHOT 
+						|| innerBlock.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::TRANSITION
+						|| innerBlock.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SCENE
+						|| innerBlock.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::ACT_BREAK ) {
+					keepGoing = false;
+				} else if( innerBlock.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::PARENTHETICAL ) {
+					cursor.insertText( innerBlock.text() + ", " );
+				}
+			}
+		}
+	}
+}
+
+void ReportGenerator::transitionsPerShot( QTextDocument* report ) {
+	QTextDocument* doc = script->textDocument();
+	QTextCursor cursor( report->firstBlock() );
+	
+	for( QTextBlock block = doc->firstBlock(); block != doc->end(); block = block.next() ) {
+		if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SHOT ) {
+			cursor.insertText( block.text() + ": " );
+			
+			bool keepGoing = true;
+			for( QTextBlock innerBlock = block.next(); innerBlock != doc->end() && keepGoing; innerBlock = innerBlock.next() ) {
+				if( innerBlock.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SHOT
+						|| innerBlock.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SCENE
+						|| innerBlock.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::ACT_BREAK ) {
+					keepGoing = false;
+				} else if( innerBlock.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::TRANSITION ) {
+					cursor.insertText( innerBlock.text() + ", " );
+				}
+			}
+		}
+	}
+}
+
+void ReportGenerator::actBreaksPerShot( QTextDocument* report ) {
+	QTextDocument* doc = script->textDocument();
+	QTextCursor cursor( report->firstBlock() );
+	
+	for( QTextBlock block = doc->firstBlock(); block != doc->end(); block = block.next() ) {
+		if( block.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SHOT ) {
+			cursor.insertText( block.text() + ": " );
+			
+			bool keepGoing = true;
+			for( QTextBlock innerBlock = block.next(); innerBlock != doc->end() && keepGoing; innerBlock = innerBlock.next() ) {
+				if( innerBlock.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SHOT 
+						|| innerBlock.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::TRANSITION
+						|| innerBlock.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::SCENE ) {
+					keepGoing = false;
+				} else if( innerBlock.userState() == ( uint_fast8_t ) ScriptFormatter::paragraphType::ACT_BREAK ) {
+					cursor.insertText( innerBlock.text() + ", " );
+				}
+			}
+		}
+	}
+}
+
 QString ReportGenerator::generateReport( int numerator, int denominator ) {
 	QTextDocument report;
 	
@@ -1189,6 +1681,14 @@ QString ReportGenerator::generateReport( int numerator, int denominator ) {
 				}
 				case ( uint_fast8_t ) ScriptFormatter::paragraphType::PARENTHETICAL: {
 					scenesPerParenthetical( &report );
+					break;
+				}
+				case ( uint_fast8_t ) ScriptFormatter::paragraphType::TRANSITION: {
+					scenesPerTransition( &report );
+					break;
+				}
+				case ( uint_fast8_t ) ScriptFormatter::paragraphType::SHOT: {
+					scenesPerShot( &report );
 					break;
 				}
 				default: {
@@ -1218,6 +1718,14 @@ QString ReportGenerator::generateReport( int numerator, int denominator ) {
 					actionsPerParenthetical( &report );
 					break;
 				}
+				case ( uint_fast8_t ) ScriptFormatter::paragraphType::TRANSITION: {
+					actionsPerTransition( &report );
+					break;
+				}
+				case ( uint_fast8_t ) ScriptFormatter::paragraphType::SHOT: {
+					actionsPerShot( &report );
+					break;
+				}
 				default: {
 					report.setPlainText( unimplemented );
 					break;
@@ -1238,6 +1746,14 @@ QString ReportGenerator::generateReport( int numerator, int denominator ) {
 				}
 				case ( uint_fast8_t ) ScriptFormatter::paragraphType::PARENTHETICAL: {
 					charactersPerParenthetical( &report );
+					break;
+				}
+				case ( uint_fast8_t ) ScriptFormatter::paragraphType::TRANSITION: {
+					charactersPerTransition( &report );
+					break;
+				}
+				case ( uint_fast8_t ) ScriptFormatter::paragraphType::SHOT: {
+					charactersPerShot( &report );
 					break;
 				}
 				default: {
@@ -1266,6 +1782,14 @@ QString ReportGenerator::generateReport( int numerator, int denominator ) {
 					dialogsPerParenthetical( &report );
 					break;
 				}
+				case ( uint_fast8_t ) ScriptFormatter::paragraphType::TRANSITION: {
+					dialogsPerTransition( &report );
+					break;
+				}
+				case ( uint_fast8_t ) ScriptFormatter::paragraphType::SHOT: {
+					dialogsPerShot( &report );
+					break;
+				}
 				default: {
 					report.setPlainText( unimplemented );
 					break;
@@ -1290,6 +1814,14 @@ QString ReportGenerator::generateReport( int numerator, int denominator ) {
 				}
 				case ( uint_fast8_t ) ScriptFormatter::paragraphType::DIALOG: {
 					parentheticalsPerDialog( &report );
+					break;
+				}
+				case ( uint_fast8_t ) ScriptFormatter::paragraphType::TRANSITION: {
+					parentheticalsPerTransition( &report );
+					break;
+				}
+				case ( uint_fast8_t ) ScriptFormatter::paragraphType::SHOT: {
+					parentheticalsPerShot( &report );
 					break;
 				}
 				default: {
@@ -1322,6 +1854,10 @@ QString ReportGenerator::generateReport( int numerator, int denominator ) {
 					transitionsPerParenthetical( &report );
 					break;
 				}
+				case ( uint_fast8_t ) ScriptFormatter::paragraphType::SHOT: {
+					transitionsPerShot( &report );
+					break;
+				}
 				default: {
 					report.setPlainText( unimplemented );
 					break;
@@ -1348,6 +1884,10 @@ QString ReportGenerator::generateReport( int numerator, int denominator ) {
 					shotsPerParenthetical( &report );
 					break;
 				}
+				case ( uint_fast8_t ) ScriptFormatter::paragraphType::TRANSITION: {
+					shotsPerTransition( &report );
+					break;
+				}
 				default: {
 					report.setPlainText( unimplemented );
 					break;
@@ -1372,6 +1912,14 @@ QString ReportGenerator::generateReport( int numerator, int denominator ) {
 				}
 				case ( uint_fast8_t ) ScriptFormatter::paragraphType::PARENTHETICAL: {
 					actBreaksPerParenthetical( &report );
+					break;
+				}
+				case ( uint_fast8_t ) ScriptFormatter::paragraphType::TRANSITION: {
+					actBreaksPerTransition( &report );
+					break;
+				}
+				case ( uint_fast8_t ) ScriptFormatter::paragraphType::SHOT: {
+					actBreaksPerShot( &report );
 					break;
 				}
 				default: {

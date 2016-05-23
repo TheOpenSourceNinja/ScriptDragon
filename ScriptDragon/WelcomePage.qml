@@ -71,7 +71,7 @@ Page {
 			fill: parent
 		}
 		
-		ActionBar {
+		/*ActionBar {
 			actions: [
 				Action {
 					iconName: "document-new"
@@ -89,7 +89,7 @@ Page {
 				}
 				
 			]
-		}
+		}*/
 		
 		Component {
 			id: savePopoverComponent
