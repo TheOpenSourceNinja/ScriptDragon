@@ -73,7 +73,17 @@ Q_INVOKABLE void NotecardManager::associateNotecardWith( QObject* notecard, asso
 			auto otherNotecard = notecardsWithDuplicates[ i ];
 			if( otherNotecard->property( "idWithinAssociatedThing" ).toUInt() == oldIDWithin && otherNotecard->property( "associationType" ).toUInt() == oldAssocType && otherNotecard->property( "associatedID" ).toUInt() == oldAssocID ) {
 				notecardsWithDuplicates.erase( notecardsWithDuplicates.begin() + i ); //The notecard gets re-added to the list lower down in this function; this is to prevent duplication
+				
+				//Trying to work around a bug where a Dialog being closed does not fully close if its parent gets deleted
+				auto children = notecard->children();
+				auto child = notecard->findChild< QObject* >( "dialog", Qt::FindChildrenRecursively );
+				//auto child = notecard->property( "dialog" );
+				if( child != 0 ) {
+					//child->setParent( otherNotecard );
+				}
+				
 				associateNotecardWith( otherNotecard, assocType, associatedID );
+				
 				break;
 			}
 		}

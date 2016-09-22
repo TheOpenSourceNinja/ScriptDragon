@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.5
 import Ubuntu.Components 1.3
 import QtQuick.Dialogs 1.2 as QtDialogs
 import Ubuntu.Components.Popups 1.0 as UbuntuDialogs
@@ -174,14 +174,15 @@ Page {
 		TextArea {
 			id: tour
 			width: parent.width
-			height: parent.height - buttons.height;
+			//height: parent.height - buttons.height; Commenting this out because I'm setting autoSize to true
 			readOnly: true
-			//autoSize: true
+			autoSize: true
 			maximumLineCount: 0
 			activeFocusOnPress: false
 			cursorVisible: false
 			selectByMouse: false //note: this appears not to do anything because of activeFocusOnPress and/or cursorVisible being false. readOnly being true might also be a factor. Setting it just in case.
 			textFormat:Text.RichText;
+			wrapMode: TextEdit.Wrap
 			
 			text: i18n.tr(
 				"Welcome to ScriptDragon. ScriptDragon is an app for screenwriters.<br />" +
@@ -197,6 +198,15 @@ Page {
 					"<li>Welcome: This screen.</li>" +
 				"</ul>"
 			)
+		}
+		
+		Image {
+			source: "dragon.png"
+			asynchronous: true
+			fillMode: Image.PreserveAspectFit
+			width: parent.width
+			height: parent.height - tour.height - buttons.height
+			smooth: false
 		}
 	}
 }

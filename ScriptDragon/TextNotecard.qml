@@ -168,6 +168,7 @@ Rectangle {
 					id: dialogComponent
 					Dialog {
 						id: dialog
+						objectName: "dialog"
 						title: i18n.tr( "Choose" )
 						
 						property var selectedAssociationType;
@@ -228,8 +229,16 @@ Rectangle {
 									associationType = selectedAssociationType;
 									associatedID = selectedAssociatedID;
 									associatedText = selectedAssociatedText;
-									NotecardManager.associateNotecardWith( theCard, selectedAssociationType, selectedAssociatedID );
+									
+									dialog.parent = theCard.parent
+									
 									PopupUtils.close( dialog )
+									
+									dialog.modal = false
+									//setTimeout( NotecardManager.associateNotecardWith( theCard, selectedAssociationType, selectedAssociatedID ), 1000 );
+									
+									NotecardManager.associateNotecardWith( theCard, selectedAssociationType, selectedAssociatedID );
+									
 								}
 							}
 							

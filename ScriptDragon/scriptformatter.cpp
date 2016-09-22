@@ -139,24 +139,38 @@ void ScriptFormatter::setParagraphType( QQuickTextDocument* document, ScriptForm
 			charFormat.setFont( parentheticalFont );
 			blockFormat = parentheticalBlockFormat;
 			
-			if( !cursor.selectedText().startsWith( '(' ) ) {
+			if( !cursor.block().text().startsWith( '(' ) ) {
 				auto position = cursor.position();
+				auto start = cursor.selectionStart();
+				auto end = cursor.selectionEnd();
 				
 				cursor.movePosition( QTextCursor::StartOfBlock );
 				cursor.insertText( "(" );
 				
-				cursor.setPosition( position );
-				cursor.select( QTextCursor::BlockUnderCursor );
+				/*if( position == end ) {
+					cursor.setPosition( start, QTextCursor::MoveAnchor );
+					cursor.movePosition( end, QTextCursor::KeepAnchor );
+				} else {
+					cursor.setPosition( end, QTextCursor::MoveAnchor );
+					cursor.movePosition( start, QTextCursor::KeepAnchor );
+				}*/
 			}
 			
-			if( !cursor.selectedText().endsWith( ')' ) ) {
+			if( !cursor.block().text().endsWith( ')' ) ) {
 				auto position = cursor.position();
+				auto start = cursor.selectionStart();
+				auto end = cursor.selectionEnd();
 				
 				cursor.movePosition( QTextCursor::EndOfBlock );
 				cursor.insertText( ")" );
 				
-				cursor.setPosition( position );
-				cursor.select( QTextCursor::BlockUnderCursor );
+				/*if( position == end ) {
+					cursor.setPosition( start, QTextCursor::MoveAnchor );
+					cursor.movePosition( end, QTextCursor::KeepAnchor );
+				} else {
+					cursor.setPosition( end, QTextCursor::MoveAnchor );
+					cursor.movePosition( start, QTextCursor::KeepAnchor );
+				}*/
 			}
 			
 			break;

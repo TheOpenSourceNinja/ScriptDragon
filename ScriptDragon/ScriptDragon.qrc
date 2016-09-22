@@ -15,5 +15,6 @@
         <file>Location.qml</file>
         <file>StorylinesPage.qml</file>
         <file>Storyline.qml</file>
+        <file>dragon.png</file>
     </qresource>
 </RCC>

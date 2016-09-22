@@ -56,7 +56,10 @@ DISTFILES += \
     Character.qml \
     ../po/scriptdragon.dearingj.pot \
     Storyline.qml \
-    StorylinesPage.qml
+    StorylinesPage.qml \
+    dragon.png \
+    dragon.xcf \
+    ScriptDragon.svg
 
 HEADERS += \
     notecardmanager.h \

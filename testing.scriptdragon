@@ -1,0 +1,246 @@
+🐉🐲ScriptDragon🐲🐉
+{
+    "characters": [
+        "Draco",
+        "Bowen",
+        "Draco",
+        "Bowen"
+    ],
+    "locations": [
+        "Einon's Castle",
+        "Einon's Castle"
+    ],
+    "notecards": [
+        {
+            "associatedID": 2147483647,
+            "associationType": 0,
+            "color": "#ffff00",
+            "idWithinAssociatedThing": 0,
+            "text": "No association here. Color yellow.",
+            "title": "Dissociated"
+        },
+        {
+            "associatedID": 0,
+            "associationType": 1,
+            "color": "#855d00",
+            "idWithinAssociatedThing": 1,
+            "text": "Brown.",
+            "title": "Physical Characteristics"
+        },
+        {
+            "associatedID": 0,
+            "associationType": 1,
+            "color": "#ffffff",
+            "idWithinAssociatedThing": 2,
+            "text": "Virtues & vices: \nLikes & dislikes: \nArchetype: \nJob: \nOther notes: undefined",
+            "title": "Personality"
+        },
+        {
+            "associatedID": 0,
+            "associationType": 1,
+            "color": "#ffffff",
+            "idWithinAssociatedThing": 3,
+            "text": "Goal: \nPlan to achieve the goal: ",
+            "title": "Motivation"
+        },
+        {
+            "associatedID": 0,
+            "associationType": 1,
+            "color": "#ffffff",
+            "idWithinAssociatedThing": 4,
+            "text": "Family history: \nPersonal history: ",
+            "title": "Background"
+        },
+        {
+            "associatedID": 0,
+            "associationType": 1,
+            "color": "#ffffff",
+            "idWithinAssociatedThing": 5,
+            "text": "",
+            "title": "Relation to other characters"
+        },
+        {
+            "associatedID": 1,
+            "associationType": 1,
+            "color": "#ffffff",
+            "idWithinAssociatedThing": 1,
+            "text": "Age: \nGender: \nDistiguishing Features: \nHair: \nEyes: \nHeight: \nWeight: ",
+            "title": "Physical Characteristics"
+        },
+        {
+            "associatedID": 1,
+            "associationType": 1,
+            "color": "#000000",
+            "idWithinAssociatedThing": 2,
+            "text": "Black.",
+            "title": "Personality"
+        },
+        {
+            "associatedID": 1,
+            "associationType": 1,
+            "color": "#ffffff",
+            "idWithinAssociatedThing": 3,
+            "text": "Goal: \nPlan to achieve the goal: ",
+            "title": "Motivation"
+        },
+        {
+            "associatedID": 1,
+            "associationType": 1,
+            "color": "#ffffff",
+            "idWithinAssociatedThing": 4,
+            "text": "Family history: \nPersonal history: ",
+            "title": "Background"
+        },
+        {
+            "associatedID": 1,
+            "associationType": 1,
+            "color": "#ffffff",
+            "idWithinAssociatedThing": 5,
+            "text": "",
+            "title": "Relation to other characters"
+        },
+        {
+            "associatedID": 0,
+            "associationType": 2,
+            "color": "#b1b1b1",
+            "idWithinAssociatedThing": 6,
+            "text": "Gray.",
+            "title": "Location"
+        },
+        {
+            "associatedID": 0,
+            "associationType": 5,
+            "color": "#00ffff",
+            "idWithinAssociatedThing": 7,
+            "text": "Cyan",
+            "title": "Storyline"
+        },
+        {
+            "associatedID": 1,
+            "associationType": 5,
+            "color": "#a20000",
+            "idWithinAssociatedThing": 6,
+            "text": "Dark red.",
+            "title": "Storyline"
+        },
+        {
+            "associatedID": 2147483647,
+            "associationType": 0,
+            "color": "#ffff00",
+            "idWithinAssociatedThing": 0,
+            "text": "No association here. Color yellow.",
+            "title": "Dissociated"
+        },
+        {
+            "associatedID": 0,
+            "associationType": 1,
+            "color": "#855d00",
+            "idWithinAssociatedThing": 8,
+            "text": "Brown.",
+            "title": "Physical Characteristics"
+        },
+        {
+            "associatedID": 0,
+            "associationType": 1,
+            "color": "#ffffff",
+            "idWithinAssociatedThing": 9,
+            "text": "Virtues & vices: \nLikes & dislikes: \nArchetype: \nJob: \nOther notes: undefined",
+            "title": "Personality"
+        },
+        {
+            "associatedID": 0,
+            "associationType": 1,
+            "color": "#ffffff",
+            "idWithinAssociatedThing": 10,
+            "text": "Goal: \nPlan to achieve the goal: ",
+            "title": "Motivation"
+        },
+        {
+            "associatedID": 0,
+            "associationType": 1,
+            "color": "#ffffff",
+            "idWithinAssociatedThing": 11,
+            "text": "Family history: \nPersonal history: ",
+            "title": "Background"
+        },
+        {
+            "associatedID": 0,
+            "associationType": 1,
+            "color": "#ffffff",
+            "idWithinAssociatedThing": 12,
+            "text": "",
+            "title": "Relation to other characters"
+        },
+        {
+            "associatedID": 1,
+            "associationType": 1,
+            "color": "#ffffff",
+            "idWithinAssociatedThing": 7,
+            "text": "Age: \nGender: \nDistiguishing Features: \nHair: \nEyes: \nHeight: \nWeight: ",
+            "title": "Physical Characteristics"
+        },
+        {
+            "associatedID": 1,
+            "associationType": 1,
+            "color": "#000000",
+            "idWithinAssociatedThing": 8,
+            "text": "Black.",
+            "title": "Personality"
+        },
+        {
+            "associatedID": 1,
+            "associationType": 1,
+            "color": "#ffffff",
+            "idWithinAssociatedThing": 9,
+            "text": "Goal: \nPlan to achieve the goal: ",
+            "title": "Motivation"
+        },
+        {
+            "associatedID": 1,
+            "associationType": 1,
+            "color": "#ffffff",
+            "idWithinAssociatedThing": 10,
+            "text": "Family history: \nPersonal history: ",
+            "title": "Background"
+        },
+        {
+            "associatedID": 1,
+            "associationType": 1,
+            "color": "#ffffff",
+            "idWithinAssociatedThing": 11,
+            "text": "",
+            "title": "Relation to other characters"
+        },
+        {
+            "associatedID": 0,
+            "associationType": 2,
+            "color": "#b1b1b1",
+            "idWithinAssociatedThing": 13,
+            "text": "Gray.",
+            "title": "Location"
+        },
+        {
+            "associatedID": 0,
+            "associationType": 5,
+            "color": "#00ffff",
+            "idWithinAssociatedThing": 14,
+            "text": "Cyan",
+            "title": "Storyline"
+        },
+        {
+            "associatedID": 1,
+            "associationType": 5,
+            "color": "#a20000",
+            "idWithinAssociatedThing": 12,
+            "text": "Dark red.",
+            "title": "Storyline"
+        }
+    ],
+    "script": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Courier'; font-size:12pt; font-weight:600; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;\"><span style=\" text-transform:uppercase;\">OPENING QUOTE</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:2;\"><span style=\" font-weight:400; text-transform:uppercase;\">ON-SCREEN TEXT</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:3;\"><span style=\" font-weight:400;\">&quot;Here we ask those what if questions, and we are free to imagine what the answers look like. We're encouraged to look around us at the things that exist and imagine how we could make them better, how we could take them to the next level, how we could transform them.&quot; -Naomi Novik</span></p>\n<p align=\"right\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:5;\"><span style=\" font-weight:400; text-transform:uppercase;\">FADE TO: </span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;\"><span style=\" text-transform:uppercase;\">INT - LOG CABIN - DAY</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:1;\"><span style=\" font-weight:400;\">A 20-something-year-old woman, ROSE, enters the room carrying a bag of food. She wears colorful, hand-woven garb with large pockets.</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:6;\"><span style=\" font-weight:400; text-transform:uppercase;\">close-up shot of table as bag is set down, pan up to notebook in rose's hand</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:1;\"><span style=\" font-weight:400;\">She puts the bag down on a table, then takes a pencil and small notebook out of a pocket and makes a check mark. She leaves.</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;\"><span style=\" text-transform:uppercase;\">EXT - TOMAHNA, A SMALL VILLAGE</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:1;\"><span style=\" font-weight:400;\">The street is bustling with people. ROSE pulls a horse and cart a few feet and stops at the next house. A passing dog in the street barks at ROSE.</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:2;\"><span style=\" font-weight:400; text-transform:uppercase;\">ROSE</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:4;\"><span style=\" font-weight:400; font-style:italic;\">(shrinking away from the dog)</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:3;\"><span style=\" font-weight:400;\">Shoo! Go on, get away!</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:1;\"><span style=\" font-weight:400;\">The dog's owner picks it up and takes it away. ROSE takes a second to recompose herself, picks up another bag of food from the cart, and goes inside.</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;\"><span style=\" text-transform:uppercase;\">INT - SEAMUS' HOUSE</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:1;\"><span style=\" font-weight:400;\">SEAMUS, a tall man who carries a shillelagh and speaks with a slight Irish accent, greets ROSE at the door.</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:2;\"><span style=\" font-weight:400; text-transform:uppercase;\">SEAMUS</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:4;\"><span style=\" font-weight:400; font-style:italic;\">(feigning friendliness)</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:3;\"><span style=\" font-weight:400;\">How are ya today, ROSE? Could ya use some help wi' distributin' the supplies?</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:2;\"><span style=\" font-weight:400; text-transform:uppercase;\">ROSE</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:3;\"><span style=\" font-weight:400;\">Not today, SEAMUS; I'm strong enough to do this on my own. Besides, you've got your own job to do I'm sure.</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:1;\"><span style=\" font-weight:400;\">ROSE puts the bag down on a nearby table.</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:2;\"><span style=\" font-weight:400; text-transform:uppercase;\">SEAMUS</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:3;\"><span style=\" font-weight:400;\">Aye, that I do.</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:1;\"><span style=\" font-weight:400;\">SEAMUS begins to look through the bag critically, careful to notice everything in it.</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:2;\"><span style=\" font-weight:400; text-transform:uppercase;\">SEAMUS</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:3;\"><span style=\" font-weight:400;\">Ya forgot one thing, lass. You usually bring me two loaves of bread for my family. How come this time there's only one?</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:2;\"><span style=\" font-weight:400; text-transform:uppercase;\">ROSE</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:4;\"><span style=\" font-weight:400; font-style:italic;\">(slightly scared)</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:3;\"><span style=\" font-weight:400;\">The bread supply's running a bit short lately. You'll have to make do with that until we get another shipment.</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:1;\"><span style=\" font-weight:400;\">ROSE leaves before SEAMUS can formulate a response.</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;\"><span style=\" text-transform:uppercase;\">EXT - TOMAHNA, A SMALL VILLAGE</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:1;\"><span style=\" font-weight:400;\">ROSE and her cart stop at another house. She picks up another bag and carries it to the door. She knocks, waits a few seconds. No response. She pushes the door open and enters.</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;\"><span style=\" text-transform:uppercase;\">INT - THE GALLERY</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:1;\"><span style=\" font-weight:400;\">ROSE steps into the building. She looks around. The walls are absolutely covered in colorful paintings. At the far end of the room, near a window, is a painter sitting at an easel. The room is dark except for a little sunlight coming through the windows.</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:2;\"><span style=\" font-weight:400; text-transform:uppercase;\">ROSE</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:3;\"><span style=\" font-weight:400;\">Good morning.</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:1;\"><span style=\" font-weight:400;\">ROSE waits a moment. No response.</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:2;\"><span style=\" font-weight:400; text-transform:uppercase;\">ROSE</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:3;\"><span style=\" font-weight:400;\">I see you sold the rhododendron painting. I thought it was beautiful.</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:1;\"><span style=\" font-weight:400;\">Again, ROSE waits. Again, no response.</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:2;\"><span style=\" font-weight:400; text-transform:uppercase;\">ROSE</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:3;\"><span style=\" font-weight:400;\">I would have liked to hang it on the restaurant's wall. Something to liven the place up a bit.</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:1;\"><span style=\" font-weight:400;\">The artist, not looking up from his/her easel, points at a painting of a hamburger.</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:2;\"><span style=\" font-weight:400; text-transform:uppercase;\">ROSE</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:3;\"><span style=\" font-weight:400;\">I know. No abstract, valueless pictures for me. Only things that inspire me to do my job. Still, even the most dedicated of us need some distraction some of the time, right?</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:1;\"><span style=\" font-weight:400;\">ROSE sets the bag on the ground next to the painter. The painter turns his/her face away from ROSE.</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:2;\"><span style=\" font-weight:400; text-transform:uppercase;\">ROSE</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:3;\"><span style=\" font-weight:400;\">You can't even be distracted by real people during your working hours. You're a real nowhere man, you are.</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;\"><span style=\" text-transform:uppercase;\">INT - ROSE'S HOME/THE &quot;RESTAURANT&quot; - LATE AFTERNOON</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:1;\"><span style=\" font-weight:400;\">ROSE enters the building through the back door and plops down in a big, old, worn-but-still-comfortable chair. Her assistant, a boy of about 14, sidles up to her.</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:2;\"><span style=\" font-weight:400; text-transform:uppercase;\">MARTY</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:3;\"><span style=\" font-weight:400;\">SEAMUS giving you trouble again?</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:2;\"><span style=\" font-weight:400; text-transform:uppercase;\">ROSE</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:3;\"><span style=\" font-weight:400;\">Yeah, MARTY, he does that. Part of his job. But I think he just likes seeing me panic.</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:2;\"><span style=\" font-weight:400; text-transform:uppercase;\">MARTY</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:3;\"><span style=\" font-weight:400;\">So why don't you tell him off? Surely he won't actually do anything about it.</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:2;\"><span style=\" font-weight:400; text-transform:uppercase;\">ROSE</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:3;\"><span style=\" font-weight:400;\">Oh, I'd like to, sometimes. But he's right. I've got to keep doing my best. I'm sure he's under just as much pressure as I am.</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:2;\"><span style=\" font-weight:400; text-transform:uppercase;\">MARTY</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:4;\"><span style=\" font-weight:400; font-style:italic;\">(after a slight pause)</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:3;\"><span style=\" font-weight:400;\">So when's the next shipment supposed to come in?</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:2;\"><span style=\" font-weight:400; text-transform:uppercase;\">ROSE</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:3;\"><span style=\" font-weight:400;\">Tomorrow if all goes well. Around noon. Think you'll be ready to help unload?</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:2;\"><span style=\" font-weight:400; text-transform:uppercase;\">MARTY</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:3;\"><span style=\" font-weight:400;\">Are you kiddin'? I'll be waiting at the gates!</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:1;\"><span style=\" font-weight:400;\">Rose chuckles softly.</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:2;\"><span style=\" font-weight:400; text-transform:uppercase;\">MARTY</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:3;\"><span style=\" font-weight:400;\">I'm gonna go check on the other supplies. See what we should ask for when the caravan gets here.</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:1;\"><span style=\" font-weight:400;\">MARTY goes off into another room, allowing a gray tomcat to enter as he leaves. The cat jumps up on ROSE's lap.</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:2;\"><span style=\" font-weight:400; text-transform:uppercase;\">ROSE</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:4;\"><span style=\" font-weight:400; font-style:italic;\">(to herself)</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:3;\"><span style=\" font-weight:400;\">So well programmed that boy is. His parents did a great job instilling a sense of duty into him.</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:1;\"><span style=\" font-weight:400;\">ROSE, petting the cat, begins to daydream of her own activities at MARTY's age. The cat purrs softly.</span></p>\n<p align=\"right\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:5;\"><span style=\" font-weight:400; text-transform:uppercase;\">FADE TO:</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;\"><span style=\" text-transform:uppercase;\">EXT - SMALL FOOTBALL FIELD IN TOMAHNA</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:1;\"><span style=\" font-weight:400;\">Fluffy white clouds slowly billow in the afternoon sky.</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:1;\"><span style=\" font-weight:400;\">ROSE, a teenage girl, is providing snacks to the audience.</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:2;\"><span style=\" font-weight:400; text-transform:uppercase;\">ROSE</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:3;\"><span style=\" font-weight:400;\">Popcorn, get your popcorn!</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:1;\"><span style=\" font-weight:400;\">One of the audience members raises a hand. ROSE tosses a small bag of popcorn to her. Suddenly the audience stands and cheers. ROSE turns around just quickly enough to see a player land a goal. The coach calls a time out; the home team huddles near the stands. ROSE leans in and cups her hand to her ear.</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:2;\"><span style=\" font-weight:400; text-transform:uppercase;\">COACH</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:3;\"><span style=\" font-weight:400;\">...Make no mistake. Football is a military game. We are the town's protectors, its defendants, its guardians. The enemy has just scored another goal. We can't let that happen again. We've got to get out there and stop them. Now stop wasting listening to me!</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:1;\"><span style=\" font-weight:400;\">The players walk back onto the field. Play begins again.</span></p>\n<p align=\"right\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:5;\"><span style=\" font-weight:400; text-transform:uppercase;\">CUT TO</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;\"><span style=\" text-transform:uppercase;\">INT - ROSE'S HOME/THE &quot;RESTAURANT&quot; - EVENING</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:1;\"><span style=\" font-weight:400;\">ROSE wakes up in her chair. The cat is sleeping on her lap. Gently she lifts the cat up, gets out of the chair, and puts the cat in the chair. She lights a nearby lamp. Then she heads to a dresser and opens one of the drawers.</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:2;\"><span style=\" font-weight:400; text-transform:uppercase;\">ROSE</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:4;\"><span style=\" font-weight:400; font-style:italic;\">(examining the clothes in the drawer)</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:3;\"><span style=\" font-weight:400;\">(mumbles inaudibly)</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:1;\"><span style=\" font-weight:400;\">She takes some clothes and places them on a large table. Then she goes into the kitchen.</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;\"><span style=\" text-transform:uppercase;\">INT - ROSE'S KITCHEN</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:1;\"><span style=\" font-weight:400;\">The kitchen has lots of cupboards, shelves, and other storage space. On or near each one is hung a list of the storage device's contents, handwritten in pencil. There are also cups of pencils and pads of paper in various places.</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:1;\"><span style=\" font-weight:400;\">ROSE stands in the center, looking around thoughtfully.</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:2;\"><span style=\" font-weight:400; text-transform:uppercase;\">ROSE</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:4;\"><span style=\" font-weight:400; font-style:italic;\">(to herself)</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:3;\"><span style=\" font-weight:400;\">What would make good camping supplies? Pretend this is a camping trip. Um...</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:1;\"><span style=\" font-weight:400;\">She grabs a short stool and moves it in front of one of the larger shelves. She takes an old stew pot down and, grabbing a pencil from a nearby cup, checks it off the relevant list. She takes the pot back into the other room and puts it on the table.</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;\"><span style=\" text-transform:uppercase;\">EXT - TOMAHNA VILLAGE GATES - NOON</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:1;\"><span style=\" font-weight:400;\">ROSE and MARTY arrive at the village's gate, the only road leading out of town. ROSE is carrying a large bag full of clothes and various other items. MARTY climbs up a ladder onto the wall. He looks out expectantly. ROSE listens for the tell-tale sound of hooves.</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:2;\"><span style=\" font-weight:400; text-transform:uppercase;\">ROSE</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:4;\"><span style=\" font-weight:400; font-style:italic;\">(after a long moment)</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:3;\"><span style=\" font-weight:400;\">They coming?</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:2;\"><span style=\" font-weight:400; text-transform:uppercase;\">MARTY</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:3;\"><span style=\" font-weight:400;\">I don't see 'em.</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:1;\"><span style=\" font-weight:400;\">MARTY walks along the wall to the nearest guard tower. The guard on duty moves aside, away from the telescope installed there. MARTY puts his eye up to the scope and begins searching the road.</span></p></body></html>",
+    "storylines": [
+        "Bowen & Draco's Relationship",
+        "The Heart",
+        "Bowen & Draco's Relationship",
+        "The Heart"
+    ]
+}
