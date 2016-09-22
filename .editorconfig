@@ -1,0 +1,11 @@
+# This is an EditorConfig file; see http://editorconfig.org/ for documentation
+
+# This is the top-most-in-the-directory-tree EditorConfig file that we want to use; any files higher in the directory tree are irrelevant to this project
+root = true
+
+# Matches all files
+[**]
+charset = utf-8
+indent_style = tab
+trim_trailing_whitespace = false
+max_line_length = off
